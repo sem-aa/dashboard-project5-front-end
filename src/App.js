@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Test commit</h3>
+        <h3>{ value}</h3>
         <p>
          Go start project Dashboard
         </p>
