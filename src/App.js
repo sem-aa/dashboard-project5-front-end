@@ -7,10 +7,7 @@ function App() {
      <Container>
     <div className="App">
       <header className="App-header">
-       
-         <p>    {value}        Go start project Dashboard
-        </p>
-          
+      <p>Go start project Dashboard</p>    
         </header>
         </div>
       </Container>
