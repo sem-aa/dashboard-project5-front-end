@@ -8,12 +8,11 @@ function App() {
     <div className="App">
       <header className="App-header">
        
-         <p>            Go start project Dashboard
+         <p>    {value}        Go start project Dashboard
         </p>
           
         </header>
-        <p className="Font">Test font</p>
-      </div>
+        </div>
       </Container>
   );
 }
