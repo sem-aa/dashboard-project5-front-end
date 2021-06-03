@@ -1,0 +1,19 @@
+.header {
+  height: 60px;
+  background-color: var(--bg-header);
+  padding: 20px 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    height: 70px;
+    padding: 24px 0;
+  }
+}
