@@ -1,15 +1,19 @@
 import './App.css';
+import Container from './components/Container/Container'
+
 
 function App() {
   return (
+     <Container>
     <div className="App">
       <header className="App-header">
-        <h3>{ value}</h3>
-        <p>
-         Go start project Dashboard
+       
+         <p>            Go start project Dashboard
         </p>
+          
         </header>
-    </div>
+      </div>
+      </Container>
   );
 }
 
