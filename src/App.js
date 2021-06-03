@@ -12,6 +12,7 @@ function App() {
         </p>
           
         </header>
+        <p className="Font">Test font</p>
       </div>
       </Container>
   );
