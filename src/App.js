@@ -1,17 +1,8 @@
 import './App.css';
-import Container from './components/Container/Container'
-
+import Header from './components/Header';
 
 function App() {
-  return (
-     <Container>
-    <div className="App">
-      <header className="App-header">
-      <p>Go start project Dashboard</p>    
-        </header>
-        </div>
-      </Container>
-  );
+  return <Header />;
 }
 
 export default App;
