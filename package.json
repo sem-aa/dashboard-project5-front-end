@@ -54,7 +54,6 @@
     "prettier": "^2.3.0",
     "redux-devtools": "^3.7.0"
   },
-  
   "lint-staged": {
     "*.{js, jsx}": [
       "prettier --write",
