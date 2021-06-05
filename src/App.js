@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import MainPage from './views/main';
 import landing from '../src/views/landing';
-import main from '../src/views/main';
+
 
 const App = () => (
   <>
