@@ -1,16 +1,16 @@
 import s from './section.module.css';
 
 //fake cart
-import './fakeCart.css';
-const Cart = () => <div className="fakeCart">Cart example</div>;
+import './fakeCard.css';
+const Card = data => <div className="fakeCard">{JSON.stringify(data)}</div>;
 
 export default function Section({ title, data }) {
   return (
-    <section>
+    <section className={s.section}>
       <h3 className={s.title}>{title}</h3>
       <div className={s.collection}>
         {data.map(el => (
-          <Cart data={el} />
+          <Card data={el} key={el._id} />
         ))}
       </div>
     </section>

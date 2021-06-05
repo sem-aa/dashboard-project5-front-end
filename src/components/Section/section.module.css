@@ -1,3 +1,11 @@
+.section {
+  margin-top: 25px;
+}
+
+.section:first-child {
+  margin-top: 0;
+}
+
 .title {
   margin-bottom: 20px;
 
@@ -8,10 +16,12 @@
   size: 15px;
   text-transform: uppercase;
 }
+
 .collection {
   display: grid;
   grid-row-gap: 20px;
 }
+
 @media screen and (max-width: 767px) {
   .collection > * {
     margin-right: auto;
@@ -23,7 +33,11 @@
   .collection {
     grid-template-columns: repeat(3, 1fr);
   }
+  .section {
+    margin-top: 30px;
+  }
 }
+
 @media screen and (min-width: 1280px) {
   .collection {
     grid-template-columns: repeat(5, 1fr);
