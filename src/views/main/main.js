@@ -3,6 +3,7 @@ import Container from '../../components/Container/Container';
 import Section from '../../components/Section';
 import s from './main.module.css';
 
+
 // fake response
 const res = {
   title: 'Title',
