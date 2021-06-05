@@ -17,8 +17,8 @@ const { title, data } = res;
 export default function MainPage() {
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
-
-
+ 
+  
   return (
     <>
       <Header />

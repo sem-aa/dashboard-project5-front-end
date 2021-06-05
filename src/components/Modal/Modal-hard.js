@@ -1,7 +1,6 @@
 import React from 'react';
 import s from "./Modal-hard.module.css";
 import sprite from '../../icon/sprite.svg';
-import s from './svg.module.css';
 
 const ModalHard = () => {
     return (
