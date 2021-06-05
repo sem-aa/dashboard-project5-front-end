@@ -6,6 +6,15 @@
   margin-top: 0;
 }
 
+.doneSection {
+  margin-top: 50px;
+  padding-bottom: 82px;
+}
+
+.head {
+  display: flex;
+}
+
 .title {
   margin-bottom: 20px;
 
@@ -15,6 +24,31 @@
   font-weight: 300;
   size: 15px;
   text-transform: uppercase;
+}
+
+.button {
+  margin: 0 4px auto 10px;
+
+  transition: transform var(--animation) var(--cubic);
+  transform: rotate(180deg);
+}
+
+.icon {
+  max-width: 100%;
+  width: 12px;
+  height: 6px;
+
+  fill: var(--accent-color);
+}
+
+.rotate {
+  transform: rotate(0deg);
+}
+
+.line {
+  width: 100%;
+  margin-top: 0.25rem;
+  border-top: 1px dashed var(--secondary-color);
 }
 
 .collection {
@@ -36,11 +70,18 @@
   .section {
     margin-top: 30px;
   }
+  .doneSection {
+    margin-top: 60px;
+    padding-bottom: 88px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .collection {
     grid-template-columns: repeat(5, 1fr);
     grid-row-gap: 22px;
+  }
+  .doneSection {
+    padding-bottom: 65px;
   }
 }
