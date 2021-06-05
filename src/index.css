@@ -33,6 +33,9 @@
   --mobile: 320px;
   --tablet: 768px;
   --desktop: 1280px;
+
+  --animation: 250ms;
+  --cubic: ease-in-out;
 }
 
 body {
