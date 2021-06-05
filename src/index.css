@@ -1,13 +1,155 @@
+@font-face {
+  font-family: 'HelveticaNeueCyr';
+  src: local('HelveticaNeueCyr'),
+    url(./fonts/HelveticaNeueCyr-Roman.ttf) format('truetype');
+
+  font-family: 'HelveticaNeueCyr-Bold';
+  src: local('HelveticaNeueCyr-Bold'),
+    url(./fonts/HelveticaNeueCyr-Bold.ttf) format('truetype');
+}
+
+:root {
+  --main-bg-color: #f2f3f7;
+  --white-color: #ffffff;
+  --bg-card-chellenge: #15395a;
+  --bg-button: #ff851c;
+  --bg-header: #242a37;
+
+  --header-text: #7b8aa4;
+
+  --bg-stuff: #b9c3c8;
+  --bg-family: #ffe6d3;
+  --bg-health: #cdf7ff;
+  --bg-learning: #fff6c0;
+  --bg-leisure: #f8d2ff;
+  --bg-work: #d3f6ce;
+
+  --primary-text-color: #282828;
+  --secondary-color: #b9c3c8;
+  --accent-color: #00d7ff;
+  --normal-color: #24d40c;
+  --hard-color: #db0837;
+
+  --mobile: 320px;
+  --tablet: 768px;
+  --desktop: 1280px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeueCyr', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+address,
+em,
+img,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+footer,
+header menu,
+nav,
+output,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  outline: none;
+}
+html {
+  height: 101%;
+} /* always display scrollbars */
+body {
+  font-size: 62.5%;
+  line-height: 1;
+  font-family: HelveticaNeueCyr-Bold;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+strong {
+  font-weight: bold;
+}
+
+input {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
 }
