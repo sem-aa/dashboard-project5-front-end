@@ -11,6 +11,7 @@ const res = {
   title: 'Title',
   data: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 };
+// eslint-disable-next-line
 const { title, data } = res;
 
 
