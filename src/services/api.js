@@ -33,11 +33,11 @@ export default {
   logIn,
   logOut,
   refreshToken,
-    createCard,
-    editCard,
-    deleteCard,
-    getAllCards,
-    completeCard
+  createCard,
+  editCard,
+  deleteCard,
+  getAllCards,
+  completeCard
 };
 
 

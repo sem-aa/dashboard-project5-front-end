@@ -6,7 +6,7 @@ import authReducer from './reducer/authReducers';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isAuthenticated'],
+  whitelist: ['token', 'isAuthenticated', 'user'],
 };
 
 export default combineReducers({

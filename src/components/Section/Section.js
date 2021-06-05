@@ -1,17 +1,34 @@
+import { useState } from 'react';
+import cn from 'classnames';
 import s from './section.module.css';
+import sprite from '../../icon/sprite.svg';
 
 //fake cart
-import './fakeCart.css';
-const Cart = () => <div className="fakeCart">Cart example</div>;
+import './fakeCard.css';
+const Card = data => <div className="fakeCard">{JSON.stringify(data)}</div>;
 
 export default function Section({ title, data }) {
+  const isDoneSection = title.toUpperCase() === 'DONE';
+  const [isOpen, setOpen] = useState(true);
+
   return (
-    <section>
-      <h3 className={s.title}>{title}</h3>
+    <section className={cn(s.section, { [s.doneSection]: isDoneSection })}>
+      <div className={s.head} onClick={() => setOpen(!isOpen)}>
+        <h3 className={s.title}>{title}</h3>
+
+        {isDoneSection && (
+          <>
+            <div className={cn(s.button, { [s.rotate]: isOpen })}>
+              <svg className={s.icon}>
+                <use href={sprite + '#icon-polygon'}></use>
+              </svg>
+            </div>
+            <div className={s.line} />
+          </>
+        )}
+      </div>
       <div className={s.collection}>
-        {data.map(el => (
-          <Cart data={el} />
-        ))}
+        {isOpen && data.map(el => <Card data={el} key={el._id} />)}
       </div>
     </section>
   );
