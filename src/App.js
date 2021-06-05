@@ -1,8 +1,19 @@
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import MainPage from './views/main';
+import landing from '../src/views/landing';
+import main from '../src/views/main';
 
-function App() {
-  return <MainPage />;
-}
+const App = () => (
+  <>
+  <Switch>
+    <Route path="/" exact component={landing} />
+    <Route path="/main" component={MainPage} />
+    </Switch>
+  </>
+);
+
+
 
 export default App;
