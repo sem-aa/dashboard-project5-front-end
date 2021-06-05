@@ -36,10 +36,9 @@
 }
 
 body {
+  font-size: 14px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeueCyr', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: HelveticaNeueCyr, Arial, Helvetica;
 }
 
 code {
@@ -98,11 +97,6 @@ section {
 html {
   height: 101%;
 } /* always display scrollbars */
-body {
-  font-size: 62.5%;
-  line-height: 1;
-  font-family: HelveticaNeueCyr-Bold;
-}
 
 article,
 aside,

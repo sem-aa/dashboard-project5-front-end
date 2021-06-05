@@ -5,9 +5,11 @@ import Section from '../../components/Section';
 import { getCards } from '../../redux/selectors/userSelectors';
 import s from './main.module.css';
 
+
 export default function MainPage() {
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
+
 
   return (
     <>

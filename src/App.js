@@ -10,10 +10,6 @@ import { getIsAuthenticated } from './redux/selectors/authSelectors';
 
 const App = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
-
-
-
-
   return (
     <>
       <Switch>
@@ -22,7 +18,7 @@ const App = () => {
           exact
           component={isAuthenticated ? MainPage : landing}
         />
- <Route path="/svg" component={Svg} />
+  <Route path="/svg" component={Svg} />
       </Switch>
     </>
   );
