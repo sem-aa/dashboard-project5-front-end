@@ -1,0 +1,12 @@
+.fakeCart {
+  width: 290px;
+  height: 260px;
+
+  background-color: #fff;
+}
+@media screen and (min-width: 768px) {
+  .fakeCart {
+    width: 205px;
+    height: 199px;
+  }
+}
