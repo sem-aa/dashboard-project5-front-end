@@ -6,6 +6,14 @@ import { getCards } from '../../redux/selectors/userSelectors';
 import s from './main.module.css';
 
 
+// fake response
+const res = {
+  title: 'Title',
+  data: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+};
+const { title, data } = res;
+
+
 export default function MainPage() {
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
