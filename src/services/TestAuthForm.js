@@ -63,6 +63,7 @@ const TestAuthForm = () => {
                 id="AuthorizationForm__password"
                 value={password}
                 onChange={changePasswordValue}
+                
 
               />
           <button type="submit" >
@@ -82,7 +83,6 @@ const TestAuthForm = () => {
         {cards ? cards.map(card =>
           <div>
           <p>{card.title}</p>
-            <p>{card.difficulty}</p>
             <p>{card.difficulty}</p>
             <p>{card.category}</p>
             <p>{card.date}</p>
