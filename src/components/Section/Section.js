@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 import { createCard } from '../../redux/operations/cardOperations';
-import api from '../../services/api';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
 

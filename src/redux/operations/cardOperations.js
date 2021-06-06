@@ -7,7 +7,7 @@ export const createCard = data => dispatch => {
   api
     .createCard(data)
     .then(({ data }) => {
-      dispatch(actions.createCardSuccess({ ...data }));
+      dispatch(actions.createCardSuccess(data));
     })
     .catch(error => dispatch(actions.createCardError(error.message)));
 };
