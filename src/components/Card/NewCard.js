@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import sprite from '../../icon/sprite.svg'
 import s from "./NewCard.module.css"
+import {useSelector} from 'react-redux'
+
 
 const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) => {
     
@@ -21,7 +23,9 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
             <option  value="Challenge">Challenge</option>
                     </select> */}
                 </div>
-                <div> {isEdit ? <input className={s.titleInput} {...register('title')} ref={ref}></input> : <h2 className={s.title}>{ data.title}</h2>}
+                <div> {isEdit ?
+                    <input className={s.titleInput} {...register('title')} ref={ref}></input> :
+                    <h2 className={s.title}> Title</h2>}
                     {isEdit ?
                         <div className={s.dateFlex}>
                         <input className={s.inputDate} {...register('date')} ref={ref} placeholder="Today"></input>
@@ -36,7 +40,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                         <p className={s.date}>March 23, 21:30</p>} </div>
                 <div className={s.foot}>
                     <select className={s.category} name={'category'} ref={ref} {...register('category')}>
-                    <option  value="Stuff"  ref={ref}>Stuff</option>
+                    <option className={s.stuff} value="Stuff"  ref={ref}>Stuff</option>
                     <option value="FAMILY">FAMILY</option>
                     <option value="HEALTH">HEALTH</option>
                     <option value="LEARNING">LEARNING</option>
@@ -45,22 +49,24 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                     </select>
                     <div>
                 {isEdit && 
-                <div className={s.buttonFlex}>
-                <button ref={ref}>
-                <svg className={s.buttonEdit} >
-                    <use href={sprite + "#icon-done"}></use>
-                    </svg>
-                </button>
-                <button ref={ref}>
-                <svg className={s.buttonEdit}>
+                            <div className={s.buttonFlex}>
+                            <button ref={ref}>
+                <svg className={s.buttonSave}>
                     <use href={sprite + "#icon-save"}></use>
                     </svg>
-                </button >
-                <button ref={ref}>
-                <svg className={s.buttonEdit}>
+                            </button >
+                <button className={s.buttonClose} ref={ref}>
+                <svg className={s.buttonClear}>
                     <use href={sprite + "#icon-clear"}></use>
                 </svg>
                     </button>
+                <button ref={ref}>
+                <svg className={s.buttonDone} >
+                    <use href={sprite + "#icon-done"}></use>
+                    </svg>
+                </button>
+                
+               
                     </div>}
                     </div>
                     </div>    
@@ -70,17 +76,18 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
 });
   
 export default function CardForm() {
-   const [isEdit, setEdit] = useState(false)
+   const [isEdit, setEdit] = useState(true)
     const { register, handleSubmit } = useForm()
+    const cards = useSelector(state => state.auth.user.cards)
     const onSubmit = () => { }
    
     return (
-        <Card onClick = {() => setEdit(!isEdit)}
-            // data={ }
-            // el={}
+        <Card onClick={() => setEdit(!isEdit)}
             isEdit={isEdit}
-            handleSubmit={ handleSubmit(onSubmit)}
-            register={ register}/>
+            handleSubmit={handleSubmit(onSubmit)}
+            register={register}
+            data={cards}
+            />
     )
 }
 
