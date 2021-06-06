@@ -36,16 +36,16 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                         <p className={s.date}>March 23, 21:30</p>} </div>
                 <div className={s.foot}>
                     <select className={s.category} name={'category'} ref={ref} {...register('category')}>
-                    <option  className={s.stuff} value="Stuff"  ref={ref}>Stuff</option>
-                    <option className={s.stuff} value="FAMILY">FAMILY</option>
-                    <option className={s.stuff} value="HEALTH">HEALTH</option>
-                    <option className={s.stuff} value="LEARNING">LEARNING</option>
-                    <option className={s.stuff} value="LEISURE">LEISURE</option>
-                    <option className={s.stuff} value="WORK">WORK</option>
+                    <option  value="Stuff"  ref={ref}>Stuff</option>
+                    <option value="FAMILY">FAMILY</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="LEARNING">LEARNING</option>
+                    <option value="LEISURE">LEISURE</option>
+                    <option value="WORK">WORK</option>
                     </select>
                     <div>
                 {isEdit && 
-                <>
+                <div className={s.buttonFlex}>
                 <button ref={ref}>
                 <svg className={s.buttonEdit} >
                     <use href={sprite + "#icon-done"}></use>
@@ -61,19 +61,16 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                     <use href={sprite + "#icon-clear"}></use>
                 </svg>
                     </button>
-                            </>}</div>
+                            </div>}
                     </div>
-          
-               
-          
-                      
+                    </div>    
         </form>
       </div>
     );
 });
   
 export default function CardForm() {
-   const [isEdit, setEdit] = useState(true)
+   const [isEdit, setEdit] = useState(false)
     const { register, handleSubmit } = useForm()
     const onSubmit = () => { }
    
