@@ -41,7 +41,7 @@ export default function Section({ title, data }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
+    console.log('body', data);
     const body = {
       ...data,
       date: new Date().toISOString().split('T')[0],

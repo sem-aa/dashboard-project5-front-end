@@ -18,6 +18,7 @@ const id = createReducer('', {
 const cards = createReducer([], {
   [authActions.logInSuccess]: (_, { payload }) => payload.userData.cards,
   [cardActions.createCardSuccess]: (state, { payload }) => [payload.createdCard, ...state],
+  [cardActions.deleteCardSuccess]: (state, { payload }) => state.filter(({ id }) => id !== payload),
 });
 
 const loadingCards = createReducer(false, {

@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalDelete from '../Modal/Modal-delete';
+import { deleteCard } from '../../redux/operations/cardOperations';
 
 const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <div className={s.container}>
       <form onSubmit={handleSubmit}>
@@ -91,7 +94,11 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
         </div>
       </form>
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        <ModalDelete
+          onClose={() => setModal(false)}
+          onDelete={() => dispatch(deleteCard(data._id))}
+          type="Quest"
+        ></ModalDelete>
       )}
     </div>
   );
