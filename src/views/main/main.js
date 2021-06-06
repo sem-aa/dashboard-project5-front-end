@@ -26,7 +26,7 @@ export default function MainPage() {
     if (token) {
       api.token.set(token);
     }
-  }, []);
+  }, [token]);
 
   return (
     <>

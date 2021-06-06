@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
-import api from '../../services/api';
+import { createCard } from '../../redux/operations/cardOperations';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
 
 ////////////////////////////////// fake cart //////////////////////////////////
 import './fakeCard.css';
+import { useDispatch } from 'react-redux';
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   return (
     <div className="fakeCard">
@@ -33,6 +34,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
 export default function Section({ title, data }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
   const [isOpen, setOpen] = useState(true);
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
@@ -43,7 +45,7 @@ export default function Section({ title, data }) {
       time: new Date().getUTCHours() + ':' + new Date().getUTCMinutes(),
     };
 
-    api.createCard(body);
+    dispatch(createCard(body));
   };
 
   return (
