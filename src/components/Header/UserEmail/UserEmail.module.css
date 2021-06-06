@@ -23,7 +23,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .user__logo {
+  .user {
     margin-left: auto;
   }
   .user__email {
