@@ -6,10 +6,11 @@ import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
 
 ////////////////////////////////// fake cart //////////////////////////////////
-import './fakeCard.css';
+import fcs from './fakeCard.module.css';
+import ModalDelete from '../Modal/Modal-delete';
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   return (
-    <div className="fakeCard">
+    <div className={fcs.fakeCard}>
       <form onSubmit={handleSubmit}>
         <input {...register('title')} ref={ref}></input>
         <select name={'difficulty'} ref={ref} {...register('difficulty')}>
@@ -24,7 +25,13 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           <option value="Challenge">Challenge</option>
         </select>
         <input type="submit" value="create" />
+        <button>
+          <svg className={fcs.iconCross}>
+            <use href={sprite + '#icon-clear'}></use>
+          </svg>
+        </button>
       </form>
+      <ModalDelete type="Quest"></ModalDelete>
     </div>
   );
 });

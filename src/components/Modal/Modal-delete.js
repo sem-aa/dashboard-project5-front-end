@@ -1,9 +1,7 @@
 import { Component } from 'react';
-import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import s from './Modal-delete.module.css';
 
-const modalRoot = document.querySelector('#modal-delete-root');
 export default class ModalDelete extends Component {
   // static propTypes = {
   //   onClose: PropTypes.func,
@@ -26,20 +24,19 @@ export default class ModalDelete extends Component {
   //   }
   // };
   render() {
-    return createPortal(
+    return (
       <div
         className={s.overlay}
         // onClick={this.handleBackdropClick}
       >
         <div className={s.modal}>
-          <h1 className={s.title}>Delete this Quest?</h1>
+          <h1 className={s.title}>Delete this {this.props.type}?</h1>
           <div className={s.buttonsWrap}>
             <button className={s.button + ' ' + s.buttonCancel}>Cancel</button>
             <button className={s.button + ' ' + s.buttonDelete}>Delete</button>
           </div>
         </div>
-      </div>,
-      modalRoot,
+      </div>
     );
   }
 }
