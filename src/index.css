@@ -33,13 +33,15 @@
   --mobile: 320px;
   --tablet: 768px;
   --desktop: 1280px;
+
+  --animation: 250ms;
+  --cubic: ease-in-out;
 }
 
 body {
+  font-size: 14px;
   margin: 0;
-  font-family: 'HelveticaNeueCyr', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: HelveticaNeueCyr, Arial, Helvetica;
 }
 
 /* code {
@@ -98,11 +100,6 @@ section {
 html {
   height: 101%;
 } /* always display scrollbars */
-/* body {
-  font-size: 62.5%;
-  line-height: 1;
-  font-family: HelveticaNeueCyr-Bold;
-} */
 
 article,
 aside,

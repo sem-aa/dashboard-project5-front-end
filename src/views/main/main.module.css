@@ -1,0 +1,15 @@
+.main {
+  padding-top: 25px;
+
+  background: var(--main-bg-color);
+}
+.title {
+  font-family: ;
+}
+
+.btn {
+  position: fixed;
+
+  bottom: 20px;
+  right: 15px;
+}

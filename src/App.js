@@ -1,18 +1,26 @@
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './App.css';
-import Container from './components/Container/Container';
-import ModalDelete from './components/Modal/Modal-delete';
+import MainPage from './views/main';
+import landing from '../src/views/landing';
+import Svg from './views/TestSvg';
+import { getIsAuthenticated } from './redux/selectors/authSelectors';
 
-function App() {
+const App = () => {
+  const isAuthenticated = useSelector(getIsAuthenticated);
   return (
-    <Container>
-      <div className="App">
-        <header className="App-header">
-          <p>Go start project Dashboard</p>
-        </header>
-        <ModalDelete></ModalDelete>
-      </div>
-    </Container>
+    <>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          component={isAuthenticated ? MainPage : landing}
+        />
+        <Route path="/svg" component={Svg} />
+      </Switch>
+    </>
   );
-}
+};
 
 export default App;

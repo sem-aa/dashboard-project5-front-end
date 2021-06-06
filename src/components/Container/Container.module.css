@@ -1,5 +1,6 @@
 .container {
-  background-color: var(--main-bg-color);
+  max-width: 1280px;
+
   margin-left: auto;
   margin-right: auto;
 }
