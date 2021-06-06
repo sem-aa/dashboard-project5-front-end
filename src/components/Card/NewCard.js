@@ -21,7 +21,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
             <option  value="Challenge">Challenge</option>
                     </select> */}
                 </div>
-                <div> {isEdit ? <input className={s.titleInput} {...register('title')} ref={ref}></input> : <h2 className={s.title}>Buy the gift for Mary</h2>}
+                <div> {isEdit ? <input className={s.titleInput} {...register('title')} ref={ref}></input> : <h2 className={s.title}>{ data.title}</h2>}
                     {isEdit ?
                         <div className={s.dateFlex}>
                         <input className={s.inputDate} {...register('date')} ref={ref} placeholder="Today"></input>
@@ -61,7 +61,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                     <use href={sprite + "#icon-clear"}></use>
                 </svg>
                     </button>
-                            </div>}
+                    </div>}
                     </div>
                     </div>    
         </form>
@@ -76,8 +76,8 @@ export default function CardForm() {
    
     return (
         <Card onClick = {() => setEdit(!isEdit)}
-            // data={el}
-            // el={_id}
+            // data={ }
+            // el={}
             isEdit={isEdit}
             handleSubmit={ handleSubmit(onSubmit)}
             register={ register}/>
