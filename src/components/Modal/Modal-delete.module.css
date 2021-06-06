@@ -15,8 +15,7 @@
   width: 163px;
   height: 77px;
   background-color: #fff;
-  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
-    3px 4px 4px rgba(21, 57, 90, 0.03);
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
   padding-top: 25px;
 }

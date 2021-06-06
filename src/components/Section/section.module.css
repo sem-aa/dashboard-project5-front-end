@@ -13,21 +13,21 @@
 
 .head {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .title {
-  margin-bottom: 20px;
-
   color: var(--primary-text-color);
-  font-family: 'HelveticaNeueCyr', -apple-system, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'HelveticaNeueCyr', -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
   size: 15px;
   text-transform: uppercase;
 }
 
 .button {
-  margin: 0 4px auto 10px;
+  margin-right: 4px;
+  margin-left: 10px;
 
   transition: transform var(--animation) var(--cubic);
   transform: rotate(180deg);
@@ -36,7 +36,7 @@
 .icon {
   max-width: 100%;
   width: 12px;
-  height: 6px;
+  height: 12px;
 
   fill: var(--accent-color);
 }
@@ -47,29 +47,41 @@
 
 .line {
   width: 100%;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   border-top: 1px dashed var(--secondary-color);
 }
 
 .collection {
-  display: grid;
-  grid-row-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin: -10px;
+}
+.collection > * {
+  margin: 10px;
+}
+
+@media screen and (min-width: 638px) {
+  .collection {
+    justify-content: space-between;
+  }
 }
 
 @media screen and (max-width: 767px) {
+  .collection {
+    margin: -14px;
+  }
   .collection > * {
-    margin-right: auto;
-    margin-left: auto;
+    margin: 14px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .collection {
-    grid-template-columns: repeat(3, 1fr);
-  }
   .section {
     margin-top: 30px;
   }
+
   .doneSection {
     margin-top: 60px;
     padding-bottom: 88px;
@@ -77,10 +89,6 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .collection {
-    grid-template-columns: repeat(5, 1fr);
-    grid-row-gap: 22px;
-  }
   .doneSection {
     padding-bottom: 65px;
   }
