@@ -14,15 +14,14 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
         <input {...register('title')} ref={ref}></input>
         <select name={'difficulty'} ref={ref} {...register('difficulty')}>
           <option value="Easy">Easy</option>
-          <option value="Hard">Hard</option>
         </select>
         <select name={'category'} ref={ref} {...register('category')}>
           <option value="Stuff">Stuff</option>
           <option value="Not Stuff">Not Stuff</option>
         </select>
-        <select name={'type'} ref={ref} {...register('category')}>
+        <select name={'type'} ref={ref} {...register('type')}>
           <option value="Task">Task</option>
-          <option value="Task">Task</option>
+          <option value="Challenge">Challenge</option>
         </select>
         <input type="submit" value="create" />
       </form>
@@ -37,6 +36,7 @@ export default function Section({ title, data }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
+    console.log(data);
     const body = {
       ...data,
       date: new Date().toISOString().split('T')[0],
