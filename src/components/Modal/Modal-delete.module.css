@@ -1,0 +1,62 @@
+.Overlay {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;*/
+
+position: absolute;
+width: 163px;
+height: 77px;
+left: 71px;
+top: 210px;
+background: #FFFFFF;
+box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+border-radius: 10px;
+}
+
+.Name {
+position: absolute;
+width: 102px;
+height: 12px;
+left: 101px;
+top: 235px;
+font-family: HelveticaNeueCyr;
+font-style: normal;
+font-weight: 550;
+font-size: 12px;
+line-height: 12px;
+text-align: center;
+color: #282828;
+}
+
+.Cancel {
+position: absolute;
+width: 42px;
+height: 10px;
+left: 101px;
+top: 261px;
+font-family: HelveticaNeueCyr;
+font-style: normal;
+font-weight: bold;
+font-size: 10px;
+line-height: 10px;
+text-align: center;
+text-transform: uppercase;
+color: #24D40C;
+}
+
+.Dalete {
+position: absolute;
+width: 39px;
+height: 10px;
+left: 164px;
+top: 261px;
+font-family: HelveticaNeueCyr;
+font-style: normal;
+font-weight: bold;
+font-size: 10px;
+line-height: 10px;
+text-align: center;
+text-transform: uppercase;
+color: #DB0938;
+}
