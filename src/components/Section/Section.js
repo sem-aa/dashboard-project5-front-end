@@ -5,41 +5,9 @@ import { createCard } from '../../redux/operations/cardOperations';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
 import { useDispatch } from 'react-redux';
-import NewCard from '../Card/NewCard'
-
-
-
+import NewCard from '../Card/NewCard';
 
 ////////////////////////////////// fake cart //////////////////////////////////
-import fcs from './fakeCard.module.css';
-import ModalDelete from '../Modal/Modal-delete';
-const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
-  return (
-    <div className={fcs.fakeCard}>
-      <form onSubmit={handleSubmit}>
-        <input {...register('title')} ref={ref}></input>
-        <select name={'difficulty'} ref={ref} {...register('difficulty')}>
-          <option value="Easy">Easy</option>
-        </select>
-        <select name={'category'} ref={ref} {...register('category')}>
-          <option value="Stuff">Stuff</option>
-          <option value="Not Stuff">Not Stuff</option>
-        </select>
-        <select name={'type'} ref={ref} {...register('type')}>
-          <option value="Task">Task</option>
-          <option value="Challenge">Challenge</option>
-        </select>
-        <input type="submit" value="create" />
-        <button>
-          <svg className={fcs.iconCross}>
-            <use href={sprite + '#icon-clear'}></use>
-          </svg>
-        </button>
-      </form>
-      <ModalDelete type="Quest"></ModalDelete>
-    </div>
-  );
-});
 
 // import './fakeCard.css';
 
@@ -102,7 +70,7 @@ export default function Section({ title, data }) {
       <div className={s.collection}>
         {isOpen &&
           data.map(el => (
-               <NewCard
+            <NewCard
               data={el}
               key={el._id}
               handleSubmit={handleSubmit(onSubmit)}
