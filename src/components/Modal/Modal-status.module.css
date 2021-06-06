@@ -1,0 +1,33 @@
+.modal {
+  position: fixed;
+  margin-top: 249px;
+  margin-left: 50px;
+  padding: 12px;
+  width: 90px;
+  height: 110px;
+  background: var(--white-color);
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05),
+    3px 4px 4px rgba(21, 57, 90, 0.05);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.modal__content {
+  width: auto;
+  height: 11px;
+  margin-top: 5px;
+  font-family: HelveticaNeueCyr;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+}
+
+.modal__content:hover {
+  color: var(--bg-stuff);
+}

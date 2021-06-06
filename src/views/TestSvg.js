@@ -6,7 +6,7 @@ export default function TestSvg() {
     return (
     <>
       <svg>
-        <use  className={s.icon} 
+        <use  className={s.icon} width="14px" height="14px"
         href={sprite + "#icon-done"}></use>
         </svg>
 

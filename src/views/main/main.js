@@ -7,6 +7,16 @@ import Section from '../../components/Section';
 import { getCards } from '../../redux/selectors/userSelectors';
 import s from './main.module.css';
 
+
+// fake response
+const res = {
+  title: 'Title',
+  data: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+};
+// eslint-disable-next-line
+const { title, data } = res;
+
+
 export default function MainPage() {
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
@@ -18,6 +28,7 @@ export default function MainPage() {
     });
     setToday([...today]);
   };
+
 
   return (
     <>
