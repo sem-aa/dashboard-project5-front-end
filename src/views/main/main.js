@@ -1,23 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import Container from '../../components/Container/Container';
 import ButtonAdd from '../../components/Buttons/ButtonAdd';
 import Section from '../../components/Section';
+import { getToken } from '../../redux/selectors/authSelectors';
 import { getCards } from '../../redux/selectors/userSelectors';
 import s from './main.module.css';
-
-
-// fake response
-const res = {
-  title: 'Title',
-  data: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-};
-// eslint-disable-next-line
-const { title, data } = res;
-
+import api from '../../services/api';
 
 export default function MainPage() {
+  const token = useSelector(getToken);
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
   const [today, setToday] = useState(cardsSorted.today);
@@ -29,6 +22,11 @@ export default function MainPage() {
     setToday([...today]);
   };
 
+  useEffect(() => {
+    if (token) {
+      api.token.set(token);
+    }
+  }, []);
 
   return (
     <>
