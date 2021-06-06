@@ -1,0 +1,164 @@
+.container {
+  width: 290px;
+  height: 260px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
+    3px 4px 4px rgba(21, 57, 90, 0.03);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 21px;
+  padding-left: 21px;
+  padding-right: 21px;
+}
+
+.iconTask {
+  width: 19px;
+  height: 18px;
+  fill: var(--accent-color);
+}
+
+select {
+  display: inline-block;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  display: inline-block;
+  margin-right: 21px;
+  background-size: contain;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.difficulty {
+  font-size: 16px;
+  font-family: HelveticaNeueCyr;
+  color: var(--secondary-color);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.title {
+  margin-top: 71px;
+  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: HelveticaNeueCyr;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.titleInput {
+  margin-top: 71px;
+  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: HelveticaNeueCyr;
+
+  border: none;
+  border-bottom: 1px solid var(--accent-color);
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.dateFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputDate {
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  color: var(--secondary-color);
+  width: 70px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.calendar {
+  fill: var(--accent-color);
+  width: 16px;
+  height: 18px;
+
+  @media screen and (min-width: 768px) {
+    width: 12px;
+    height: 14px;
+  }
+}
+
+.foot {
+  margin-top: 48px;
+  padding-left: 21px;
+  padding-right: 21px;
+  padding-bottom: 21px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  font-size: 14px;
+  background-color: var(--secondary-color);
+  padding-left: 21px;
+  border-radius: 0px 25px 25px 0px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+.date {
+  font-size: 18px;
+  color: var(--secondary-color);
+}
+
+.buttonEdit {
+  fill: var(--accent-color);
+  height: 14px;
+  width: 14px;
+
+  @media screen and (min-width: 768px) {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .container {
+    font-size: 16px;
+    width: 205px;
+    height: 199px;
+  }
+
+  .iconTask {
+    width: 15px;
+    height: 14.25px;
+  }
+}
