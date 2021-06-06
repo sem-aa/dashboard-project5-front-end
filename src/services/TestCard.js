@@ -1,12 +1,10 @@
-import  { useCallback } from "react";
 import { useState } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import authOperations from '../redux/operations/authOperetions';
 
 const TestAuthForm = () => {
-  const user = useSelector(state => state.auth.user.email)
-  const cards = useSelector(state => state.auth.user.cards)
-  const id = useSelector(state => state.auth.user.id)
+ const cards = useSelector(state => state.auth.user.cards)
+ const id = useSelector(state => state.auth.user.id)
     
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,9 +14,6 @@ const TestAuthForm = () => {
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
 
-  const onLogout = useCallback(() => dispatch(authOperations.handleLogOut()), [
-    dispatch,
-  ]);
   
   const onSubmit = event => {
     event.preventDefault();
@@ -77,7 +72,6 @@ const TestAuthForm = () => {
             Регистрация
           </button>
     
-       <h2> user {user}</h2>
         <h2> id {id}</h2>
 
         {cards ? cards.map(card =>
@@ -93,12 +87,6 @@ const TestAuthForm = () => {
           </div>
          ) : <h1>No cards</h1>}
         
-        <button
-            type="button"
-            onClick={onLogout}
-          >
-            Выйти 
-          </button>
       </form>   
     </>
   );
