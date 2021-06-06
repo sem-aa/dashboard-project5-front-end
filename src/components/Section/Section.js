@@ -102,7 +102,7 @@ export default function Section({ title, data }) {
       <div className={s.collection}>
         {isOpen &&
           data.map(el => (
-            <NewCard
+               <NewCard
               data={el}
               key={el._id}
               handleSubmit={handleSubmit(onSubmit)}
