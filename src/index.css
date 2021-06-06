@@ -37,15 +37,15 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeueCyr', sans-serif;
+  font-family: 'HelveticaNeueCyr', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 html,
 body,
@@ -98,11 +98,11 @@ section {
 html {
   height: 101%;
 } /* always display scrollbars */
-body {
+/* body {
   font-size: 62.5%;
   line-height: 1;
   font-family: HelveticaNeueCyr-Bold;
-}
+} */
 
 article,
 aside,
@@ -152,4 +152,11 @@ img {
 
 a {
   text-decoration: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  padding: 0;
 }

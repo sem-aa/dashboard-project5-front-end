@@ -1,0 +1,54 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(21, 57, 90, 0.3);
+  z-index: 1200;
+}
+
+.modal {
+  width: 163px;
+  height: 77px;
+  background-color: #fff;
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
+    3px 4px 4px rgba(21, 57, 90, 0.03);
+  border-radius: 10px;
+  padding-top: 25px;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-weight: 550;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: var(--primary-text-color);
+}
+
+.buttonsWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.buttonCancel {
+  color: var(--normal-color);
+  padding: 2px 10px 2px 0;
+  border-right: 1px solid #b9c3c8;
+}
+
+.buttonDelete {
+  color: #db0938;
+  padding: 2px 0 2px 10px;
+}
