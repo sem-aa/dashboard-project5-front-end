@@ -1,3 +1,4 @@
+
 import React from 'react';
 import s from './Modal-delete.module.css';
 //import PropTypes from 'prop-types';//
@@ -13,3 +14,6 @@ const ModalDelete = ({}) => (
 //ModalDelete.propTypes = {};//
 
 export default ModalDelete;
+
+
+
