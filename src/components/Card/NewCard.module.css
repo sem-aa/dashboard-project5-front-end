@@ -40,7 +40,7 @@ select {
   appearance: none;
 }
 
-button {
+.buttonCard {
   display: inline-block;
   margin-right: 21px;
   background-size: contain;
