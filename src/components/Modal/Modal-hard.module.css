@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .modal {
   position: absolute;
   width: 90px;
@@ -18,12 +19,31 @@
   height: 14px;
   margin-top: 5px;
   margin-left: 12px;
+=======
+.Overlay {
+  position: absolute;
+  width: 90px;
+  height: 80px;
+  left: 50px;
+  top: 113px;
+  background: #FFFFFF;
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05), 3px 4px 4px rgba(21, 57, 90, 0.05);
+  border-radius: 10px;
+}
+
+.Li {
+  width: 31px;
+  height: 14px;
+  left: 77px;
+  top: 127px;
+>>>>>>> Stashed changes
   font-family: HelveticaNeueCyr;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 0.02em;
+<<<<<<< Updated upstream
   text-transform: uppercase;
   color: var(--bg-stuff);
 }
@@ -46,3 +66,10 @@
   margin-right: 7px;
   color: var(--hard-color);
 }
+=======
+  color: #B9C3C8;
+}
+.Li:hover :focus {
+  color: #282828;
+}
+>>>>>>> Stashed changes

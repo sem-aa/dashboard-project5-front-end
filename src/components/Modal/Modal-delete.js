@@ -1,10 +1,19 @@
 
-import s from './Modal.module.css';
+import React from 'react';
+import s from './Modal-delete.module.css';
+//import PropTypes from 'prop-types';//
 
-function Modal() {
-    return <div className={s.modal}>
-     dsdsd
- </div>;
-}
+const ModalDelete = ({}) => (
+    <div className={s.Overlay}>
+        <p className={s.Name}>Delete this Quest</p>
+        <li className={s.Cancel}>CANCEL</li>
+        <li className={s.Delete}>DELETE</li>
+    </div>
+);
 
-export default Modal;
+//ModalDelete.propTypes = {};//
+
+export default ModalDelete;
+
+
+
