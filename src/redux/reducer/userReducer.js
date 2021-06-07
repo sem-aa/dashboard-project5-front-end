@@ -15,26 +15,25 @@ const id = createReducer('', {
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.id,
 });
 
-const cards = createReducer([], {
-  [authActions.logInSuccess]: (_, { payload }) => payload.userData.cards,
-  [cardActions.createCardSuccess]: (state, { payload }) => [payload.createdCard, ...state],
-  [cardActions.deleteCardSuccess]: (state, { payload }) => state.filter(({ id }) => id !== payload),
-});
-
 const loadingCards = createReducer(false, {
   [authActions.logInRequest]: () => true,
   [cardActions.createCardRequest]: () => true,
 
-  [authActions.logInSuccess]: () => false,
-  [cardActions.createCardSuccess]: () => false,
-
   [authActions.logInError]: () => false,
+  [authActions.logInSuccess]: () => false,
   [cardActions.createCardError]: () => false,
+  [cardActions.createCardSuccess]: () => false,
 });
 
 const error = createReducer(null, {
+  [cardActions.signUpRequest]: () => null,
+  [cardActions.logInRequest]: () => null,
+  [cardActions.logOutRequest]: () => null,
+  [cardActions.getCurrentUserRequest]: () => null,
+
   [authActions.logInError]: (_, { payload }) => payload,
   [authActions.logOutError]: (_, { payload }) => payload,
+  [cardActions.signUpError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
   [cardActions.createCardError]: (_, { payload }) => payload,
 });
@@ -42,7 +41,6 @@ const error = createReducer(null, {
 export default combineReducers({
   email,
   id,
-  cards,
   loadingCards,
   error,
 });
