@@ -7,7 +7,6 @@
   border-radius: 10px;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
   background-color: #fff;
-
 }
 @media screen and (min-width: 768px) {
   .container {
@@ -94,7 +93,7 @@ select:focus {
 
 .titleInput {
   margin-top: 71px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   padding: 0px;
   font-size: 20px;
   line-height: 1;
@@ -190,15 +189,7 @@ select:focus {
   }
 }
 
-
 .buttonCard {
-  display: inline-block;
-  background-size: contain;
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
   cursor: pointer;
   padding-left: 9px;
   padding-right: 9px;
@@ -206,14 +197,11 @@ select:focus {
   padding-bottom: 4px;
 }
 
-
-
 .buttonSave {
   fill: var(--accent-color);
   height: 14px;
   width: 14px;
 }
-
 @media screen and (min-width: 768px) {
   .buttonSave {
     height: 10px;
@@ -260,7 +248,6 @@ select:focus {
   }
 }
 
-
 .buttonDone {
   fill: var(--normal-color);
   height: 14px;
@@ -282,5 +269,5 @@ select:focus {
 }
 
 .buttonFlex {
-  margin-right: 21px;
+  margin-right: 12px;
 }

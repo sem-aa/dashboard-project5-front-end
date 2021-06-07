@@ -101,7 +101,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
             {isEdit && (
               <div className={s.buttonFlex}>
 
-                <button ref={ref} type="submit">
+                <button className={s.buttonCard} ref={ref} type="submit">
 
                   <svg className={s.buttonSave}>
                     <use href={sprite + '#icon-save'}></use>
@@ -112,7 +112,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button ref={ref}>
+                <button className={s.buttonCard} ref={ref}>
                   <svg className={s.buttonDone}>
                     <use href={sprite + '#icon-done'}></use>
                   </svg>
