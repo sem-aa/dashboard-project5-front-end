@@ -11,3 +11,14 @@ export const createCard = data => dispatch => {
     })
     .catch(error => dispatch(actions.createCardError(error.message)));
 };
+
+export const editCard = data => dispatch => {
+  dispatch(actions.editCardRequest());
+
+  api
+    .editCard(data)
+    .then(({ data }) => {
+      dispatch(actions.editCardSuccess({ ...data }));
+    })
+    .catch(error => dispatch(actions.editCardError(error.message)));
+};

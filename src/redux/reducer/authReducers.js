@@ -1,25 +1,11 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import user from './userReducer';
 import authActions from '../actions/authActions';
-// import cardActions from '../actions/cardActions';
+import user from './userReducer';
 
-// const userInitialState = {};
-// const user = createReducer(userInitialState, {
-//   [authActions.logInSuccess]: (_, { payload }) => payload.userData,
-//   [authActions.logOutSuccess]: () => userInitialState,
-//   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
-
-//   [cardActions.createCardSuccess]: (state, { payload }) => ({
-//     ...state,
-//     cards: [payload.createdCard, ...state.cards],
-//   }),
-// });
-
-const tokenInitialState = null;
-const token = createReducer(tokenInitialState, {
+const token = createReducer(null, {
   [authActions.logInSuccess]: (_, { payload }) => payload.accessToken,
-  [authActions.logOutSuccess]: () => tokenInitialState,
+  [authActions.logOutSuccess]: () => null,
   [authActions.setGoogleToken]: (_, { payload }) => payload,
 });
 
