@@ -1,42 +1,69 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
 import ModalDelete from '../Modal/Modal-delete';
-import { useDispatch } from 'react-redux';
+import ModalDefficulty from '../Modal/Modal-hard'
+import ModalCategory from '../Modal/Modal-status'
 import { createCard } from '../../redux/operations/cardOperations';
 
-const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) => {
+const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
+  const [isDifficultyModalShown, setDifficultyModal] = useState(false);
+  const [isEdit, setEdit] = useState(true)
+  const [task, setTask] = useState(false)
+  const [category, setCategory] = useState(false)
+
+
   return (
-    <div className={s.container}>
+    <div onClick={() => setEdit(!isEdit)} className={s.container}>
       <form onSubmit={handleSubmit}>
         <div className={s.head}>
-          <select
-            className={s.difficulty}
-            name={'difficulty'}
-            defaultValue={data.difficulty}
-            ref={ref}
-            {...register('difficulty')}
-          >
-            <option
-              className={s.item}
-              value="Easy"
-              selected={'Easy' === data.difficulty && 'selected'}
+
+          <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
+            {isDifficultyModalShown && <ModalDefficulty />}
+            <svg className={s.iconEllipse} >
+              <use href={sprite + '#icon-ellipse'}></use>
+            </svg>
+            <p className={s.difficulty}>{data.difficulty}</p>
+            {isEdit && <svg className={s.buttonSave}>
+              <use href={sprite + '#icon-polygon'}></use>
+            </svg>}
+
+          </div>
+          {/* <select
+              className={s.difficulty}
+              name={'difficulty'}
+              defaultValue={data.difficulty}
+              ref={ref}
+              {...register('difficulty')}
             >
-              Easy
-            </option>
-            <option value="Normal" selected={'Normal' === data.difficulty && 'selected'}>
-              Normal
-            </option>
-            <option value="Hard" selected={'Hard' === data.difficulty && 'selected'}>
-              Hard
+
+              <option
+                className={s.item}
+                value="Easy"
+                selected={'Easy' === data.difficulty && 'selected'}
+              >
+                Easy
             </option>
 
-          </select>
-          <svg className={s.iconTask}>
-            <use href={sprite + '#icon-star'}></use>
-          </svg>
+              <option value="Normal" selected={'Normal' === data.difficulty && 'selected'}>
+                Normal
+            </option>
+              <option value="Hard" selected={'Hard' === data.difficulty && 'selected'}>
+                Hard
+            </option>
+            </select> */}
+          <div onClick={() => setTask(!task)}>
+            {task ?
+              <svg width='19px' height='19px'>
+                <use className={s.iconTask} href={sprite + '#icon-star'}></use>
+              </svg> :
+              <svg width='19px' height='19px' >
+                <use className={s.iconTrophy} href={sprite + '#icon-trophy'}></use>
+              </svg>}
+          </div>
           {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
                     <option value="Task">Task</option>
             <option  value="Challenge">Challenge</option>
@@ -74,7 +101,12 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
 
         </div>
         <div className={s.foot}>
-          <select className={s.category} name={'category'} ref={ref} {...register('category')}>
+          <div onClick={() => setCategory(!category)}>{category ?
+            <ModalCategory /> :
+            <p className={s.category}>{data.category}</p>}</div>
+
+
+          {/* <select className={s.category} name={'category'} ref={ref} {...register('category')}>
             <option className={s.stuff} value="Stuff" ref={ref}>
               Stuff
             </option>
@@ -96,13 +128,11 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
             <option value="Work" selected={data.category === 'Work' && 'selected'}>
               WORK
             </option>
-          </select>
+          </select> */}
           <div>
             {isEdit && (
               <div className={s.buttonFlex}>
-
                 <button className={s.buttonCard} ref={ref} type="submit">
-
                   <svg className={s.buttonSave}>
                     <use href={sprite + '#icon-save'}></use>
                   </svg>
@@ -112,7 +142,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonCard} ref={ref}>
+                <button className={s.buttonCard} ref={ref} type='submit'>
                   <svg className={s.buttonDone}>
                     <use href={sprite + '#icon-done'}></use>
                   </svg>
@@ -131,7 +161,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
 });
 
 export default function CardForm({ data }) {
-  const [isEdit, setEdit] = useState(true);
+
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
@@ -148,11 +178,8 @@ export default function CardForm({ data }) {
 
   return (
     <Card
-      onClick={() => setEdit(!isEdit)}
-      isEdit={isEdit}
       handleSubmit={handleSubmit(onSubmit)}
       register={register}
-
       data={data}
 
     />

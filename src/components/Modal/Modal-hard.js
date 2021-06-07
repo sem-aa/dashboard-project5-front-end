@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< Updated upstreamтзь
 import s from "./Modal-hard.module.css";
 import sprite from '../../icon/sprite.svg';
 
@@ -7,35 +6,22 @@ const ModalHard = () => {
     return (
         <div className={s.modal}>
             <ul>
-                <li className={s.modal__content}>
+                <li className={s.modalContent}>
                     <svg className={s.iconEasy}>
-                        <use href={sprite + "#Elipse"}></use>
-                    </svg>EASY</li>
-                <li className={s.modal__content}>
+                        <use href={sprite + '#icon-ellipse'}></use>
+                    </svg>Easy</li>
+                <li className={s.modalContent}>
                     <svg className={s.iconNormal}>
-                        <use href={sprite + "#Elipse"}></use>
-                    </svg>NORMAL</li>
-                <li className={s.modal__content}>
+                        <use href={sprite + '#icon-ellipse'}></use>
+                    </svg>Normal</li>
+                <li className={s.modalContent}>
                     <svg className={s.iconHard}>
-                        <use href={sprite + "#Elipse"}></use>
-                    </svg>HARD</li>
-            </ul>   
+                        <use href={sprite + '#icon-ellipse'}></use>
+                    </svg>Hard</li>
+            </ul>
         </div>
-  )
+    )
 };
-=======
-import s from './Modal-hard.module.css';
-//import PropTypes from 'prop-types';//
 
-const ModalHard = ({  }) => (
-    <div className={s.Overlay}>
-        <li className={s.Li}>Easy</li>
-        <li className={s.Li}>Normal</li>
-        <li className={s.Li}>Hard</li>
-    </div>
-);
-
-//ModalDelete.propTypes = {};//
->>>>>>> Stashed changes
 
 export default ModalHard;

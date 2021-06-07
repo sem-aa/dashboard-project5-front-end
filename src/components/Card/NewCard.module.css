@@ -15,32 +15,70 @@
   }
 }
 
+.iconEllipse {
+  width: 10px;
+  height: 10px;
+  fill: var(--accent-color);
+  margin-right: 7px;
+}
+@media screen and (min-width: 768px) {
+  .iconEllipse {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.iconPolygon {
+  width: 12px;
+  height: 8px;
+  fill: var(--accent-color);
+  margin-left: 7px;
+}
+@media screen and (min-width: 768px) {
+  .iconPolygon {
+    width: 8px;
+    height: 4px;
+  }
+}
+
 .head {
   display: flex;
   justify-content: space-between;
-  padding-top: 21px;
+  padding-top: 19px;
   padding-left: 21px;
   padding-right: 21px;
 }
 
 .iconTask {
   width: 19px;
-  height: 18px;
+  height: 19px;
   fill: var(--accent-color);
 }
 @media screen and (min-width: 768px) {
   .iconTask {
     width: 15px;
-    height: 14.25px;
+    height: 15px;
   }
 }
-select {
+
+.iconTrophy {
+  width: 19px;
+  height: 19px;
+  fill: var(--accent-color);
+}
+@media screen and (min-width: 768px) {
+  .iconTrophy {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* select {
   display: inline-block;
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
   position: relative;
 }
 
@@ -48,21 +86,20 @@ select {
   content: ' url(../../icon/save.svg) ';
 }
 
-option {
-  border-radius: 10px;
-}
-
 select:active {
   outline: none;
 }
 select:focus {
   outline: none;
-}
+} */
 
 .difficulty {
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-family: HelveticaNeueCyr;
   color: var(--secondary-color);
+  margin-right: 7px;
 }
 
 @media screen and (min-width: 768px) {
@@ -93,7 +130,7 @@ select:focus {
 
 .titleInput {
   margin-top: 71px;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   padding: 0px;
   font-size: 20px;
   line-height: 1;
@@ -108,7 +145,7 @@ select:focus {
 @media screen and (min-width: 768px) {
   .titleInput {
     margin-top: 41px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     font-size: 16px;
     width: 163px;
   }
@@ -145,17 +182,18 @@ select:focus {
 
 .calendar {
   fill: var(--accent-color);
-  width: 16px;
+  width: 18px;
   height: 18px;
 }
 @media screen and (min-width: 768px) {
   .calendar {
-    width: 12px;
+    width: 14px;
     height: 14px;
   }
 }
 
 .foot {
+  position: relative;
   margin-top: 38px;
   display: flex;
   justify-content: space-between;
@@ -171,6 +209,9 @@ select:focus {
 }
 
 .category {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   border: none;
   font-size: 14px;
   text-transform: uppercase;

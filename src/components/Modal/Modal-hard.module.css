@@ -1,75 +1,54 @@
-<<<<<<< Updated upstream
 .modal {
   position: absolute;
+  right: 69%;
   width: 90px;
   height: 80px;
-  margin-left: 50px;
-  margin-top: 113px;
   background: var(--white-color);
-  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05),
-    3px 4px 4px rgba(21, 57, 90, 0.05);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-}
-
-.modal__content {
-  width: auto;
-  height: 14px;
-  margin-top: 5px;
-  margin-left: 12px;
-=======
-.Overlay {
-  position: absolute;
-  width: 90px;
-  height: 80px;
-  left: 50px;
-  top: 113px;
-  background: #FFFFFF;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05), 3px 4px 4px rgba(21, 57, 90, 0.05);
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: 0;
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    right: 56%;
+  }
 }
 
-.Li {
-  width: 31px;
-  height: 14px;
-  left: 77px;
-  top: 127px;
->>>>>>> Stashed changes
-  font-family: HelveticaNeueCyr;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-<<<<<<< Updated upstream
-  text-transform: uppercase;
+.modalContent {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: left;
   color: var(--bg-stuff);
 }
 
-.modal__content:hover {
+.modalContent:hover {
   color: var(--primary-text-color);
+  cursor: pointer;
 }
 
 .iconEasy {
+  height: 8px;
+  width: 8px;
   margin-right: 7px;
-  color: var(--accent-color);
+  fill: var(--accent-color);
 }
 
 .iconNormal {
+  height: 8px;
+  width: 8px;
   margin-right: 7px;
-  color: var(--normal-color);
+  fill: var(--normal-color);
 }
 
 .iconHard {
+  height: 8px;
+  width: 8px;
   margin-right: 7px;
-  color: var(--hard-color);
+  fill: var(--hard-color);
 }
-=======
-  color: #B9C3C8;
-}
-.Li:hover :focus {
-  color: #282828;
-}
->>>>>>> Stashed changes

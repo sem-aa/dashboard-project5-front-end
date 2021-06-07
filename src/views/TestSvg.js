@@ -1,16 +1,11 @@
 
 import sprite from '../icon/sprite.svg'
 import s from './svg.module.css'
-import Card from '../components/Card/NewCard'
-import Select from '../components/Card/Select'
-
-
 
 export default function TestSvg() {
   return (
     <>
-      <Select />
-      <Card />
+
       <svg>
         <use className={s.icon} width="14px" height="14px"
           href={sprite + "#icon-done"}></use>
