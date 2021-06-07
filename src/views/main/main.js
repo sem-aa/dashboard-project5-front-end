@@ -4,8 +4,8 @@ import Header from '../../components/Header';
 import Container from '../../components/Container/Container';
 import ButtonAdd from '../../components/Buttons/ButtonAdd';
 import Section from '../../components/Section';
-import { getToken } from '../../redux/selectors/authSelectors';
-import { getCards } from '../../redux/selectors/userSelectors';
+import { getToken } from '../../redux/selectors';
+import { getCards } from '../../redux/selectors';
 import s from './main.module.css';
 import api from '../../services/api';
 

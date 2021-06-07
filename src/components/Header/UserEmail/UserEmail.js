@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getUserEmail } from '../../../redux/selectors/authSelectors';
+import { getUserEmail } from '../../../redux/selectors';
 import s from './UserEmail.module.css';
 
 const UserEmail = () => {
