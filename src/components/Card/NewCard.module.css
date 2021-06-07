@@ -2,9 +2,9 @@
   width: 290px;
   height: 260px;
   text-align: center;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
-  border: 1px solid grey;
 }
 @media screen and (min-width: 768px) {
   .container {
@@ -38,18 +38,6 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-.buttonCard {
-  display: inline-block;
-  margin-right: 21px;
-  background-size: contain;
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .difficulty {
@@ -170,23 +158,67 @@ select {
   }
 }
 
-.buttonEdit {
+.buttonCard {
+  display: inline-block;
+  background-size: contain;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.buttonSave {
   fill: var(--accent-color);
   height: 14px;
   width: 14px;
 }
 
 @media screen and (min-width: 768px) {
-  .buttonEdit {
+  .buttonSave {
+    height: 10px;
+    width: 10px;
+  }
+}
+.buttonClose {
+  border-right: 1px solid #b9c3c8;
+  border-left: 1px solid #b9c3c8;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.buttonClear {
+  fill: var(--accent-color);
+  height: 14px;
+  width: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonClear {
+    height: 10px;
+    width: 10px;
+  }
+}
+.buttonDone {
+  fill: var(--accent-color);
+  height: 14px;
+  width: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonDone {
     height: 10px;
     width: 10px;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .buttonFlex {
-    display: inline-flex;
-    margin-left: auto;
-    justify-content: space-between;
-  }
+.buttonFlex {
+  margin-right: 21px;
 }
