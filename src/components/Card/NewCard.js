@@ -27,7 +27,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               <use href={sprite + '#icon-ellipse'}></use>
             </svg>
             <p className={s.difficulty}>{data.difficulty}</p>
-            {isEdit && <svg className={s.buttonSave}>
+            {isEdit && <svg className={s.iconPolygon}>
               <use href={sprite + '#icon-polygon'}></use>
             </svg>}
 

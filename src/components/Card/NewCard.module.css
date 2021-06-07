@@ -53,6 +53,7 @@
   width: 19px;
   height: 19px;
   fill: var(--accent-color);
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .iconTask {
@@ -65,6 +66,7 @@
   width: 19px;
   height: 19px;
   fill: var(--accent-color);
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .iconTrophy {
@@ -100,6 +102,7 @@ select:focus {
   font-family: HelveticaNeueCyr;
   color: var(--secondary-color);
   margin-right: 7px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -219,7 +222,7 @@ select:focus {
   padding-left: 21px;
   border-radius: 0px 25px 25px 0px;
   width: 120px;
-  height: 35px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
