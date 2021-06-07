@@ -15,6 +15,7 @@ export default function MainPage() {
   const cardsSorted = sortCards(cards);
   const [today, setToday] = useState(cardsSorted.today);
 
+
   const addCard = () => {
     today.unshift({
       _id: Math.random(),
