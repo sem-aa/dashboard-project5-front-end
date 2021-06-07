@@ -46,16 +46,11 @@ const getCurrentUser = () => (dispatch, getState) => {
     api
       .userDataGet()
       .then(({ data }) => {
-         dispatch(authActions.getCurrentUserSuccess(data));
+        dispatch(authActions.getCurrentUserSuccess(data));
       })
       .catch(error => dispatch(authActions.getCurrentUserError(error.message)));
   }
 };
 
 // eslint-disable-next-line
-export default {
-  handleSignUp,
-  handleLogIn,
-  handleLogOut,
-  getCurrentUser,
-};
+export default { handleSignUp, handleLogIn, handleLogOut, getCurrentUser };

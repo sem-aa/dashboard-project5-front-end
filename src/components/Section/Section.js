@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import cn from 'classnames';
-import { createCard } from '../../redux/operations/cardOperations';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
-import { useDispatch } from 'react-redux';
 import NewCard from '../Card/NewCard';
 
 ////////////////////////////////// fake cart //////////////////////////////////
@@ -37,19 +34,6 @@ import NewCard from '../Card/NewCard';
 export default function Section({ title, data }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
   const [isOpen, setOpen] = useState(true);
-  const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = data => {
-    console.log('body', data);
-    const body = {
-      ...data,
-      date: new Date().toISOString().split('T')[0],
-      time: new Date().getUTCHours() + ':' + new Date().getUTCMinutes(),
-    };
-
-    dispatch(createCard(body));
-  };
 
   return (
     <section className={cn(s.section, { [s.doneSection]: isDoneSection })}>
@@ -68,15 +52,7 @@ export default function Section({ title, data }) {
         )}
       </div>
       <div className={s.collection}>
-        {isOpen &&
-          data.map(el => (
-            <NewCard
-              data={el}
-              key={el._id}
-              handleSubmit={handleSubmit(onSubmit)}
-              register={register}
-            />
-          ))}
+        {isOpen && data.map(el => <NewCard data={el} key={el._id} />)}
       </div>
     </section>
   );
