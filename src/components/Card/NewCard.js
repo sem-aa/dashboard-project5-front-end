@@ -30,7 +30,6 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
             {isEdit && <svg className={s.iconPolygon}>
               <use href={sprite + '#icon-polygon'}></use>
             </svg>}
-
           </div>
           {/* <select
               className={s.difficulty}
