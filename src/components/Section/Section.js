@@ -37,7 +37,7 @@ export default function Section({ title, data }) {
 
   return (
     <section className={cn(s.section, { [s.doneSection]: isDoneSection })}>
-      <div className={s.head} onClick={() => setOpen(!isOpen)}>
+      <div className={s.head} onClick={() => isDoneSection && setOpen(!isOpen)}>
         <h3 className={s.title}>{title}</h3>
 
         {isDoneSection && (
