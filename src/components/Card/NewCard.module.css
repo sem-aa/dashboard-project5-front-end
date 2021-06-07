@@ -222,6 +222,7 @@ select:focus {
   padding-left: 21px;
   border-radius: 0px 25px 25px 0px;
   width: 120px;
+  height: 35px;
   cursor: pointer;
 }
 
@@ -314,4 +315,25 @@ select:focus {
 
 .buttonFlex {
   margin-right: 12px;
+}
+
+.createCard {
+}
+
+.buttonCreate {
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-right: 21px;
+  font-size: 14px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.btnClose {
+  border-right: 1px solid #b9c3c8;
+  padding-left: 9px;
+  padding-right: 7px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: pointer;
 }
