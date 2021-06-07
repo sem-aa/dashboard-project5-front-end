@@ -71,10 +71,12 @@ select {
 .titleInput {
   margin-top: 71px;
   margin-bottom: 12px;
+  padding: 0px;
   font-size: 20px;
   line-height: 1;
   font-weight: 700;
   font-family: HelveticaNeueCyr;
+  text-align: center;
 
   border: none;
   border-bottom: 1px solid var(--accent-color);
@@ -82,8 +84,8 @@ select {
 
 @media screen and (min-width: 768px) {
   .titleInput {
-    margin-top: 42px;
-    margin-bottom: 12px;
+    margin-top: 41px;
+    margin-bottom: 6px;
     font-size: 16px;
     width: 163px;
   }
@@ -131,7 +133,7 @@ select {
 }
 
 .foot {
-  margin-top: 48px;
+  margin-top: 38px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -192,10 +194,11 @@ select {
   padding-right: 9px;
   padding-top: 4px;
   padding-bottom: 4px;
+  cursor: pointer;
 }
 
 .buttonClear {
-  fill: var(--accent-color);
+  fill: var(--hard-color);
   height: 14px;
   width: 14px;
 }
@@ -207,7 +210,7 @@ select {
   }
 }
 .buttonDone {
-  fill: var(--accent-color);
+  fill: var(--normal-color);
   height: 14px;
   width: 14px;
 }
