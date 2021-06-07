@@ -1,0 +1,54 @@
+.modal {
+  position: absolute;
+  right: 69%;
+  width: 90px;
+  height: 80px;
+  background: var(--white-color);
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05), 3px 4px 4px rgba(21, 57, 90, 0.05);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: 0;
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    right: 56%;
+  }
+}
+
+.modalContent {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: left;
+  color: var(--bg-stuff);
+}
+
+.modalContent:hover {
+  color: var(--primary-text-color);
+  cursor: pointer;
+}
+
+.iconEasy {
+  height: 8px;
+  width: 8px;
+  margin-right: 7px;
+  fill: var(--accent-color);
+}
+
+.iconNormal {
+  height: 8px;
+  width: 8px;
+  margin-right: 7px;
+  fill: var(--normal-color);
+}
+
+.iconHard {
+  height: 8px;
+  width: 8px;
+  margin-right: 7px;
+  fill: var(--hard-color);
+}

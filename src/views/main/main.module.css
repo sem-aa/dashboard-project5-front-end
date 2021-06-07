@@ -6,3 +6,10 @@
 .title {
   font-family: ;
 }
+
+.btn {
+  position: fixed;
+
+  bottom: 20px;
+  right: 15px;
+}

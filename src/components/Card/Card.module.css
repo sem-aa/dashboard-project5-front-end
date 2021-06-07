@@ -1,0 +1,268 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 20px;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  width: 290px;
+  height: 260px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 21px;
+  margin-right: 21px;
+}
+
+.colorDifficulty {
+  width: 10px;
+  height: 10px;
+  fill: green;
+}
+
+.difficulty {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dif {
+  font-family: HelveticaNeueCyr;
+  font-style: Roman;
+  font-size: 14px;
+  margin-left: 7px;
+  color: var(--secondary-color);
+}
+
+.poligon {
+  width: 8px;
+  height: 4px;
+  fill: var(--accent-color);
+  margin-left: 7px;
+}
+
+.icon {
+  height: 14.25px;
+  width: 15px;
+  fill: var(--accent-color);
+}
+
+.editQuest {
+  /* font-family: HelveticaNeueCyr; */
+  margin: 30px auto 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+
+  color: var(--secondary-color);
+}
+
+.title {
+  display: block;
+  text-align: center;
+  max-width: 200px;
+  margin: 26px auto 10px;
+  font-family: HelveticaNeueCyr;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 110%;
+  color: var(--primary-text-color);
+}
+
+.date {
+  display: flex;
+  box-sizing: content-box;
+  justify-content: center;
+  align-items: baseline;
+  font-style: normal;
+  margin-bottom: 30px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.02rem;
+  color: var(--secondary-color);
+}
+
+.category {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  display: flex;
+  text-align: start;
+  align-items: center;
+  margin-bottom: 33px;
+  width: 120px;
+  border-bottom-right-radius: 17px;
+  border-top-right-radius: 17px;
+  background-color: #90fa90;
+}
+
+.categoryText {
+  font-family: HelveticaNeueCyr;
+  font-style: normal;
+  font-weight: normal;
+  text-align: start;
+  font-size: 14px;
+  padding: 10px 3px 10px 20px;
+  letter-spacing: 0.02rem;
+  color: var(--primary-text-color);
+  text-transform: uppercase;
+}
+
+.catPoligon {
+  fill: var(--primary-text-color);
+  width: 8px;
+  height: 4px;
+  /* margin-right: 37px; */
+}
+
+.correction {
+  display: flex;
+}
+
+.red {
+  display: flex;
+  margin-left: 170px;
+  align-items: center;
+}
+
+.iconSave {
+  fill: var(--accent-color);
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.iconClear {
+  fill: red;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.iconClear::before ::after {
+  content: '';
+  display: inline-block;
+  margin: 0 8px 0 8px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid red;
+  background-color: red;
+  outline: 2px solid red;
+}
+
+/* .iconClear::after{
+  display:inline-block;
+  content: '';
+  margin: 0 8px 0 8px;
+  width: 12px;
+  height: 1px;
+  border: 2px solid red;
+} */
+
+.iconDone {
+  width: 18px;
+  height: 14px;
+  fill: green;
+  margin-left: 17px;
+}
+
+/* | MOBILE------------------------------------------------ */
+/* @media screen and (min-width:320px) {
+.card {  
+  width: 290px;
+  height: 260px;
+}
+
+.header{
+  margin-left: 21px;
+  margin-right: 21px;
+}
+
+
+.icon{
+  height: 14.25px;
+  width: 15px;
+} */
+
+/* } */
+
+/* | TABLET------------------------------------------------ */
+@media screen and (min-width: 768px) {
+  .card {
+    width: 205px;
+    height: 199px;
+  }
+
+  .editQuest {
+    margin: 20px auto 0;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .title {
+    margin: 10px auto 10px;
+    font-size: 16px;
+    max-width: 150px;
+    line-height: 110%;
+  }
+
+  .date {
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.02rem;
+  }
+
+  .category {
+    display: flex;
+    margin-bottom: 21px;
+    width: 88px;
+    height: 25px;
+  }
+
+  .categoryText {
+    font-family: HelveticaNeueCyr;
+    font-style: normal;
+    font-weight: normal;
+    text-align: start;
+    font-size: 11px;
+    padding: 8px 3px 8px 20px;
+    letter-spacing: 0.02rem;
+    color: var(--primary-text-color);
+  }
+
+  .red {
+    margin-left: 116px;
+  }
+
+  .iconSave {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+  }
+
+  .iconClear {
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+  }
+
+  .iconDone {
+    width: 14px;
+    height: 10px;
+  }
+}
+
+/* | DESKTOP------------------------------------------------ */
+@media screen and (min-width: 1280px) {
+}

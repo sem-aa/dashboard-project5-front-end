@@ -1,0 +1,32 @@
+.user {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+.user__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #3e4e6c;
+  color: #fff;
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.user__email {
+  color: #7b8aa4;
+}
+
+@media screen and (max-width: 767px) {
+  .user {
+    margin-left: auto;
+  }
+  .user__email {
+    display: none;
+  }
+}

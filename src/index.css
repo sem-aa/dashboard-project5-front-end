@@ -1,11 +1,9 @@
 @font-face {
   font-family: 'HelveticaNeueCyr';
-  src: local('HelveticaNeueCyr'),
-    url(./fonts/HelveticaNeueCyr-Roman.ttf) format('truetype');
+  src: local('HelveticaNeueCyr'), url(./fonts/HelveticaNeueCyr-Roman.ttf) format('truetype');
 
   font-family: 'HelveticaNeueCyr-Bold';
-  src: local('HelveticaNeueCyr-Bold'),
-    url(./fonts/HelveticaNeueCyr-Bold.ttf) format('truetype');
+  src: local('HelveticaNeueCyr-Bold'), url(./fonts/HelveticaNeueCyr-Bold.ttf) format('truetype');
 }
 
 :root {
@@ -33,18 +31,18 @@
   --mobile: 320px;
   --tablet: 768px;
   --desktop: 1280px;
+
+  --animation: 250ms;
+  --cubic: ease-in-out;
 }
 
 body {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeueCyr', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  padding: 0;
+  font-family: 'Helvetica', 'Arial', 'Helvetica', sans-serif;
 }
 
 html,
@@ -98,11 +96,6 @@ section {
 html {
   height: 101%;
 } /* always display scrollbars */
-body {
-  font-size: 62.5%;
-  line-height: 1;
-  font-family: HelveticaNeueCyr-Bold;
-}
 
 article,
 aside,
@@ -152,4 +145,12 @@ img {
 
 a {
   text-decoration: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--white-color);
 }
