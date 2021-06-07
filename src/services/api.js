@@ -14,7 +14,7 @@ const token = {
 /* AUTHORIZATION */
 const signUp = credentials => axios.post('/auth/register', credentials);
 const logIn = credentials => axios.post('/auth/login', credentials);
-const logOut = () => axios.post('/auth/logout');
+const logOut = credentials => axios.post('/auth/logout', credentials);
 const refreshToken = sid => axios.post('/auth/refresh', sid);
 // const googleAuth = () => axios.get('/auth/google')
 
