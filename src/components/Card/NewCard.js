@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,13 +10,12 @@ import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
-  const [isDeleteModalShown, setModal] = useState(false);
+  const [isDeleteModalShown, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isEdit, setEdit] = useState(true);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
-
 
   return (
     <div onClick={() => setEdit(!isEdit)} className={s.container}>
@@ -34,7 +32,6 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 <use href={sprite + '#icon-polygon'}></use>
               </svg>
             )}
-
           </div>
           {/* <select
               className={s.difficulty}
@@ -136,16 +133,15 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           <div>
             {isEdit ? (
               <div class={s.createCard}>
-                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+                <button className={s.btnClose} ref={ref} onClick={() => setDeleteModal(true)}>
                   <svg className={s.buttonClear}>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonCreate} ref={ref} onClick={() => setModal(true)}>
+                <button className={s.buttonCreate} ref={ref}>
                   create
                 </button>
               </div>
-
             ) : (
               <div className={s.buttonFlex}>
                 <button className={s.buttonCard} ref={ref} type="submit">
@@ -153,7 +149,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <use href={sprite + '#icon-save'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
+                <button className={s.buttonClose} ref={ref} onClick={() => setDeleteModal(true)}>
                   <svg className={s.buttonClear}>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
@@ -171,7 +167,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
 
       {isDeleteModalShown && (
         <ModalDelete
-          onClose={() => setModal(false)}
+          onClose={() => setDeleteModal(false)}
           onDelete={() => dispatch(deleteCard(data._id))}
           type="Quest"
         ></ModalDelete>
