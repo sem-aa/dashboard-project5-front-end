@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
+import { useDispatch } from 'react-redux';
 import NewCard from '../Card/NewCard';
 
 ////////////////////////////////// fake cart //////////////////////////////////
+
 // import './fakeCard.css';
 
 // const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {

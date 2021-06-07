@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
+
+import { useSelector } from 'react-redux';
+import ModalDelete from '../Modal/Modal-delete';
+
 import { useDispatch } from 'react-redux';
 import { createCard } from '../../redux/operations/cardOperations';
 
 const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) => {
+  const [isDeleteModalShown, setModal] = useState(false);
   return (
     <div className={s.container}>
       <form onSubmit={handleSubmit}>
@@ -30,6 +35,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
             <option value="Hard" selected={'Hard' === data.difficulty && 'selected'}>
               Hard
             </option>
+
           </select>
           <svg className={s.iconTask}>
             <use href={sprite + '#icon-star'}></use>
@@ -68,6 +74,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
           ) : (
             <p className={s.date}>March 23, 21:30</p>
           )}
+
         </div>
         <div className={s.foot}>
           <select className={s.category} name={'category'} ref={ref} {...register('category')}>
@@ -96,12 +103,14 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
           <div>
             {isEdit && (
               <div className={s.buttonFlex}>
+
                 <button ref={ref} type="submit">
+
                   <svg className={s.buttonSave}>
                     <use href={sprite + '#icon-save'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonClose} ref={ref}>
+                <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
                   <svg className={s.buttonClear}>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
@@ -116,6 +125,10 @@ const Card = React.forwardRef(({ data, register, handleSubmit, isEdit }, ref) =>
           </div>
         </div>
       </form>
+
+      {isDeleteModalShown && (
+        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+      )}
     </div>
   );
 });
@@ -135,14 +148,16 @@ export default function CardForm({ data }) {
 
     dispatch(createCard(body));
   };
-
+ 
   return (
     <Card
       onClick={() => setEdit(!isEdit)}
       isEdit={isEdit}
       handleSubmit={handleSubmit(onSubmit)}
       register={register}
+
       data={data}
+
     />
   );
 }

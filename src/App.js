@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux';
 import './App.css';
 import MainPage from './views/main';
 import landing from '../src/views/landing';
-import Svg from './views/TestSvg'
+import Svg from './views/TestSvg';
 import { getIsAuthenticated } from './redux/selectors/authSelectors';
-
 
 const App = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -18,7 +17,7 @@ const App = () => {
           exact
           component={isAuthenticated ? MainPage : landing}
         />
-  <Route path="/svg" component={Svg} />
+        <Route path="/svg" component={Svg} />
       </Switch>
     </>
   );
