@@ -1,10 +1,13 @@
 .container {
+  position: relative;
   width: 290px;
   height: 260px;
   text-align: center;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+  background-color: #fff;
+
 }
 @media screen and (min-width: 768px) {
   .container {
@@ -38,6 +41,23 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+
+  position: relative;
+}
+
+.select:after {
+  content: ' url(../../icon/save.svg) ';
+}
+
+option {
+  border-radius: 10px;
+}
+
+select:active {
+  outline: none;
+}
+select:focus {
+  outline: none;
 }
 
 .difficulty {
@@ -54,11 +74,15 @@ select {
 
 .title {
   margin-top: 71px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 20px;
   line-height: 1;
   font-weight: 700;
   font-family: HelveticaNeueCyr;
+  border: none;
+  outline: none;
+  color: black;
+  text-align: center;
 }
 @media screen and (min-width: 768px) {
   .title {
@@ -77,7 +101,7 @@ select {
   font-weight: 700;
   font-family: HelveticaNeueCyr;
   text-align: center;
-
+  padding: 0;
   border: none;
   border-bottom: 1px solid var(--accent-color);
 }
@@ -137,28 +161,35 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 21px;
 }
 
 @media screen and (min-width: 768px) {
   .foot {
     margin-top: 36px;
+    padding-bottom: 21px;
   }
 }
 
 .category {
   border: none;
   font-size: 14px;
+  text-transform: uppercase;
   background-color: var(--secondary-color);
   padding-left: 21px;
   border-radius: 0px 25px 25px 0px;
-  width: 88px;
-  height: 25px;
+  width: 120px;
+  height: 35px;
 }
+
 @media screen and (min-width: 768px) {
   .category {
     font-size: 11px;
+    width: 88px;
+    height: 25px;
   }
 }
+
 
 .buttonCard {
   display: inline-block;
@@ -174,6 +205,8 @@ select {
   padding-top: 4px;
   padding-bottom: 4px;
 }
+
+
 
 .buttonSave {
   fill: var(--accent-color);
@@ -213,6 +246,32 @@ select {
   fill: var(--normal-color);
   height: 14px;
   width: 14px;
+}
+
+.buttonClear {
+  fill: var(--hard-color);
+  height: 14px;
+  width: 14px;
+}
+@media screen and (min-width: 768px) {
+  .buttonClear {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+
+.buttonDone {
+  fill: var(--normal-color);
+  height: 14px;
+  width: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonDone {
+    height: 10px;
+    width: 10px;
+  }
 }
 
 @media screen and (min-width: 768px) {

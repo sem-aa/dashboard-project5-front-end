@@ -1,11 +1,9 @@
 @font-face {
   font-family: 'HelveticaNeueCyr';
-  src: local('HelveticaNeueCyr'),
-    url(./fonts/HelveticaNeueCyr-Roman.ttf) format('truetype');
+  src: local('HelveticaNeueCyr'), url(./fonts/HelveticaNeueCyr-Roman.ttf) format('truetype');
 
   font-family: 'HelveticaNeueCyr-Bold';
-  src: local('HelveticaNeueCyr-Bold'),
-    url(./fonts/HelveticaNeueCyr-Bold.ttf) format('truetype');
+  src: local('HelveticaNeueCyr-Bold'), url(./fonts/HelveticaNeueCyr-Bold.ttf) format('truetype');
 }
 
 :root {
