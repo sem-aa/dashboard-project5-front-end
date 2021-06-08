@@ -7,6 +7,7 @@ import ModalDelete from '../Modal/Modal-delete';
 import ModalDefficulty from '../Modal/Modal-hard';
 import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
+import CompleteForm from './CompleteForm';
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -17,16 +18,14 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [status, setStatus] = useState('inComplete');
 
   const completeTask = () => {
-    console.log('render card Complete');
-    console.log('DATA_ID', data._id);
     setStatus('complete');
-
-    console.log('STATUS RESULT:::', status);
   };
 
   return (
     <div onClick={() => setEdit(!isEdit)} className={s.container}>
-      {status !== 'complete' ? (
+      {status === 'complete' ? (
+        <CompleteForm />
+      ) : (
         <form onSubmit={handleSubmit}>
           <div className={s.head}>
             <div
@@ -164,35 +163,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
             </div>
           </div>
         </form>
-      ) : (
-        //  -status COMPLETED ----------------
-        <section className={s.completed}>
-          <div className={s.completedHeader}>
-            <h2 className={s.statusCompleted}>completed:</h2>
-            {/* <p>{data.title}</p> */}
-            <p>Title Card</p>
-          </div>
-
-          <svg className={s.award}>
-            <use href={sprite + '#icon-award'}></use>
-          </svg>
-          <div className={s.completedFooter}>
-            <p>Continue</p>
-            <button
-              className={s.buttonCard}
-              onClick={() => {
-                console.log('goto page "Done" ');
-              }}
-            >
-              <svg className={s.arrow}>
-                <use href={sprite + '#icon-arrow'}></use>
-              </svg>
-            </button>
-          </div>
-        </section>
       )}
-
-      {/* -status COMPLETED ---------------- */}
 
       {isDeleteModalShown && (
         <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
