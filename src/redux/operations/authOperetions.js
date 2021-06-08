@@ -27,6 +27,7 @@ const handleSignUp = credentials => dispatch => {
 
 const handleLogOut = () => dispatch => {
   dispatch(authActions.logOutRequest());
+
   api
     .logOut()
     .then(() => {
