@@ -165,6 +165,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           </div>
         </form>
       ) : (
+        //  -status COMPLETED ----------------
         <section className={s.completed}>
           <div className={s.completedHeader}>
             <h2 className={s.statusCompleted}>completed:</h2>
@@ -190,6 +191,8 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           </div>
         </section>
       )}
+
+      {/* -status COMPLETED ---------------- */}
 
       {isDeleteModalShown && (
         <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
