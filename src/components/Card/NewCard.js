@@ -11,7 +11,7 @@ import { createCard } from '../../redux/operations/cardOperations';
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-  const [isEdit, setEdit] = useState(true);
+  const [isEdit, setEdit] = useState(false);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
 
@@ -56,14 +56,14 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 Hard
             </option>
             </select> */}
-          <div onClick={() => setTask(!task)}>
+          <div className={s.iconContainer} onClick={() => setTask(!task)}>
             {task ? (
-              <svg width="19px" height="19px">
-                <use className={s.iconTask} href={sprite + '#icon-star'}></use>
+              <svg className={s.iconTask}>
+                <use href={sprite + '#icon-star'}></use>
               </svg>
             ) : (
-              <svg width="19px" height="19px">
-                <use className={s.iconTrophy} href={sprite + '#icon-trophy'}></use>
+              <svg className={s.iconTrophy}>
+                <use x="-4" y="2" href={sprite + "#icon-trophy"}></use>
               </svg>
             )}
           </div>
@@ -130,22 +130,10 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               WORK
             </option>
           </select> */}
-          <div>
+          <div >
             {isEdit ? (
-              <div class={s.createCard}>
-                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
-                  <svg className={s.buttonClear}>
-                    <use href={sprite + '#icon-clear'}></use>
-                  </svg>
-                </button>
-                <button className={s.buttonCreate} ref={ref} onClick={() => setModal(true)}>
-                  create
-                </button>
-              </div>
-
-            ) : (
               <div className={s.buttonFlex}>
-                <button className={s.buttonCard} ref={ref} type="submit">
+                <button className={s.buttonCard} ref={ref}>
                   <svg className={s.buttonSave}>
                     <use href={sprite + '#icon-save'}></use>
                   </svg>
@@ -155,21 +143,35 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonCard} ref={ref} type="submit">
+                <button className={s.buttonCard} ref={ref} >
                   <svg className={s.buttonDone}>
                     <use href={sprite + '#icon-done'}></use>
                   </svg>
                 </button>
               </div>
+            ) : (
+              <div class={s.createCard}>
+                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+                  <svg className={s.buttonClear}>
+                    <use href={sprite + '#icon-clear'}></use>
+                  </svg>
+                </button>
+                <button className={s.buttonCreate} ref={ref}>
+                  create
+                </button>
+              </div>
+
             )}
           </div>
         </div>
       </form>
 
-      {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
-      )}
-    </div>
+      {
+        isDeleteModalShown && (
+          <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        )
+      }
+    </div >
   );
 });
 
