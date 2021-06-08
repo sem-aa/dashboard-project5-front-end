@@ -1,18 +1,15 @@
 import React from 'react';
-import Container from '../../components/Container/Container'
-import s from './landing.module.css'
-import Form from '../../services/TestAuthForm'
-
+import Container from '../../components/Container/Container';
+import s from './landing.module.css';
+import Form from '../../components/AuthForm/AuthForm';
 
 const landing = () => (
 
   <Container>
-    <Form/>
     <div className={s.landing}>
-     </div>
-      </Container>
-    
-  
+      <Form/>
+    </div>
+  </Container>      
 );
 
 export default landing;
