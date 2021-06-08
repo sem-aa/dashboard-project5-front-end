@@ -17,8 +17,12 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
 
 
   return (
-    <div onClick={() => setEdit(!isEdit)} className={s.container}>
-      <form onSubmit={handleSubmit}>
+
+
+
+
+    <div className={s.container} >
+      <form className={s.formCard} onSubmit={handleSubmit}>
         <div className={s.head}>
           <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
             {isDifficultyModalShown && <ModalDefficulty />}
@@ -57,15 +61,15 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
             </option>
             </select> */}
           <div className={s.iconContainer} onClick={() => setTask(!task)}>
-            {task ? (
+            {task ?
               <svg className={s.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
               </svg>
-            ) : (
+              :
               <svg className={s.iconTrophy}>
                 <use x="-4" y="2" href={sprite + "#icon-trophy"}></use>
               </svg>
-            )}
+            }
           </div>
           {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
                     <option value="Task">Task</option>
@@ -73,15 +77,16 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     </select> */}
         </div>
 
-        <div>
-          {isEdit ? (
+        <div onClick={() => setEdit(true)} className={s.main}>
+          {isEdit ? (<>
+            <p className={s.textInput}>Edit quest</p>
             <input
               className={s.titleInput}
               {...register('title')}
               defaultValue={data.title}
               ref={ref}
             ></input>
-          ) : (
+          </>) : (
             <h2 className={s.title}>{data.title}</h2>
           )}
           {isEdit ? (
@@ -99,7 +104,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </button>
             </div>
           ) : (
-            <p className={s.date}>March 23, 21:30</p>
+            <p className={s.date}>{data.date}, {data.time}</p>
           )}
         </div>
         <div className={s.foot}>
@@ -132,8 +137,9 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           </select> */}
           <div >
             {isEdit ? (
-              <div className={s.buttonFlex}>
-                <button className={s.buttonCard} ref={ref}>
+              <div>
+                <button onClick={() => setEdit(false)}
+                  className={s.buttonCard} ref={ref}>
                   <svg className={s.buttonSave}>
                     <use href={sprite + '#icon-save'}></use>
                   </svg>
@@ -143,7 +149,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonCard} ref={ref} >
+                <button onClick={() => setEdit(false)} className={s.buttonCard} ref={ref} >
                   <svg className={s.buttonDone}>
                     <use href={sprite + '#icon-done'}></use>
                   </svg>
