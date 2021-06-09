@@ -203,6 +203,10 @@
   cursor: pointer;
 }
 
+.Stuff {
+  border-color: green;
+}
+
 @media screen and (min-width: 768px) {
   .category {
     font-size: 11px;
@@ -319,27 +323,25 @@
   }
 }
 
-
-
 /* COMPLETED */
 
-.compledted{
+.compledted {
   display: block;
   text-align: center;
   margin: auto;
 }
-.completedHeader{
+.completedHeader {
   margin-top: 20px;
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.statusCompleted{
+.statusCompleted {
   text-transform: uppercase;
   color: #000;
 }
 
-.award{
+.award {
   width: 144.04px;
   height: 123.68px;
   display: inline-block;
@@ -347,15 +349,14 @@ align-items: center;
   text-align: center;
 }
 
-.completedFooter{
+.completedFooter {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
-.arrow{
+.arrow {
   width: 7px;
   height: 5px;
   fill: var(--accent-color);
   margin-left: 7px;
-
 }

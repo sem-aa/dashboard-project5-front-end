@@ -1,7 +1,7 @@
 .modal {
   position: absolute;
-  top: -200%;
-  left: -8%;
+  top: -90%;
+  left: -8.5%;
   width: 90px;
   height: 110px;
   background: var(--white-color);
@@ -10,7 +10,8 @@
 }
 @media screen and (min-width: 768px) {
   .modal {
-    left: -12%;
+    top: -125%;
+    left: -13%;
   }
 }
 
