@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
@@ -7,11 +7,11 @@ import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import s from './Calendar.module.css';
 
-const Calendar = ({ getTime }) => {
+const Calendar = ({ getDate }) => {
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
-      <div className={s.dateValue}>{day + ' ' + value}</div>
+      <div className={s.dateValue}>{day + ', ' + value}</div>
       <button onClick={onClick} ref={ref}>
         <svg className={s.icon}>
           <use href={sprite + '#icon-calendar'}></use>
@@ -20,7 +20,9 @@ const Calendar = ({ getTime }) => {
     </div>
   ));
 
-  getTime(startDate);
+  useEffect(() => {
+    getDate(startDate);
+  });
 
   const today = new Date();
   const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
@@ -32,15 +34,15 @@ const Calendar = ({ getTime }) => {
 
   const getDay = function () {
     if (chosenDate === todayDate) {
-      return 'Today,';
+      return 'Today';
     } else if (chosenDate === tomorrowDate) {
-      return 'Tomorrow,';
+      return 'Tomorrow';
     } else {
       const date = startDate.toLocaleString('en-us', {
         month: 'long',
         day: 'numeric',
       });
-      return date + ',';
+      return date;
     }
   };
   const day = getDay();
