@@ -7,9 +7,9 @@ import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import s from './Calendar.module.css';
 
-const Calendar = () => {
+const Calendar = ({ getTime }) => {
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
-  const ExampleCustomInput = forwardRef(({ value, onClick, isEdit }, ref) => (
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
       <div className={s.dateValue}>{day + ' ' + value}</div>
       <button onClick={onClick} ref={ref}>
@@ -19,6 +19,8 @@ const Calendar = () => {
       </button>
     </div>
   ));
+
+  getTime(startDate);
 
   const today = new Date();
   const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
@@ -34,14 +36,14 @@ const Calendar = () => {
     } else if (chosenDate === tomorrowDate) {
       return 'Tomorrow,';
     } else {
-      const monthName = new Date().toLocaleString('en-us', {
+      const date = startDate.toLocaleString('en-us', {
         month: 'long',
         day: 'numeric',
       });
-      return monthName + ',';
+      return date + ',';
     }
   };
-  const day = `${getDay()}`;
+  const day = getDay();
 
   return (
     <div>

@@ -18,6 +18,11 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
   const [complete, setComlete] = useState(false);
+  const [time, setTime] = useState('');
+
+  const timeValue = value => {
+    setTime(value);
+  };
 
   return (
     <div className={s.container}>
@@ -97,7 +102,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 <h2 className={s.title}>{data.title}</h2>
               )}
               <div>
-                <Calendar isEdit={isEdit}></Calendar>
+                <Calendar getTime={timeValue}></Calendar>
               </div>
             </div>
             <div className={s.foot}>
