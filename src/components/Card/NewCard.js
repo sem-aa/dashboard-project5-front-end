@@ -7,6 +7,7 @@ import ModalDelete from '../Modal/Modal-delete';
 import ModalDefficulty from '../Modal/Modal-hard';
 import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
+import Calendar from '../Calendar/Calendar';
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -14,7 +15,6 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isEdit, setEdit] = useState(true);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
-
 
   return (
     <div onClick={() => setEdit(!isEdit)} className={s.container}>
@@ -31,7 +31,6 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 <use href={sprite + '#icon-polygon'}></use>
               </svg>
             )}
-
           </div>
           {/* <select
               className={s.difficulty}
@@ -84,23 +83,9 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           ) : (
             <h2 className={s.title}>{data.title}</h2>
           )}
-          {isEdit ? (
-            <div className={s.dateFlex}>
-              <input
-                className={s.inputDate}
-                {...register('date')}
-                ref={ref}
-                placeholder="Today"
-              ></input>
-              <button ref={ref}>
-                <svg className={s.calendar} height="10px" width="10px">
-                  <use href={sprite + '#icon-calendar'}></use>
-                </svg>
-              </button>
-            </div>
-          ) : (
-            <p className={s.date}>March 23, 21:30</p>
-          )}
+          <div>
+            <Calendar isEdit={isEdit}></Calendar>
+          </div>
         </div>
         <div className={s.foot}>
           <div onClick={() => setCategory(!category)}>
@@ -132,17 +117,16 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           </select> */}
           <div>
             {isEdit ? (
-              <div class={s.createCard}>
+              <div className={s.createCard}>
                 <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
                   <svg className={s.buttonClear}>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button className={s.buttonCreate} ref={ref} onClick={() => setModal(true)}>
+                <button className={s.buttonCreate} ref={ref}>
                   create
                 </button>
               </div>
-
             ) : (
               <div className={s.buttonFlex}>
                 <button className={s.buttonCard} ref={ref} type="submit">

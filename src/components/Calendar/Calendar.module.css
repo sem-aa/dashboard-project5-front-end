@@ -1,0 +1,17 @@
+.dateContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  width: 12px;
+  height: 14px;
+  fill: var(--accent-color);
+  margin-left: 7px;
+}
+
+.dateValue {
+  font-size: 14px;
+  color: var(--primary-text-color);
+  letter-spacing: 0.02em;
+}
