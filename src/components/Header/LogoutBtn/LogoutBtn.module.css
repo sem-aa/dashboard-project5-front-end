@@ -1,7 +1,8 @@
-/* .btn {
-  width: 21px;
-  height: 16px;
-} */
+.btn {
+  background-color: transparent;
+  cursor: pointer;
+  line-height: 0;
+}
 
 .icon {
   fill: #3e4e6c;

@@ -1,0 +1,49 @@
+.landingInput {
+    width: 290px;
+    border: none;
+    border-bottom: 1px solid var(--accent-color);
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.landingInput::placeholder {
+    color: var(--accent-color);
+}
+
+.landingBox:first-child {
+    margin-bottom: 20px;
+}
+
+.landingForm {
+    margin: 0px 15px;
+}
+
+.btnGo {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+    .landingForm {
+        text-align: start;
+        margin: 0px 0px 0px 50px;
+    }
+    .landingInput {
+        width: 193px;
+    }
+    .btnGo {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .landingForm {
+        margin: 0px 0px 0px 229px;
+    }
+    .landingInput {
+        width: 196px;
+    }
+}
