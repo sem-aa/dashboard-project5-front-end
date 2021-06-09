@@ -67,10 +67,12 @@ const AuthForm = () => {
                 placeholder="Password"  
               />
         </div>
+        <div className={s.btnGo}>
         <ButtonGo 
             type="submit" 
             onClick={onRegistration} 
-            className={s.btnGo} />
+             />
+        </div>
       </form>   
     </>
   );
