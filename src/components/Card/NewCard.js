@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
@@ -7,6 +7,7 @@ import ModalDelete from '../Modal/Modal-delete';
 import ModalDefficulty from '../Modal/Modal-hard';
 import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
+import CompleteForm from './CompleteForm';
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -14,30 +15,36 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isEdit, setEdit] = useState(false);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
+  const [status, setStatus] = useState('inComplete');
+
+  const completeTask = () => {
+    setStatus('complete');
+  };
 
 
   return (
-
-
-
-
-    <div className={s.container} >
-      <form className={s.formCard} onSubmit={handleSubmit}>
-        <div className={s.head}>
-          <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
-            {isDifficultyModalShown && <ModalDefficulty />}
-            <svg className={s.iconEllipse}>
-              <use href={sprite + '#icon-ellipse'}></use>
-            </svg>
-            <p className={s.difficulty}>{data.difficulty}</p>
-            {isEdit && (
-              <svg className={s.iconPolygon}>
-                <use href={sprite + '#icon-polygon'}></use>
+    <div onClick={() => setEdit(!isEdit)} className={s.container}>
+      {status === 'complete' ? (
+        <CompleteForm />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className={s.head}>
+            <div
+              onClick={() => setDifficultyModal(!isDifficultyModalShown)}
+              className={s.difficulty}
+            >
+              {isDifficultyModalShown && <ModalDefficulty />}
+              <svg className={s.iconEllipse}>
+                <use href={sprite + '#icon-ellipse'}></use>
               </svg>
-            )}
-
-          </div>
-          {/* <select
+              <p className={s.difficulty}>{data.difficulty}</p>
+              {isEdit && (
+                <svg className={s.iconPolygon}>
+                  <use href={sprite + '#icon-polygon'}></use>
+                </svg>
+              )}
+            </div>
+            {/* <select
               className={s.difficulty}
               name={'difficulty'}
               defaultValue={data.difficulty}
@@ -75,7 +82,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <option value="Task">Task</option>
             <option  value="Challenge">Challenge</option>
                     </select> */}
-        </div>
+          </div>
 
         <div onClick={() => setEdit(true)} className={s.main}>
           {isEdit ? (<>
@@ -92,12 +99,23 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           {isEdit ? (
             <div className={s.dateFlex}>
               <input
-                className={s.inputDate}
-                {...register('date')}
+                className={s.titleInput}
+                {...register('title')}
+                defaultValue={data.title}
                 ref={ref}
-                placeholder="Today"
               ></input>
-              <button ref={ref}>
+            ) : (
+              <h2 className={s.title}>{data.title}</h2>
+            )}
+            {isEdit ? (
+              <div className={s.dateFlex}>
+                <input
+                  className={s.inputDate}
+                  {...register('date')}
+                  ref={ref}
+                  placeholder="Today"
+                ></input>
+                             <button ref={ref}>
                 <svg className={s.calendar} height="10px" width="10px">
                   <use href={sprite + '#icon-calendar'}></use>
                 </svg>
@@ -106,13 +124,13 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           ) : (
             <p className={s.date}>{data.date}, {data.time}</p>
           )}
-        </div>
-        <div className={s.foot}>
-          <div onClick={() => setCategory(!category)}>
-            {category ? <ModalCategory /> : <p className={s.category}>{data.category}</p>}
           </div>
+          <div className={s.foot}>
+            <div onClick={() => setCategory(!category)}>
+              {category ? <ModalCategory /> : <p className={s.category}>{data.category}</p>}
+            </div>
 
-          {/* <select className={s.category} name={'category'} ref={ref} {...register('category')}>
+            {/* <select className={s.category} name={'category'} ref={ref} {...register('category')}>
             <option className={s.stuff} value="Stuff" ref={ref}>
               Stuff
             </option>
@@ -149,7 +167,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
                 </button>
-                <button onClick={() => setEdit(false)} className={s.buttonCard} ref={ref} >
+                <button onClick={completeTask} className={s.buttonCard} ref={ref} >
                   <svg className={s.buttonDone}>
                     <use href={sprite + '#icon-done'}></use>
                   </svg>
@@ -166,11 +184,9 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   create
                 </button>
               </div>
-
-            )}
           </div>
-        </div>
-      </form>
+        </form>
+      )}
 
       {
         isDeleteModalShown && (
