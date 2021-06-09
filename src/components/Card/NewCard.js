@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
@@ -7,7 +7,7 @@ import ModalDelete from '../Modal/Modal-delete';
 import ModalDefficulty from '../Modal/Modal-hard';
 import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
-import CompleteForm from './CompleteForm';
+import Complete from './CompleteForm/CompleteForm'
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -15,24 +15,15 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isEdit, setEdit] = useState(false);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
-  const [status, setStatus] = useState('inComplete');
-
-  const completeTask = () => {
-    setStatus('complete');
-  };
+  const [complete, setComlete] = useState(false);
 
 
   return (
-    <div onClick={() => setEdit(!isEdit)} className={s.container}>
-      {status === 'complete' ? (
-        <CompleteForm />
-      ) : (
-        <form onSubmit={handleSubmit}>
+    <div className={s.container} >
+      {complete ? <Complete /> : <>
+        <form className={s.formCard} onSubmit={handleSubmit}>
           <div className={s.head}>
-            <div
-              onClick={() => setDifficultyModal(!isDifficultyModalShown)}
-              className={s.difficulty}
-            >
+            <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
               {isDifficultyModalShown && <ModalDefficulty />}
               <svg className={s.iconEllipse}>
                 <use href={sprite + '#icon-ellipse'}></use>
@@ -43,6 +34,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               )}
+
             </div>
             {/* <select
               className={s.difficulty}
@@ -67,44 +59,33 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 Hard
             </option>
             </select> */}
-          <div className={s.iconContainer} onClick={() => setTask(!task)}>
-            {task ?
-              <svg className={s.iconTask}>
-                <use href={sprite + '#icon-star'}></use>
-              </svg>
-              :
-              <svg className={s.iconTrophy}>
-                <use x="-4" y="2" href={sprite + "#icon-trophy"}></use>
-              </svg>
-            }
-          </div>
-          {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
+            <div className={s.iconContainer} onClick={() => setTask(!task)}>
+              {task ?
+                <svg className={s.iconTask}>
+                  <use href={sprite + '#icon-star'}></use>
+                </svg>
+                :
+                <svg className={s.iconTrophy}>
+                  <use x="-4" y="2" href={sprite + "#icon-trophy"}></use>
+                </svg>
+              }
+            </div>
+            {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
                     <option value="Task">Task</option>
             <option  value="Challenge">Challenge</option>
                     </select> */}
           </div>
 
-        <div onClick={() => setEdit(true)} className={s.main}>
-          {isEdit ? (<>
-            <p className={s.textInput}>Edit quest</p>
-            <input
-              className={s.titleInput}
-              {...register('title')}
-              defaultValue={data.title}
-              ref={ref}
-            ></input>
-          </>) : (
-            <h2 className={s.title}>{data.title}</h2>
-          )}
-          {isEdit ? (
-            <div className={s.dateFlex}>
+          <div onClick={() => setEdit(true)} className={s.main}>
+            {isEdit ? (<>
+              <p className={s.textInput}>Edit quest</p>
               <input
                 className={s.titleInput}
                 {...register('title')}
                 defaultValue={data.title}
                 ref={ref}
               ></input>
-            ) : (
+            </>) : (
               <h2 className={s.title}>{data.title}</h2>
             )}
             {isEdit ? (
@@ -115,15 +96,15 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   ref={ref}
                   placeholder="Today"
                 ></input>
-                             <button ref={ref}>
-                <svg className={s.calendar} height="10px" width="10px">
-                  <use href={sprite + '#icon-calendar'}></use>
-                </svg>
-              </button>
-            </div>
-          ) : (
-            <p className={s.date}>{data.date}, {data.time}</p>
-          )}
+                <button ref={ref}>
+                  <svg className={s.calendar} height="10px" width="10px">
+                    <use href={sprite + '#icon-calendar'}></use>
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <p className={s.date}>{data.date}, {data.time}</p>
+            )}
           </div>
           <div className={s.foot}>
             <div onClick={() => setCategory(!category)}>
@@ -153,40 +134,43 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               WORK
             </option>
           </select> */}
-          <div >
-            {isEdit ? (
-              <div>
-                <button onClick={() => setEdit(false)}
-                  className={s.buttonCard} ref={ref}>
-                  <svg className={s.buttonSave}>
-                    <use href={sprite + '#icon-save'}></use>
-                  </svg>
+            <div >
+              {isEdit ? (
+                <div>
+                  <button onClick={() => setEdit(false)}
+                    className={s.buttonCard} ref={ref}>
+                    <svg className={s.buttonSave}>
+                      <use href={sprite + '#icon-save'}></use>
+                    </svg>
+                  </button>
+                  <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
+                    <svg className={s.buttonClear}>
+                      <use href={sprite + '#icon-clear'}></use>
+                    </svg>
+                  </button>
+                  <button onClick={() => setComlete(true)} className={s.buttonCard} ref={ref} >
+                    <svg className={s.buttonDone}>
+                      <use href={sprite + '#icon-done'}></use>
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <div class={s.createCard}>
+                  <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+                    <svg className={s.buttonClear}>
+                      <use href={sprite + '#icon-clear'}></use>
+                    </svg>
+                  </button>
+                  <button className={s.buttonCreate} ref={ref}>
+                    create
                 </button>
-                <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
-                  <svg className={s.buttonClear}>
-                    <use href={sprite + '#icon-clear'}></use>
-                  </svg>
-                </button>
-                <button onClick={completeTask} className={s.buttonCard} ref={ref} >
-                  <svg className={s.buttonDone}>
-                    <use href={sprite + '#icon-done'}></use>
-                  </svg>
-                </button>
-              </div>
-            ) : (
-              <div class={s.createCard}>
-                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
-                  <svg className={s.buttonClear}>
-                    <use href={sprite + '#icon-clear'}></use>
-                  </svg>
-                </button>
-                <button className={s.buttonCreate} ref={ref}>
-                  create
-                </button>
-              </div>
+                </div>
+
+              )}
+            </div>
           </div>
-        </form>
-      )}
+        </form></>}
+
 
       {
         isDeleteModalShown && (
