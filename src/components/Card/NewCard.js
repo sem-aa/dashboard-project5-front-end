@@ -8,6 +8,7 @@ import ModalDefficulty from '../Modal/Modal-hard';
 import ModalCategory from '../Modal/Modal-status';
 import { createCard } from '../../redux/operations/cardOperations';
 import Complete from './CompleteForm/CompleteForm'
+import { colorDifficult, colorCategory } from '../../helper/helper'
 
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -26,7 +27,9 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
             <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
               {isDifficultyModalShown && <ModalDefficulty />}
               <svg className={s.iconEllipse}>
-                <use href={sprite + '#icon-ellipse'}></use>
+                <use
+                  fill={colorDifficult(data.difficulty)}
+                  href={sprite + '#icon-ellipse'}></use>
               </svg>
               <p className={s.difficulty}>{data.difficulty}</p>
               {isEdit && (
@@ -108,7 +111,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
           </div>
           <div className={s.foot}>
             <div onClick={() => setCategory(!category)}>
-              {category ? <ModalCategory /> : <p className={s.category}>{data.category}</p>}
+              {category ? <> <ModalCategory /> <p className={s.category}>{data.category}</p> </> : <p className={s.category} style={{ backgroundColor: colorCategory(data.category) }} >{data.category}</p>}
             </div>
 
             {/* <select className={s.category} name={'category'} ref={ref} {...register('category')}>
@@ -155,7 +158,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   </button>
                 </div>
               ) : (
-                <div class={s.createCard}>
+                <div className={s.createCard}>
                   <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
                     <svg className={s.buttonClear}>
                       <use href={sprite + '#icon-clear'}></use>
@@ -198,3 +201,6 @@ export default function CardForm({ data }) {
 
   return <Card handleSubmit={handleSubmit(onSubmit)} register={register} data={data} />;
 }
+
+
+

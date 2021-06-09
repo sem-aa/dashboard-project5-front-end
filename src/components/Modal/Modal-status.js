@@ -1,6 +1,10 @@
 import React from 'react';
 import s from "./Modal-status.module.css";
 
+
+
+
+
 const ModalStatus = () => {
     return (
         <div className={s.modal}>
