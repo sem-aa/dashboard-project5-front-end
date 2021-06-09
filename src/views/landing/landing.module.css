@@ -2,7 +2,7 @@
     .landing {
         height: 648px;
         color: var(--white-color);
-        background: url('./Images/pic2mobile.png') bottom right no-repeat, url('./Images/pic1mobile.png') bottom right no-repeat;
+        background: url('./Images/pic2mobile.png') bottom center no-repeat, url('./Images/pic1mobile.png') bottom center no-repeat;
     }
 }
     
@@ -13,7 +13,7 @@
     }
 }
     
- @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .landing {
         height: 850px;
         background: url('./Images/pic1.png') right top no-repeat, url('./Images/pic2desc.png') bottom right no-repeat;
