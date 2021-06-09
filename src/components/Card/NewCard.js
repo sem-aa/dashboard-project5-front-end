@@ -12,7 +12,7 @@ import CompleteForm from './CompleteForm';
 const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-  const [isEdit, setEdit] = useState(true);
+  const [isEdit, setEdit] = useState(false);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState(false);
   const [status, setStatus] = useState('inComplete');
@@ -20,6 +20,7 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const completeTask = () => {
     setStatus('complete');
   };
+
 
   return (
     <div onClick={() => setEdit(!isEdit)} className={s.container}>
@@ -66,25 +67,37 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 Hard
             </option>
             </select> */}
-            <div onClick={() => setTask(!task)}>
-              {task ? (
-                <svg width="19px" height="19px">
-                  <use className={s.iconTask} href={sprite + '#icon-star'}></use>
-                </svg>
-              ) : (
-                <svg width="19px" height="19px">
-                  <use className={s.iconTrophy} href={sprite + '#icon-trophy'}></use>
-                </svg>
-              )}
-            </div>
-            {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
+          <div className={s.iconContainer} onClick={() => setTask(!task)}>
+            {task ?
+              <svg className={s.iconTask}>
+                <use href={sprite + '#icon-star'}></use>
+              </svg>
+              :
+              <svg className={s.iconTrophy}>
+                <use x="-4" y="2" href={sprite + "#icon-trophy"}></use>
+              </svg>
+            }
+          </div>
+          {/* <select className={s.task} name={'type'} ref={ref} {...register('type')}>
                     <option value="Task">Task</option>
             <option  value="Challenge">Challenge</option>
                     </select> */}
           </div>
 
-          <div>
-            {isEdit ? (
+        <div onClick={() => setEdit(true)} className={s.main}>
+          {isEdit ? (<>
+            <p className={s.textInput}>Edit quest</p>
+            <input
+              className={s.titleInput}
+              {...register('title')}
+              defaultValue={data.title}
+              ref={ref}
+            ></input>
+          </>) : (
+            <h2 className={s.title}>{data.title}</h2>
+          )}
+          {isEdit ? (
+            <div className={s.dateFlex}>
               <input
                 className={s.titleInput}
                 {...register('title')}
@@ -102,15 +115,15 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   ref={ref}
                   placeholder="Today"
                 ></input>
-                <button ref={ref}>
-                  <svg className={s.calendar} height="10px" width="10px">
-                    <use href={sprite + '#icon-calendar'}></use>
-                  </svg>
-                </button>
-              </div>
-            ) : (
-              <p className={s.date}>March 23, 21:30</p>
-            )}
+                             <button ref={ref}>
+                <svg className={s.calendar} height="10px" width="10px">
+                  <use href={sprite + '#icon-calendar'}></use>
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <p className={s.date}>{data.date}, {data.time}</p>
+          )}
           </div>
           <div className={s.foot}>
             <div onClick={() => setCategory(!category)}>
@@ -140,35 +153,47 @@ const Card = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               WORK
             </option>
           </select> */}
-            <div>
-              {isEdit && (
-                <div className={s.buttonFlex}>
-                  <button className={s.buttonCard} ref={ref} type="submit">
-                    <svg className={s.buttonSave}>
-                      <use href={sprite + '#icon-save'}></use>
-                    </svg>
-                  </button>
-                  <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
-                    <svg className={s.buttonClear}>
-                      <use href={sprite + '#icon-clear'}></use>
-                    </svg>
-                  </button>
-                  <button onClick={completeTask} className={s.buttonCard} ref={ref} type="submit">
-                    <svg className={s.buttonDone}>
-                      <use href={sprite + '#icon-done'}></use>
-                    </svg>
-                  </button>
-                </div>
-              )}
-            </div>
+          <div >
+            {isEdit ? (
+              <div>
+                <button onClick={() => setEdit(false)}
+                  className={s.buttonCard} ref={ref}>
+                  <svg className={s.buttonSave}>
+                    <use href={sprite + '#icon-save'}></use>
+                  </svg>
+                </button>
+                <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
+                  <svg className={s.buttonClear}>
+                    <use href={sprite + '#icon-clear'}></use>
+                  </svg>
+                </button>
+                <button onClick={completeTask} className={s.buttonCard} ref={ref} >
+                  <svg className={s.buttonDone}>
+                    <use href={sprite + '#icon-done'}></use>
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div class={s.createCard}>
+                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+                  <svg className={s.buttonClear}>
+                    <use href={sprite + '#icon-clear'}></use>
+                  </svg>
+                </button>
+                <button className={s.buttonCreate} ref={ref}>
+                  create
+                </button>
+              </div>
           </div>
         </form>
       )}
 
-      {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
-      )}
-    </div>
+      {
+        isDeleteModalShown && (
+          <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        )
+      }
+    </div >
   );
 });
 

@@ -15,6 +15,19 @@
   }
 }
 
+.formCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 19px 21px 33px 21px;
+}
+@media screen and (min-width: 768px) {
+  .formCard {
+    margin-bottom: 21px;
+  }
+}
+
 .iconEllipse {
   width: 10px;
   height: 10px;
@@ -44,56 +57,32 @@
 .head {
   display: flex;
   justify-content: space-between;
-  padding-top: 19px;
-  padding-left: 21px;
-  padding-right: 21px;
+}
+
+.iconContainer {
+  width: 19px;
+  height: 19px;
+}
+@media screen and(min-widht: 768px) {
+  .iconContainer {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .iconTask {
-  width: 19px;
-  height: 19px;
+  width: 100%;
+  height: 100%;
   fill: var(--accent-color);
   cursor: pointer;
-}
-@media screen and (min-width: 768px) {
-  .iconTask {
-    width: 15px;
-    height: 15px;
-  }
 }
 
 .iconTrophy {
-  width: 19px;
-  height: 19px;
+  width: 100%;
+  height: 100%;
   fill: var(--accent-color);
   cursor: pointer;
 }
-@media screen and (min-width: 768px) {
-  .iconTrophy {
-    width: 15px;
-    height: 15px;
-  }
-}
-
-/* select {
-  display: inline-block;
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-}
-
-.select:after {
-  content: ' url(../../icon/save.svg) ';
-}
-
-select:active {
-  outline: none;
-}
-select:focus {
-  outline: none;
-} */
 
 .difficulty {
   display: flex;
@@ -104,7 +93,6 @@ select:focus {
   margin-right: 7px;
   cursor: pointer;
 }
-
 @media screen and (min-width: 768px) {
   .difficulty {
     font-size: 14px;
@@ -112,43 +100,41 @@ select:focus {
 }
 
 .title {
-  margin-top: 71px;
   margin-bottom: 10px;
   font-size: 20px;
-  line-height: 1;
   font-weight: 700;
   font-family: HelveticaNeueCyr;
-  border: none;
-  outline: none;
-  color: black;
   text-align: center;
 }
 @media screen and (min-width: 768px) {
   .title {
-    margin-top: 42px;
     margin-bottom: 12px;
     font-size: 16px;
   }
 }
+.textInput {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 00.02em;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
 
 .titleInput {
-  margin-top: 71px;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   padding: 0px;
   font-size: 20px;
-  line-height: 1;
   font-weight: 700;
   font-family: HelveticaNeueCyr;
   text-align: center;
-  padding: 0;
+
   border: none;
   border-bottom: 1px solid var(--accent-color);
 }
 
 @media screen and (min-width: 768px) {
   .titleInput {
-    margin-top: 41px;
-    margin-bottom: 5px;
     font-size: 16px;
     width: 163px;
   }
@@ -197,31 +183,23 @@ select:focus {
 
 .foot {
   position: relative;
-  margin-top: 38px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 21px;
-}
-
-@media screen and (min-width: 768px) {
-  .foot {
-    margin-top: 36px;
-    padding-bottom: 21px;
-  }
 }
 
 .category {
   display: flex;
   justify-content: left;
   align-items: center;
-  border: none;
   font-size: 14px;
   text-transform: uppercase;
   background-color: var(--secondary-color);
-  padding-left: 21px;
   border-radius: 0px 25px 25px 0px;
   width: 120px;
+  height: 35px;
+  margin-left: -21px;
+  padding-left: 21px;
   cursor: pointer;
 }
 
@@ -313,8 +291,32 @@ select:focus {
   }
 }
 
-.buttonFlex {
-  margin-right: 12px;
+.createCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonCreate {
+  text-transform: uppercase;
+  color: var(--accent-color);
+  font-size: 14px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.btnClose {
+  border-right: 1px solid #b9c3c8;
+  padding-left: 9px;
+  padding-right: 7px;
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .btnClose {
+    padding-top: 0px;
+  }
 }
 
 
