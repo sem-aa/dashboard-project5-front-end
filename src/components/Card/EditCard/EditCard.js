@@ -17,6 +17,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [category, setCategory] = useState('STUFF');
   const [complete, setComlete] = useState(false);
 
+
   const categoryValue = value => {
     setCategory(value);
   };
@@ -55,8 +56,9 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </div>
             </div>
             <div className={s.main}>
-              <p className={s.textInput}></p>
-              <input className={s.titleInput} {...register('title')} ref={ref}></input>
+              <p className={s.textInput}>Edit quest</p>
+              <input className={s.titleInput} {...register('title')} ref={ref}>
+              </input>
               <div className={s.dateFlex}>
                 <input
                   className={s.inputDate}
@@ -72,6 +74,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </div>
             </div>
             <div className={s.foot}>
+
               <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
                 {isOpenCategory ? (
                   <>
@@ -80,6 +83,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <p className={s.category}>{category}</p>{' '}
                   </>
                 ) : (
+
                   <p className={s.category} >{category}</p>
                 )}
               </div>
