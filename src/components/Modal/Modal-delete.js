@@ -29,10 +29,10 @@ export default class ModalDelete extends Component {
         <div className={s.modal}>
           <h1 className={s.title}>Delete this {this.props.type}?</h1>
           <div className={s.buttonsWrap}>
-            <button onClick={this.props.onClose} className={s.button + ' ' + s.buttonCancel}>
+            <button onClick={this.props.onClose} className={s.buttonCancel}>
               Cancel
             </button>
-            <button className={s.button + ' ' + s.buttonDelete}>Delete</button>
+            <button className={s.buttonDelete}>Delete</button>
           </div>
         </div>
       </div>

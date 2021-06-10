@@ -52,3 +52,7 @@
   margin-right: 7px;
   fill: var(--hard-color);
 }
+
+.challenge {
+  background-color: #3e4e6c;
+}

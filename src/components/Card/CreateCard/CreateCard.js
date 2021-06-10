@@ -12,7 +12,7 @@ const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setisOpenCategory] = useState(false);
-  const [task, setTask] = useState(false);
+  const [task, setTask] = useState('Quest');
   const [category, setCategory] = useState('STUFF');
 
   const categoryValue = value => {
