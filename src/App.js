@@ -13,6 +13,7 @@ const App = () => {
     <>
       <Switch>
         <Route path="/" exact component={isAuthenticated ? MainPage : landing} />
+        <Route path="/landing" component={landing} />
         <Route path="/svg" component={Svg} />
       </Switch>
     </>

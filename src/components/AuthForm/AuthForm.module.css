@@ -3,7 +3,6 @@
     border: none;
     border-bottom: 1px solid var(--accent-color);
     box-sizing: border-box;
-    font-family: HelveticaNeueCyr;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
@@ -19,27 +18,30 @@
 }
 
 .landingForm {
-    display: block;
-    text-align: center;
-    padding-top: 336px;
+    margin: 0px 15px;
+}
+
+.btnGo {
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
     .landingForm {
         text-align: start;
-        padding-top: 581px;
-        padding-left: 50px;
+        margin: 0px 0px 0px 50px;
     }
     .landingInput {
         width: 193px;
     }
+    .btnGo {
+        display: block;
+    }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .landingForm {
-        text-align: start;
-        padding-top: 525px;
-        padding-left: 229px;
+        margin: 0px 0px 0px 229px;
     }
     .landingInput {
         width: 196px;

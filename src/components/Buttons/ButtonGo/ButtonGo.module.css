@@ -19,7 +19,7 @@
 
 .btnText {
     color: var(--white-color);
-    font-family: HelveticaNeueCyr;
+    /* font-family: HelveticaNeueCyr; */
     font-style: normal;
     font-weight: bold;
     font-size: 24px;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
-import NewCard from '../Card/NewCard';
+import NewCard from '../Card/MainCard';
 
 ////////////////////////////////// fake cart //////////////////////////////////
 
