@@ -31,7 +31,7 @@ import NewCard from '../Card/MainCard';
 // });
 ////////////////////////////////// fake cart //////////////////////////////////
 
-export default function Section({ title, data }) {
+export default function Section({ title, data, newCard }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
   const [isOpen, setOpen] = useState(true);
 
@@ -52,7 +52,14 @@ export default function Section({ title, data }) {
         )}
       </div>
       <div className={s.collection}>
-        {isOpen && data.map(el => <NewCard data={el} key={el._id} />)}
+        {isOpen && (
+          <>
+            {newCard && <NewCard data={newCard} isCreateCard />}
+            {data.map(el => (
+              <NewCard data={el} key={el._id} />
+            ))}
+          </>
+        )}
       </div>
     </section>
   );

@@ -1,0 +1,1 @@
+export const CATEGORY = ['STUFF', 'FAMILY', 'HEALTH', 'LEARNING', 'LEISURE', 'WORK'];
