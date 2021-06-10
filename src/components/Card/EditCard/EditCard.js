@@ -9,7 +9,7 @@ import ModalCategory from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Complete from '../CompleteForm';
 
-const EditCard = React.forwardRef(({ register, handleSubmit }, ref) => {
+const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
@@ -24,7 +24,7 @@ const EditCard = React.forwardRef(({ register, handleSubmit }, ref) => {
   return (
     <div className={s.container}>
       {complete ? (
-        <Complete />
+        <Complete data={data} />
       ) : (
         <>
           <form className={s.formCard} onSubmit={handleSubmit}>
