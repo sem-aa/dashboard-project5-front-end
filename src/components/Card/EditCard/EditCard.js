@@ -15,7 +15,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
-  const [task, setTask] = useState(false);
+  const [task, setTask] = useState('Quest');
   const [category, setCategory] = useState('STUFF');
   const [complete, setComlete] = useState(false);
 
@@ -24,7 +24,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
   };
 
   return (
-    <div className={s.container}>
+    <div className={task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       {complete ? (
         <Complete data={data} />
       ) : (
@@ -35,7 +35,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
                 onClick={() => setDifficultyModal(!isDifficultyModalShown)}
                 className={s.difficulty}
               >
-                {isDifficultyModalShown && <ModalDefficulty />}
+                {isDifficultyModalShown && <ModalDefficulty task={task} />}
                 <svg className={s.iconEllipse}>
                   <use href={sprite + '#icon-ellipse'}></use>
                 </svg>
@@ -44,20 +44,24 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </div>
-              <div className={s.iconContainer} onClick={() => setTask(!task)}>
-                {task ? (
+              {task === 'Quest' ? (
+                <div className={s.iconContainer} onClick={() => setTask('Challenge')}>
                   <svg className={s.iconTask}>
                     <use href={sprite + '#icon-star'}></use>
                   </svg>
-                ) : (
+                </div>
+              ) : (
+                <div className={s.iconContainer} onClick={() => setTask('Quest')}>
                   <svg className={s.iconTrophy}>
                     <use x="-4" y="2" href={sprite + '#icon-trophy'}></use>
                   </svg>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <div className={s.main}>
-              <p className={s.textInput}>Edit quest</p>
+              <p className={s.textInput}>
+                {task === 'Challenge' ? 'Edit challenge' : 'Edit quest'}
+              </p>
               <input className={s.titleInput} {...register('title')} ref={ref}></input>
               <div className={s.dateFlex}>
                 <Calendar getDate={getDateValue}></Calendar>
