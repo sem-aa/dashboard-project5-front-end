@@ -11,12 +11,14 @@ export default function CompleteForm({ data }) {
     dispatch(completeCard(data._id));
   };
 
+export default function CompleteForm({ title }) {
+
   return (
     <section className={s.completed}>
       <div className={s.completedHeader}>
         <h2 className={s.statusCompleted}>completed:</h2>
-        {/* <p>{data.title}</p> */}
-        <p>Title Card</p>
+        <p className={s.completedTitle}>{title}</p>
+
       </div>
       <svg className={s.award}>
         <use href={sprite + '#icon-award'}></use>
@@ -30,11 +32,13 @@ export default function CompleteForm({ data }) {
           }}
         >
           <span className={s.btnText}>Continue</span>
+
           <svg className={s.arrow}>
             <use href={sprite + '#icon-arrow'}></use>
           </svg>
         </button>
       </div>
     </section>
-  );
+  )
 }
+

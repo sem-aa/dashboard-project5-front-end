@@ -12,6 +12,7 @@ import Complete from '../CompleteForm';
 const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
+
   const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [task, setTask] = useState(false);
   const [category, setCategory] = useState('STUFF');
@@ -25,6 +26,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
     <div className={s.container}>
       {complete ? (
         <Complete data={data} />
+
       ) : (
         <>
           <form className={s.formCard} onSubmit={handleSubmit}>
@@ -56,7 +58,11 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
             </div>
             <div className={s.main}>
               <p className={s.textInput}>Edit quest</p>
-              <input className={s.titleInput} {...register('title')} ref={ref}></input>
+
+              <input className={s.titleInput} {...register('title')} ref={ref}>
+                {' '}
+              </input>
+
               <div className={s.dateFlex}>
                 <input
                   className={s.inputDate}
@@ -72,6 +78,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </div>
             </div>
             <div className={s.foot}>
+
               <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
                 {isOpenCategory ? (
                   <>
