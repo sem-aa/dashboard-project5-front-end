@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Modal-status.module.css';
 
 const ModalStatus = ({ getValue }) => {
+
   const handleChange = e => {
     const value = e.target.textContent;
     getValue(value);

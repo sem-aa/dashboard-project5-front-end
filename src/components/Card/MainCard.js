@@ -8,7 +8,7 @@ export default function Card({ data }) {
   const [isEdit, setEdit] = useState(false);
   return (
     <div onClick={() => setEdit(true)} className={s.container} >
-      {isEdit ? <EditCard /> : <CardRender data={data} />}
+      {isEdit ? <EditCard data={data} /> : <CardRender data={data} />}
     </div >
   );
 }
