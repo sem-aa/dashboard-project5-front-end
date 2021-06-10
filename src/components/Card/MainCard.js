@@ -6,8 +6,8 @@ import EditCard from './EditCard/EditCard';
 export default function Card({ data }) {
   const [isEdit, setEdit] = useState(false);
   return (
-    <div onClick={() => setEdit(true)} className={s.container}>
+    <div onClick={() => setEdit(true)} className={s.container} >
       {isEdit ? <EditCard data={data} /> : <CardRender data={data} />}
-    </div>
+    </div >
   );
 }

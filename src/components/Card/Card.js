@@ -4,6 +4,7 @@ import s from './NewCard.module.css';
 import { colorDifficult, colorCategory } from '../../helper/helper'
 
 export default function Card({ data }) {
+
     return (
         <div className={s.container} >
             <form className={s.formCard}>
