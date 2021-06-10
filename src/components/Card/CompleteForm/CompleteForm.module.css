@@ -1,41 +1,78 @@
 /* COMPLETED */
 
-.compledted{
+.compledted {
   display: block;
   text-align: center;
-  margin: auto;
+  padding-bottom: 20px;
+  
 }
+
 
 .completedHeader{
-  margin-top: 20px;
 display: flex;
-justify-content: space-around;
+justify-content: center;
 align-items: center;
+margin: 20px auto 0 ;
+
 }
 
-.statusCompleted{
+.statusCompleted {
   text-transform: uppercase;
   color: #000;
 }
 
+
+.completedTitle{
+  color: var(--accent-color);
+  padding-bottom: 1px;
+  border-bottom:1px solid var(--accent-color) ;
+  max-width: 93px;
+  margin-left: 7px;
+
+}
 .award{
   width: 144.04px;
   height: 123.68px;
-  display: inline-block;
+  display: block;
   margin: 10px auto 0;
   text-align: center;
 }
 
-.completedFooter{
+.completedFooter {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
-.arrow{
+.arrow {
   width: 7px;
   height: 5px;
   fill: var(--accent-color);
   margin-left: 7px;
 
+
 }
+@media screen and (min-width:320px) {
+
+}
+
+
+@media screen  and(minwidth:768px){
+
+}
+
+
+}
+.buttonCard {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.btnText {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+  color: var(--secondary-color);
+}
+
