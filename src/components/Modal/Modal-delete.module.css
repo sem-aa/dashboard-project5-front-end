@@ -1,3 +1,12 @@
+.modal button {
+  background-color: #fff;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -33,14 +42,6 @@
 .buttonsWrap {
   display: flex;
   justify-content: center;
-}
-
-.button {
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 1;
-  text-transform: uppercase;
-  margin: 0;
 }
 
 .buttonCancel {

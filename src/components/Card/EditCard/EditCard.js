@@ -13,17 +13,16 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
-  const [task, setTask] = useState(false);
+  const [task, setTask] = useState('Quest');
   const [category, setCategory] = useState('STUFF');
   const [complete, setComlete] = useState(false);
-
 
   const categoryValue = value => {
     setCategory(value);
   };
 
   return (
-    <div className={s.container}>
+    <div className={task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       {complete ? (
         <Complete data={data} />
       ) : (
@@ -34,7 +33,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                 onClick={() => setDifficultyModal(!isDifficultyModalShown)}
                 className={s.difficulty}
               >
-                {isDifficultyModalShown && <ModalDefficulty />}
+                {isDifficultyModalShown && <ModalDefficulty task={task} />}
                 <svg className={s.iconEllipse}>
                   <use href={sprite + '#icon-ellipse'}></use>
                 </svg>
@@ -43,28 +42,31 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </div>
-              <div className={s.iconContainer} onClick={() => setTask(!task)}>
-                {task ? (
+              {task === 'Quest' ? (
+                <div className={s.iconContainer} onClick={() => setTask('Challenge')}>
                   <svg className={s.iconTask}>
                     <use href={sprite + '#icon-star'}></use>
                   </svg>
-                ) : (
+                </div>
+              ) : (
+                <div className={s.iconContainer} onClick={() => setTask('Quest')}>
                   <svg className={s.iconTrophy}>
                     <use x="-4" y="2" href={sprite + '#icon-trophy'}></use>
                   </svg>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <div className={s.main}>
-              <p className={s.textInput}>Edit quest</p>
-              <input className={s.titleInput} {...register('title')} ref={ref}>
-              </input>
+              <p className={s.textInput}>
+                {task === 'Challenge' ? 'Edit challenge' : 'Edit quest'}
+              </p>
+              <input className={s.titleInput} {...register('title')} ref={ref}></input>
               <div className={s.dateFlex}>
                 <input
                   className={s.inputDate}
                   {...register('date')}
                   ref={ref}
-                  placeholder="Today"
+                  placeholder={task === 'Challenge' ? 'by Today' : 'Today'}
                 ></input>
                 <button ref={ref}>
                   <svg className={s.calendar} height="10px" width="10px">
@@ -74,7 +76,6 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </div>
             </div>
             <div className={s.foot}>
-
               <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
                 {isOpenCategory ? (
                   <>
@@ -83,8 +84,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
                     <p className={s.category}>{category}</p>{' '}
                   </>
                 ) : (
-
-                  <p className={s.category} >{category}</p>
+                  <p className={s.category}>{category}</p>
                 )}
               </div>
               <div>
