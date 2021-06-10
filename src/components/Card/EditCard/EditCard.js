@@ -9,18 +9,24 @@ import ModalCategory from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Complete from '../CompleteForm';
 import Calendar from '../../Calendar/Calendar';
+import { date, time } from '../../../helper/helper';
 
-const EditCard = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
+const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
+  const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [task, setTask] = useState(false);
-  const [category, setCategory] = useState(false);
+  const [category, setCategory] = useState('STUFF');
   const [complete, setComlete] = useState(false);
+
+  const categoryValue = value => {
+    setCategory(value);
+  };
 
   return (
     <div className={s.container}>
       {complete ? (
-        <Complete />
+        <Complete data={data} />
       ) : (
         <>
           <form className={s.formCard} onSubmit={handleSubmit}>
@@ -58,14 +64,15 @@ const EditCard = React.forwardRef(({ register, handleSubmit, getDateValue }, ref
               </div>
             </div>
             <div className={s.foot}>
-              <div onClick={() => setCategory(!category)}>
-                {category ? (
+              <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
+                {isOpenCategory ? (
                   <>
                     {' '}
-                    <ModalCategory /> <p className={s.category}>Stuff</p>{' '}
+                    <ModalCategory getValue={categoryValue} />{' '}
+                    <p className={s.category}>{category}</p>{' '}
                   </>
                 ) : (
-                  <p className={s.category}>Stuff</p>
+                  <p className={s.category}>{category}</p>
                 )}
               </div>
               <div>
@@ -102,9 +109,7 @@ export default function CardForm({ data }) {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [dateValue, setDate] = useState(new Date());
-  const date =
-    dateValue.getFullYear() + '-' + (dateValue.getMonth() + 1) + '-' + dateValue.getDate();
-  const time = dateValue.getHours() + ':' + dateValue.getMinutes();
+
   const getDateValue = value => {
     setDate(value);
   };
@@ -113,11 +118,9 @@ export default function CardForm({ data }) {
     const body = {
       ...data,
       type: 'Task',
-      date,
-      time,
+      date: date(dateValue),
+      time: time(dateValue),
     };
-
-    console.log(body.date, body.time);
 
     dispatch(createCard(body));
   };

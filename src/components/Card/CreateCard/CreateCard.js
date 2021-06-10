@@ -5,19 +5,19 @@ import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
 import ModalDefficulty from '../../Modal/Modal-hard';
-import ModalCategory from '../../Modal/Modal-status';
+import ModalStatus from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
 
-const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
+const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
+  const [isOpenCategory, setisOpenCategory] = useState(false);
   const [task, setTask] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [time, setTime] = useState('');
+  const [category, setCategory] = useState('STUFF');
 
-  const timeValue = value => {
-    setTime(value);
+  const categoryValue = value => {
+    setCategory(value);
   };
 
   return (
@@ -50,18 +50,18 @@ const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
           <p className={s.textInput}>Create New Quest</p>
           <input className={s.titleInput} {...register('title')} ref={ref}></input>
           <div className={s.dateFlex}>
-            <Calendar getTime={timeValue}></Calendar>
+            <Calendar getDate={getDateValue}></Calendar>
           </div>
         </div>
         <div className={s.foot}>
-          <div onClick={() => setCategory(!category)}>
-            {category ? (
+          <div onClick={() => setisOpenCategory(!isOpenCategory)}>
+            {isOpenCategory ? (
               <>
                 {' '}
-                <ModalCategory /> <p className={s.category}>Stuff</p>{' '}
+                <ModalStatus getValue={categoryValue} /> <p className={s.category}>{category}</p>{' '}
               </>
             ) : (
-              <p className={s.category}>Stuff</p>
+              <p className={s.category}>{category}</p>
             )}
           </div>
           <div>
@@ -88,17 +88,29 @@ const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
 export default function CreateCard({ data }) {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const [dateValue, setDate] = useState(new Date());
+
+  const getDateValue = value => {
+    setDate(value);
+  };
 
   const onSubmit = data => {
     const body = {
       ...data,
       type: 'Task',
-      date: new Date().toISOString().split('T')[0],
-      time: new Date().getHours() + ':' + new Date().getMinutes(),
+      date: date(dateValue),
+      time: time(dateValue),
     };
 
     dispatch(createCard(body));
   };
 
-  return <Card handleSubmit={handleSubmit(onSubmit)} register={register} data={data} />;
+  return (
+    <Card
+      handleSubmit={handleSubmit(onSubmit)}
+      register={register}
+      data={data}
+      getDateValue={getDateValue}
+    />
+  );
 }
