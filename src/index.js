@@ -12,14 +12,14 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
-  <React.StrictMode>
-    <Provider store={store.store}>
-    <PersistGate loading={null} persistor={store.persistor}>
-        <App />
+    <React.StrictMode>
+      <Provider store={store.store}>
+        <PersistGate loading={null} persistor={store.persistor}>
+          <App />
         </PersistGate>
       </Provider>
-  </React.StrictMode>
- </BrowserRouter>,
+    </React.StrictMode>
+  </BrowserRouter>,
 
   document.getElementById('root')
 );

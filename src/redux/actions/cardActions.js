@@ -12,6 +12,11 @@ const editCardRequest = createAction('user/editCardRequest');
 const editCardSuccess = createAction('user/editCardSuccess');
 const editCardError = createAction('user/editCardError');
 
+const completeCard = createAction('user/completeCard');
+// const completeCardSuccess = createAction('user/completeCardSuccess');
+// const completeCardRequest = createAction('user/completeCardRequest');
+// const completeCardError = createAction('user/completeCardError');
+
 // eslint-disable-next-line
 export default {
   createCardRequest,
@@ -23,4 +28,5 @@ export default {
   editCardRequest,
   editCardSuccess,
   editCardError,
+  completeCard,
 };

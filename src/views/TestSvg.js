@@ -1,11 +1,12 @@
 
 import sprite from '../icon/sprite.svg'
 import s from './svg.module.css'
+import CreateCard from '../components/Card/EditCard/EditCard'
 
 export default function TestSvg() {
   return (
     <>
-
+      <CreateCard />
       <svg>
         <use className={s.icon} width="14px" height="14px"
           href={sprite + "#icon-done"}></use>
