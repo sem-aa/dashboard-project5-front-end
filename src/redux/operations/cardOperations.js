@@ -41,7 +41,7 @@ export const completeCard = createAsyncThunk(
       const { data } = await api.completeCard(id);
       return data.completedCard;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
