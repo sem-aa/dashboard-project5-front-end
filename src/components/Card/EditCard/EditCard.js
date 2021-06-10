@@ -8,8 +8,10 @@ import ModalDefficulty from '../../Modal/Modal-hard';
 import ModalCategory from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Complete from '../CompleteForm';
+import Calendar from '../../Calendar/Calendar';
+import { date, time } from '../../../helper/helper';
 
-const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
+const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
@@ -62,17 +64,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
               </p>
               <input className={s.titleInput} {...register('title')} ref={ref}></input>
               <div className={s.dateFlex}>
-                <input
-                  className={s.inputDate}
-                  {...register('date')}
-                  ref={ref}
-                  placeholder={task === 'Challenge' ? 'by Today' : 'Today'}
-                ></input>
-                <button ref={ref}>
-                  <svg className={s.calendar} height="10px" width="10px">
-                    <use href={sprite + '#icon-calendar'}></use>
-                  </svg>
-                </button>
+                <Calendar getDate={getDateValue}></Calendar>
               </div>
             </div>
             <div className={s.foot}>
@@ -120,17 +112,29 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit }, ref) => {
 export default function CardForm({ data }) {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const [dateValue, setDate] = useState(new Date());
+
+  const getDateValue = value => {
+    setDate(value);
+  };
 
   const onSubmit = data => {
     const body = {
       ...data,
       type: 'Task',
-      date: new Date().toISOString().split('T')[0],
-      time: new Date().getHours() + ':' + new Date().getMinutes(),
+      date: date(dateValue),
+      time: time(dateValue),
     };
 
     dispatch(createCard(body));
   };
 
-  return <EditCard handleSubmit={handleSubmit(onSubmit)} register={register} data={data} />;
+  return (
+    <EditCard
+      handleSubmit={handleSubmit(onSubmit)}
+      register={register}
+      data={data}
+      getDateValue={getDateValue}
+    />
+  );
 }

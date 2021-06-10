@@ -7,8 +7,9 @@ import ModalDelete from '../../Modal/Modal-delete';
 import ModalDefficulty from '../../Modal/Modal-hard';
 import ModalStatus from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
+import Calendar from '../../Calendar/Calendar';
 
-const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
+const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setisOpenCategory] = useState(false);
@@ -49,17 +50,7 @@ const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
           <p className={s.textInput}>Create New Quest</p>
           <input className={s.titleInput} {...register('title')} ref={ref}></input>
           <div className={s.dateFlex}>
-            <input
-              className={s.inputDate}
-              {...register('date')}
-              ref={ref}
-              placeholder="Today"
-            ></input>
-            <button ref={ref}>
-              <svg className={s.calendar} height="10px" width="10px">
-                <use href={sprite + '#icon-calendar'}></use>
-              </svg>
-            </button>
+            <Calendar getDate={getDateValue}></Calendar>
           </div>
         </div>
         <div className={s.foot}>
@@ -97,17 +88,29 @@ const Card = React.forwardRef(({ register, handleSubmit }, ref) => {
 export default function CreateCard({ data }) {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const [dateValue, setDate] = useState(new Date());
+
+  const getDateValue = value => {
+    setDate(value);
+  };
 
   const onSubmit = data => {
     const body = {
       ...data,
       type: 'Task',
-      date: new Date().toISOString().split('T')[0],
-      time: new Date().getHours() + ':' + new Date().getMinutes(),
+      date: date(dateValue),
+      time: time(dateValue),
     };
 
     dispatch(createCard(body));
   };
 
-  return <Card handleSubmit={handleSubmit(onSubmit)} register={register} data={data} />;
+  return (
+    <Card
+      handleSubmit={handleSubmit(onSubmit)}
+      register={register}
+      data={data}
+      getDateValue={getDateValue}
+    />
+  );
 }
