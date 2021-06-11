@@ -8,7 +8,6 @@
 
 .completedHeader {
   display: flex;
-  justify-content: start;
   align-items: center;
   padding-top: 20px;
   margin: 0 17px 0 17px;
