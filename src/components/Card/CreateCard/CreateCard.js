@@ -4,15 +4,16 @@ import { useDispatch } from 'react-redux';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
-import ModalDefficulty from '../../Modal/Modal-hard';
+import ModalDifficulty from '../../Modal/Modal-hard';
 import ModalStatus from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
+import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
 const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-  const [isOpenCategory, setisOpenCategory] = useState(false);
+  const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [task, setTask] = useState('Quest');
   const [category, setCategory] = useState('STUFF');
 
@@ -25,7 +26,7 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
       <form className={s.formCard} onSubmit={handleSubmit}>
         <div className={s.head}>
           <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
-            {isDifficultyModalShown && <ModalDefficulty />}
+            {isDifficultyModalShown && <ModalDifficulty />}
             <svg className={s.iconEllipse}>
               <use href={sprite + '#icon-ellipse'}></use>
             </svg>
@@ -54,11 +55,10 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
           </div>
         </div>
         <div className={s.foot}>
-          <div onClick={() => setisOpenCategory(!isOpenCategory)}>
+          <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
             {isOpenCategory ? (
               <>
-                {' '}
-                <ModalStatus getValue={categoryValue} /> <p className={s.category}>{category}</p>{' '}
+                <ModalStatus getValue={categoryValue} /> <p className={s.category}>{category}</p>
               </>
             ) : (
               <p className={s.category}>{category}</p>
@@ -71,7 +71,7 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
                   <use href={sprite + '#icon-clear'}></use>
                 </svg>
               </button>
-              <button className={s.buttonCreate} ref={ref}>
+              <button className={s.buttonCreate} ref={ref} type="submit">
                 create
               </button>
             </div>
@@ -95,11 +95,14 @@ export default function CreateCard({ data }) {
   };
 
   const onSubmit = data => {
+    console.log(data);
     const body = {
       ...data,
+      category: 'Work',
       type: 'Task',
-      date: date(dateValue),
-      time: time(dateValue),
+      difficulty: 'Easy',
+      date: getCurrentFullDate(dateValue),
+      time: getCurrentTime(dateValue),
     };
 
     dispatch(createCard(body));

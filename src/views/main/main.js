@@ -6,6 +6,7 @@ import ButtonAdd from '../../components/Buttons/ButtonAdd';
 import Section from '../../components/Section';
 import { getToken } from '../../redux/selectors';
 import { getCards } from '../../redux/selectors';
+import { getCurrentFullDate, getCurrentTime } from '../../helper';
 import s from './main.module.css';
 import api from '../../services/api';
 
@@ -13,14 +14,23 @@ export default function MainPage() {
   const token = useSelector(getToken);
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
-  const [today, setToday] = useState(cardsSorted.today);
-
+  const [newCard, setNewCard] = useState(null);
 
   const addCard = () => {
-    today.unshift({
+    setNewCard(null);
+
+    const templateData = {
       _id: Math.random(),
-    });
-    setToday([...today]);
+      title: '',
+      difficulty: 'Easy',
+      category: 'Stuff',
+      type: 'Task',
+      date: getCurrentFullDate(),
+      time: getCurrentTime(),
+      status: 'Incomplete',
+    };
+
+    setNewCard(templateData);
   };
 
   useEffect(() => {
@@ -34,7 +44,7 @@ export default function MainPage() {
       <Header />
       <div className={s.main}>
         <Container>
-          <Section title={'today'} data={today} />
+          <Section title={'today'} data={cardsSorted.today} newCard={newCard} />
           <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
           <Section title={'done'} data={cardsSorted.done} />
 
@@ -53,7 +63,7 @@ const sortCards = cards =>
         return acc;
       }
 
-      const [today] = new Date().toISOString().split('T');
+      const [today] = getCurrentFullDate();
 
       el.date === today ? acc.today.push(el) : acc.tomorrow.push(el);
 
