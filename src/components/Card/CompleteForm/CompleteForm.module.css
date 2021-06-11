@@ -25,7 +25,15 @@
   border-bottom: 1px solid var(--accent-color);
   max-width: 95px;
   margin-left: 7px;
-}
+  
+  white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    padding: 5px; /* Поля */
+    text-overflow: ellipsis; /* Многоточие */
+   }
+
+
+
 .award {
   width: 144.04px;
   height: 123.68px;
