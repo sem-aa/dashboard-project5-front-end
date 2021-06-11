@@ -32,7 +32,9 @@ export default class ModalDelete extends Component {
             <button onClick={this.props.onClose} className={s.buttonCancel}>
               Cancel
             </button>
-            <button className={s.buttonDelete}>Delete</button>
+            <button onClick={this.props.onDelete} className={s.button + ' ' + s.buttonDelete}>
+              Delete
+            </button>
           </div>
         </div>
       </div>

@@ -13,6 +13,15 @@ export const createCard = data => dispatch => {
     .catch(error => dispatch(actions.createCardError(error.message)));
 };
 
+export const deleteCard = id => dispatch => {
+  dispatch(actions.deleteCardRequest());
+
+  api
+    .deleteCard(id)
+    .then(() => dispatch(actions.deleteCardSuccess(id)))
+    .catch(error => dispatch(actions.deleteCardError(error)));
+};
+
 export const editCard = data => dispatch => {
   dispatch(actions.editCardRequest());
 

@@ -10,7 +10,7 @@ import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
 
 const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
-  const [isDeleteModalShown, setModal] = useState(false);
+  const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setisOpenCategory] = useState(false);
   const [task, setTask] = useState('Quest');
@@ -66,7 +66,7 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
           </div>
           <div>
             <div className={s.createCard}>
-              <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+              <button className={s.btnClose} ref={ref} onClick={() => setDeleteModal(true)}>
                 <svg className={s.buttonClear}>
                   <use href={sprite + '#icon-clear'}></use>
                 </svg>
@@ -79,7 +79,7 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
         </div>
       </form>
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        <ModalDelete onClose={() => setDeleteModal(false)} type={task}></ModalDelete>
       )}
     </div>
   );
