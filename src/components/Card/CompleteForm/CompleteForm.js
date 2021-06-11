@@ -1,11 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'
-import sprite from '../../../icon/sprite.svg'
-import s from './CompleteForm.module.css'
-import { completeCard } from '../../../redux/operations/cardOperations'
+import { useDispatch } from 'react-redux';
+import sprite from '../../../icon/sprite.svg';
+import s from './CompleteForm.module.css';
+import { completeCard } from '../../../redux/operations/cardOperations';
 
 export default function CompleteForm({ data }) {
-
   const dispatch = useDispatch();
 
   const continueBtnHandler = data => {
@@ -16,7 +15,7 @@ export default function CompleteForm({ data }) {
     <section className={s.completed}>
       <div className={s.completedHeader}>
         <h2 className={s.statusCompleted}>completed:</h2>
-        <p>{data.title}</p>
+        <p className={s.completedTitle}>{data.title}</p>
       </div>
       <svg className={s.award}>
         <use href={sprite + '#icon-award'}></use>
@@ -36,5 +35,5 @@ export default function CompleteForm({ data }) {
         </button>
       </div>
     </section>
-  )
+  );
 }
