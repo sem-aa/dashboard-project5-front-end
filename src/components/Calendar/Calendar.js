@@ -9,16 +9,16 @@ import s from './Calendar.module.css';
 
 const Calendar = ({ getDate }) => {
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
-  const ExampleCustomInput = ({ value, onClick }) => (
+  const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
       <div className={s.dateValue}>{day + ', ' + value}</div>
-      <button type="button" onClick={onClick}>
+      <button type="button" onClick={onClick} ref={ref}>
         <svg className={s.icon}>
           <use href={sprite + '#icon-calendar'}></use>
         </svg>
       </button>
     </div>
-  );
+  ));
 
   useEffect(() => {
     getDate(startDate);
