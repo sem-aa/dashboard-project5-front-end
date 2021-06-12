@@ -55,8 +55,6 @@ export const time = dateValue => {
 export const getCurrentTime = () =>
   new Date().toString().split(' ')[4].split('').splice(0, 5).join('');
 
-console.log(new Date().toString().split(' ')[4].split('').splice(0, 5).join(''));
-
 export const getCurrentFullDate = () => {
   const date = new Date();
 
