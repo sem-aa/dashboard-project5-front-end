@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
@@ -8,9 +8,10 @@ import ModalDifficulty from '../../Modal/Modal-hard';
 import ModalStatus from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
+import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
+const Card = React.forwardRef(({ register, handleSubmit, getDateValue, setDifficulty }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
@@ -25,16 +26,7 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
     <div className={s.container}>
       <form className={s.formCard} onSubmit={handleSubmit}>
         <div className={s.head}>
-          <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
-            {isDifficultyModalShown && <ModalDifficulty />}
-            <svg className={s.iconEllipse}>
-              <use href={sprite + '#icon-ellipse'}></use>
-            </svg>
-            <p className={s.difficulty}>Easy</p>
-            <svg className={s.iconPolygon}>
-              <use href={sprite + '#icon-polygon'}></use>
-            </svg>
-          </div>
+          <Select setDifficulty={setDifficulty} />
           <div className={s.iconContainer} onClick={() => setTask(!task)}>
             {task ? (
               <svg className={s.iconTask}>
@@ -87,15 +79,17 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) =>
 
 export default function CreateCard({ data }) {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const [dateValue, setDate] = useState(new Date());
+  const [difficulty, setDifficulty] = useState('');
+  // const [difficulty, setDifficulty] = useState('');
 
   const getDateValue = value => {
     setDate(value);
   };
 
   const onSubmit = data => {
-    console.log(data);
+    console.log(difficulty);
     const body = {
       ...data,
       category: 'Work',
@@ -112,7 +106,9 @@ export default function CreateCard({ data }) {
     <Card
       handleSubmit={handleSubmit(onSubmit)}
       register={register}
+      control={control}
       data={data}
+      setDifficulty={setDifficulty}
       getDateValue={getDateValue}
     />
   );
