@@ -133,6 +133,10 @@
   border-bottom: 1px solid var(--accent-color);
 }
 
+.titleError {
+  border-bottom: 1px solid var(--hard-color);
+}
+
 @media screen and (min-width: 768px) {
   .titleInput {
     font-size: 16px;
