@@ -85,17 +85,22 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
               </div>
               <div>
                 <div>
-                  <button className={s.buttonCard} ref={ref}>
+                  <button className={s.buttonCard} type="submit" ref={ref}>
                     <svg className={s.buttonSave}>
                       <use href={sprite + '#icon-save'}></use>
                     </svg>
                   </button>
-                  <button className={s.buttonClose} ref={ref} onClick={() => setDeleteModal(true)}>
+                  <button
+                    className={s.buttonClose}
+                    type="button"
+                    ref={ref}
+                    onClick={() => setDeleteModal(true)}
+                  >
                     <svg className={s.buttonClear}>
                       <use href={sprite + '#icon-clear'}></use>
                     </svg>
                   </button>
-                  <button className={s.buttonCard} ref={ref}>
+                  <button className={s.buttonCard} type="button" ref={ref}>
                     <svg onClick={() => setComlete(true)} className={s.buttonDone}>
                       <use href={sprite + '#icon-done'}></use>
                     </svg>
