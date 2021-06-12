@@ -1,12 +1,15 @@
 import api from '../../services/api';
 import authActions from '../actions/authActions';
 
+let sid = ''
+
 const handleLogIn = credentials => dispatch => {
   dispatch(authActions.logInRequest());
 
   api
     .logIn(credentials)
     .then(({ data }) => {
+      sid = data.sid
       api.token.set(data.accessToken);
       dispatch(authActions.logInSuccess(data));
     })
@@ -37,7 +40,7 @@ const handleLogOut = () => dispatch => {
     .catch(error => dispatch(authActions.logOutError(error.message)));
 };
 
-const getCurrentUser = () => (dispatch, getState) => {
+const getCurrentUser = (sid) => (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
@@ -45,7 +48,7 @@ const getCurrentUser = () => (dispatch, getState) => {
     api.token.set(token);
     dispatch(authActions.getCurrentUserRequest());
     api
-      .userDataGet()
+      .refreshToken(sid)
       .then(({ data }) => {
         dispatch(authActions.getCurrentUserSuccess(data));
       })
