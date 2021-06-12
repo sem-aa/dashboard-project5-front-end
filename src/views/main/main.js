@@ -37,7 +37,7 @@ export default function MainPage() {
       api.token.set(token);
     }
   }, [token]);
-  console.log(cardsSorted);
+
   return (
     <>
       <Header />

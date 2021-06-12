@@ -11,7 +11,7 @@ export default function Card({ data, isCreateCard }) {
     <CreateCard data={data} />
   ) : (
     <div onClick={() => setEdit(true)} className={s.container}>
-      {isEdit ? <EditCard data={data} /> : <CardRender data={data} />}
+      {isEdit ? <EditCard data={data} setEdit={setEdit} /> : <CardRender data={data} />}
     </div>
   );
 }

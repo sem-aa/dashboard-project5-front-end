@@ -5,28 +5,22 @@ import sprite from '../../icon/sprite.svg';
 import s from '../Card/NewCard.module.css';
 import style from '../Modal/Modal-hard.module.css';
 
-const Select = ({ options = ['Easy', 'Normal', 'Hard'], setDifficulty }) => {
+const Select = ({ options = ['Easy', 'Normal', 'Hard'], difficulty, setDifficulty }) => {
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-  const [selected, setSelected] = useState(options[1]);
 
-  const handleClick = value => {
-    setSelected(value);
-  };
   return (
     <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
-      {isDifficultyModalShown && (
-        <ModalDifficulty setDifficulty={setDifficulty} handleClick={value => handleClick(value)} />
-      )}
+      {isDifficultyModalShown && <ModalDifficulty setDifficulty={setDifficulty} />}
       <svg
         className={cn(s.iconEllipse, {
-          [style.iconEasy]: selected === 'Easy',
-          [style.iconNormal]: selected === 'Normal',
-          [style.iconHard]: selected === 'Hard',
+          [style.iconEasy]: difficulty === 'Easy',
+          [style.iconNormal]: difficulty === 'Normal',
+          [style.iconHard]: difficulty === 'Hard',
         })}
       >
         <use href={sprite + '#icon-ellipse'}></use>
       </svg>
-      <p className={s.difficulty}>{selected}</p>
+      <p className={s.difficulty}>{difficulty}</p>
       <svg className={s.iconPolygon}>
         <use href={sprite + '#icon-polygon'}></use>
       </svg>

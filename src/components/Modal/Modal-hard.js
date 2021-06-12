@@ -2,14 +2,13 @@ import React from 'react';
 import s from './Modal-hard.module.css';
 import sprite from '../../icon/sprite.svg';
 
-const ModalHard = ({ handleClick, task = {}, setDifficulty }) => {
+const ModalHard = ({ task = {}, setDifficulty }) => {
   return (
     <div className={task.task === 'Challenge' ? `${s.modal} ${s.challenge}` : s.modal}>
       <ul>
         <li
           onClick={() => {
             setDifficulty('Easy');
-            handleClick('Easy');
           }}
           className={s.modalContent}
         >
@@ -21,7 +20,6 @@ const ModalHard = ({ handleClick, task = {}, setDifficulty }) => {
         <li
           onClick={() => {
             setDifficulty('Normal');
-            handleClick('Normal');
           }}
           className={s.modalContent}
         >
@@ -33,7 +31,6 @@ const ModalHard = ({ handleClick, task = {}, setDifficulty }) => {
         <li
           onClick={() => {
             setDifficulty('Hard');
-            handleClick('Hard');
           }}
           className={s.modalContent}
         >

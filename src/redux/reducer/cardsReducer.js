@@ -11,6 +11,9 @@ const cards = createReducer([], {
     payload,
     ...state.filter(card => card._id !== payload._id),
   ],
+
+  [cardActions.editCardSuccess]: (state, { payload }) =>
+    state.map(el => (el._id === payload._id ? payload : el)),
 });
 
 export default cards;
