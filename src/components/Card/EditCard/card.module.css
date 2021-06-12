@@ -1,0 +1,8 @@
+.appear {
+  transform: translateX(-100%);
+}
+
+.appearActive {
+  transform: translateX(0);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
