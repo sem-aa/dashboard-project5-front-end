@@ -10,12 +10,13 @@ import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-const Card = React.forwardRef(({ register, handleSubmit, getDateValue }, ref) => {
+const Card = React.forwardRef(({ register, handleSubmit, getDateValue, data }, ref) => {
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [task, setTask] = useState('Quest');
   const [category, setCategory] = useState('STUFF');
+  console.log(data);
 
   const categoryValue = value => {
     setCategory(value);

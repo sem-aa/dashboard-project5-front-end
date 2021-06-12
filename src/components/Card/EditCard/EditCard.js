@@ -103,7 +103,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
         </>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={task}></ModalDelete>
+        <ModalDelete onClose={() => setDeleteModal(false)} type={task} id={data._id}></ModalDelete>
       )}
     </div>
   );
