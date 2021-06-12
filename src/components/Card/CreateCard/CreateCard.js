@@ -11,6 +11,7 @@ import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
+
 const Card = React.forwardRef(
   ({ data, register, handleSubmit, setCategory, setDifficulty, getDateValue }, ref) => {
     const [isDeleteModalShown, setModal] = useState(false);
@@ -18,7 +19,6 @@ const Card = React.forwardRef(
     const [isOpenCategory, setIsOpenCategory] = useState(false);
     const [task, setTask] = useState('Quest');
     // const [category, setCategory] = useState('STUFF');
-
     // const categoryValue = value => {
     //   setCategory(value);
     // };

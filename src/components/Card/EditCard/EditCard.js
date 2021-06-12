@@ -12,7 +12,7 @@ import Calendar from '../../Calendar/Calendar';
 import { date, time } from '../../../helper/helper';
 
 const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue }, ref) => {
-  const [isDeleteModalShown, setModal] = useState(false);
+  const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [task, setTask] = useState('Quest');
@@ -86,7 +86,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
                       <use href={sprite + '#icon-save'}></use>
                     </svg>
                   </button>
-                  <button className={s.buttonClose} ref={ref} onClick={() => setModal(true)}>
+                  <button className={s.buttonClose} ref={ref} onClick={() => setDeleteModal(true)}>
                     <svg className={s.buttonClear}>
                       <use href={sprite + '#icon-clear'}></use>
                     </svg>
@@ -103,7 +103,7 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
         </>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        <ModalDelete onClose={() => setDeleteModal(false)} type={task}></ModalDelete>
       )}
     </div>
   );

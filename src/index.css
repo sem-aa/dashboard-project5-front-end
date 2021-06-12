@@ -152,5 +152,6 @@ button {
   outline: none;
   padding: 0;
   margin: 0;
-  background-color: var(--white-color);
+  background-color: transparent;
+  cursor: pointer;
 }
