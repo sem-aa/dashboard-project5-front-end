@@ -25,7 +25,6 @@ export default function MainPage() {
       type: 'Task',
       date: getCurrentFullDate(),
       time: getCurrentTime(),
-      status: 'Incomplete',
     };
 
     setNewCard(templateData);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import cn from 'classnames';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
@@ -12,23 +13,23 @@ import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
 const Card = React.forwardRef(
-  ({ data, register, handleSubmit, setCategory, setDifficulty, getDateValue }, ref) => {
+  ({ data, register, handleSubmit, setCategory, setDifficulty, getDateValue, setType }, ref) => {
     const [isDeleteModalShown, setModal] = useState(false);
-    // const [isDifficultyModalShown, setDifficultyModal] = useState(false);
     const [isOpenCategory, setIsOpenCategory] = useState(false);
-    const [task, setTask] = useState('Quest');
-    // const [category, setCategory] = useState('STUFF');
-    // const categoryValue = value => {
-    //   setCategory(value);
-    // };
 
     return (
-      <div className={s.container}>
+      <div className={cn(s.container, { [s.challenge]: data.type === 'Challenge' })}>
         <form className={s.formCard} onSubmit={handleSubmit}>
           <div className={s.head}>
             <Select setDifficulty={setDifficulty} />
-            <div className={s.iconContainer} onClick={() => setTask(!task)}>
-              {task ? (
+            <div
+              className={s.iconContainer}
+              onClick={() => {
+                console.log(data.type);
+                data.type === 'Challenge' ? setType('Task') : setType('Challenge');
+              }}
+            >
+              {data.type === '`Task`' ? (
                 <svg className={s.iconTask}>
                   <use href={sprite + '#icon-star'}></use>
                 </svg>
@@ -90,27 +91,30 @@ export default function CreateCard({ data }) {
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState('Normal');
   const [category, setCategory] = useState('Stuff');
+  const [type, setType] = useState('Task');
 
   const newData = {
     ...data,
     difficulty,
     category,
+    type,
+    date: getCurrentFullDate(dateValue),
+    time: getCurrentTime(dateValue),
   };
+
   const getDateValue = value => {
     setDate(value);
   };
 
   const onSubmit = data => {
-    const body = {
-      ...data,
-      difficulty,
-      category,
-      type: 'Task',
-      date: getCurrentFullDate(dateValue),
-      time: getCurrentTime(dateValue),
-    };
-
-    dispatch(createCard(body));
+    try {
+      const body = { ...newData, ...data };
+      delete body._id;
+      console.log(body);
+      dispatch(createCard(body));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -122,6 +126,7 @@ export default function CreateCard({ data }) {
       setCategory={setCategory}
       setDifficulty={setDifficulty}
       getDateValue={getDateValue}
+      setType={setType}
     />
   );
 }
