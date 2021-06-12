@@ -37,7 +37,7 @@ export default function MainPage() {
       api.token.set(token);
     }
   }, [token]);
-
+  console.log(cardsSorted);
   return (
     <>
       <Header />
@@ -62,8 +62,7 @@ const sortCards = cards =>
         return acc;
       }
 
-      const [today] = getCurrentFullDate();
-
+      const today = getCurrentFullDate();
       el.date === today ? acc.today.push(el) : acc.tomorrow.push(el);
 
       return acc;
