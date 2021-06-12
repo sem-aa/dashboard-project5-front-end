@@ -11,7 +11,6 @@ import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-
 const Card = React.forwardRef(
   ({ data, register, handleSubmit, setCategory, setDifficulty, getDateValue }, ref) => {
     const [isDeleteModalShown, setModal] = useState(false);
@@ -86,7 +85,6 @@ const Card = React.forwardRef(
 );
 
 export default function CreateCard({ data }) {
-  console.log(data);
   const dispatch = useDispatch();
   const { register, handleSubmit, control } = useForm();
   const [dateValue, setDate] = useState(new Date());
@@ -103,7 +101,6 @@ export default function CreateCard({ data }) {
   };
 
   const onSubmit = data => {
-    console.log(newData);
     const body = {
       ...data,
       difficulty,

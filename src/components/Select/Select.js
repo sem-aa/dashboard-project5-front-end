@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import s from '../Card/NewCard.module.css';
-// import s from './Select.module.css';
 import ModalDifficulty from '../Modal/Modal-hard';
+import cn from 'classnames';
 import sprite from '../../icon/sprite.svg';
+import s from '../Card/NewCard.module.css';
+import style from '../Modal/Modal-hard.module.css';
 
 const Select = ({ options = ['Easy', 'Normal', 'Hard'], setDifficulty }) => {
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
@@ -11,28 +12,24 @@ const Select = ({ options = ['Easy', 'Normal', 'Hard'], setDifficulty }) => {
   const handleClick = value => {
     setSelected(value);
   };
-
   return (
     <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
       {isDifficultyModalShown && (
         <ModalDifficulty setDifficulty={setDifficulty} handleClick={value => handleClick(value)} />
       )}
-      <svg className={s.iconEllipse}>
+      <svg
+        className={cn(s.iconEllipse, {
+          [style.iconEasy]: selected === 'Easy',
+          [style.iconNormal]: selected === 'Normal',
+          [style.iconHard]: selected === 'Hard',
+        })}
+      >
         <use href={sprite + '#icon-ellipse'}></use>
       </svg>
       <p className={s.difficulty}>{selected}</p>
       <svg className={s.iconPolygon}>
         <use href={sprite + '#icon-polygon'}></use>
       </svg>
-
-      {/* <select style={{ opacity: 0, pointerEvents: 'none', position: 'absolute' }}>
-        {options &&
-          options.map(el => (
-            <option value={el} key={el}>
-              {el}
-            </option>
-          ))}
-      </select> */}
     </div>
   );
 };
