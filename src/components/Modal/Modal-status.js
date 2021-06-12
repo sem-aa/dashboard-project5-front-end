@@ -2,20 +2,16 @@ import React from 'react';
 import s from './Modal-status.module.css';
 
 const ModalStatus = ({ getValue }) => {
+  const categories = ['Family', 'Health', 'Learning', 'Leisure', 'Stuff', 'Work'];
 
-  const handleChange = e => {
-    const value = e.target.textContent;
-    getValue(value);
-  };
   return (
     <div className={s.modal}>
-      <ul className={s.list} onClick={handleChange}>
-        <li className={s.modalContent}>STUFF</li>
-        <li className={s.modalContent}>FAMILY</li>
-        <li className={s.modalContent}>HEALTH</li>
-        <li className={s.modalContent}>LEARNING</li>
-        <li className={s.modalContent}>LEISURE</li>
-        <li className={s.modalContent}>WORK</li>
+      <ul className={s.list}>
+        {categories.map(category => (
+          <li className={s.modalContent} key={category} onClick={() => getValue(category)}>
+            {category}
+          </li>
+        ))}
       </ul>
     </div>
   );

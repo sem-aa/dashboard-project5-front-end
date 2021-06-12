@@ -17,8 +17,6 @@ export default function MainPage() {
   const [newCard, setNewCard] = useState(null);
 
   const addCard = () => {
-    setNewCard(null);
-
     const templateData = {
       _id: Math.random(),
       title: '',
