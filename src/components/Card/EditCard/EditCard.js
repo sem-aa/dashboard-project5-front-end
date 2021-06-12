@@ -10,6 +10,8 @@ import { createCard } from '../../../redux/operations/cardOperations';
 import Complete from '../CompleteForm';
 import Calendar from '../../Calendar/Calendar';
 import { date, time } from '../../../helper/helper';
+import { CSSTransition } from 'react-transition-group';
+import cardTransition from './card.module.css';
 
 const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setModal] = useState(false);
@@ -26,7 +28,9 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
   return (
     <div className={task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       {complete ? (
-        <Complete data={data} />
+        <CSSTransition in timeout={500} classNames={cardTransition} appear>
+          <Complete data={data} />
+        </CSSTransition>
       ) : (
         <>
           <form className={s.formCard} onSubmit={handleSubmit}>
