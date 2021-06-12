@@ -29,7 +29,7 @@ export default function ModalDelete({ onClose, type, id, isCreate, isEdit, delet
   return (
     <div className={s.overlay} onClick={handleBackdropClick}>
       <div className={s.modal}>
-        <h1 className={s.title}>Delete this {type}?</h1>
+        <h1 className={s.title}>Delete this {type === 'Task' ? 'Quest' : 'Challenge'}?</h1>
         <div className={s.buttonsWrap}>
           <button onClick={onClose} className={s.buttonCancel}>
             Cancel

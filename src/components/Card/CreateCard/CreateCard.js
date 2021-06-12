@@ -10,7 +10,7 @@ import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-export default function Card({ data, deleteNewCard }) {
+export default function Card({ data, type, setType, deleteNewCard }) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -22,7 +22,6 @@ export default function Card({ data, deleteNewCard }) {
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState('Normal');
   const [category, setCategory] = useState('Stuff');
-  const [type, setType] = useState('Task');
   const [title, setTitle] = useState('');
 
   const LocalData = {
@@ -63,14 +62,14 @@ export default function Card({ data, deleteNewCard }) {
     <div className={cn(s.container, { [s.challenge]: LocalData.type === 'Challenge' })}>
       <form className={s.formCard} onSubmit={handleSubmit}>
         <div className={s.head}>
-          <Select setDifficulty={setDifficulty} />
+          <Select setDifficulty={setDifficulty} type={LocalData.type} />
           <div
             className={s.iconContainer}
             onClick={() =>
               LocalData.type === 'Challenge' ? setType('Task') : setType('Challenge')
             }
           >
-            {LocalData.type === 'Task' ? (
+            {LocalData.task === 'Task' ? (
               <svg className={s.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
               </svg>
@@ -82,7 +81,13 @@ export default function Card({ data, deleteNewCard }) {
           </div>
         </div>
         <div className={s.main}>
-          <p className={s.textInput}>Create New Quest</p>
+          <p className={s.textInput}>
+            {LocalData.type === 'Challenge'
+              ? `Create New
+            Challenge`
+              : `Create New
+            Quest`}
+          </p>
           <input
             className={s.titleInput}
             onChange={handleChange}
@@ -90,7 +95,7 @@ export default function Card({ data, deleteNewCard }) {
             ref={inputTitle}
           ></input>
           <div className={s.dateFlex}>
-            <Calendar getDate={getDateValue}></Calendar>
+            <Calendar getDate={getDateValue} type={LocalData.type}></Calendar>
           </div>
         </div>
         <div className={s.foot}>
