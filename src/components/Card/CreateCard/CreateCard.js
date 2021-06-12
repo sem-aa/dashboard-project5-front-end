@@ -60,7 +60,12 @@ const Card = React.forwardRef(
             </div>
             <div>
               <div className={s.createCard}>
-                <button className={s.btnClose} ref={ref} onClick={() => setModal(true)}>
+                <button
+                  className={s.btnClose}
+                  type="button"
+                  ref={ref}
+                  onClick={() => setModal(true)}
+                >
                   <svg className={s.buttonClear}>
                     <use href={sprite + '#icon-clear'}></use>
                   </svg>
@@ -86,7 +91,7 @@ export default function CreateCard({ data }) {
   const { register, handleSubmit, control } = useForm();
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState('Normal');
-  const [category, setCategory] = useState('STUFF');
+  const [category, setCategory] = useState('Stuff');
 
   const newData = {
     ...data,
