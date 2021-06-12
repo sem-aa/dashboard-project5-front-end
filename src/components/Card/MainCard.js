@@ -4,11 +4,11 @@ import CardRender from './Card';
 import EditCard from './EditCard/EditCard';
 import CreateCard from '../Card/CreateCard';
 
-export default function Card({ data, isCreateCard }) {
+export default function Card({ data, isCreateCard, deleteNewCard }) {
   const [isEdit, setEdit] = useState(false);
 
   return isCreateCard ? (
-    <CreateCard data={data} />
+    <CreateCard data={data} deleteNewCard={deleteNewCard} />
   ) : (
     <div onClick={() => setEdit(true)} className={s.container}>
       {isEdit ? <EditCard data={data} /> : <CardRender data={data} />}

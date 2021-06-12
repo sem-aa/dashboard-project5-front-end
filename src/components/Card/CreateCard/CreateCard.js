@@ -10,7 +10,7 @@ import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-export default function Card({ data }) {
+export default function Card({ data, deleteNewCard }) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -56,6 +56,7 @@ export default function Card({ data }) {
     } catch (error) {
       console.log(error);
     }
+    deleteNewCard();
   };
 
   return (
@@ -118,7 +119,12 @@ export default function Card({ data }) {
         </div>
       </form>
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
+        <ModalDelete
+          onClose={() => setModal(false)}
+          type={type}
+          deleteNewCard={deleteNewCard}
+          isCreate
+        ></ModalDelete>
       )}
     </div>
   );

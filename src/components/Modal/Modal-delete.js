@@ -4,7 +4,7 @@ import s from './Modal-delete.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteCard } from '../../redux/operations/cardOperations';
 
-export default function ModalDelete({ onClose, type, id, deleteNewCard }) {
+export default function ModalDelete({ onClose, type, id, isCreate, isEdit, deleteNewCard }) {
   const dispatch = useDispatch();
   const onDeleteCard = id => dispatch(deleteCard(id));
 
@@ -34,12 +34,16 @@ export default function ModalDelete({ onClose, type, id, deleteNewCard }) {
           <button onClick={onClose} className={s.buttonCancel}>
             Cancel
           </button>
-          {/* <button onClick={() => onDeleteCard(id)} className={s.button + ' ' + s.buttonDelete}>
-            Delete
-          </button> */}
-          <button onClick={deleteNewCard()} className={s.button + ' ' + s.buttonDelete}>
-            Delete
-          </button>
+          {isEdit && (
+            <button onClick={() => onDeleteCard(id)} className={s.button + ' ' + s.buttonDelete}>
+              Delete
+            </button>
+          )}
+          {isCreate && (
+            <button onClick={() => deleteNewCard()} className={s.button + ' ' + s.buttonDelete}>
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </div>
