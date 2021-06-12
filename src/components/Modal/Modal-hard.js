@@ -2,23 +2,41 @@ import React from 'react';
 import s from './Modal-hard.module.css';
 import sprite from '../../icon/sprite.svg';
 
-const ModalHard = task => {
+const ModalHard = ({ handleClick, task = {}, setDifficulty }) => {
   return (
     <div className={task.task === 'Challenge' ? `${s.modal} ${s.challenge}` : s.modal}>
       <ul>
-        <li className={s.modalContent}>
+        <li
+          onClick={() => {
+            setDifficulty('Easy');
+            handleClick('Easy');
+          }}
+          className={s.modalContent}
+        >
           <svg className={s.iconEasy}>
             <use href={sprite + '#icon-ellipse'}></use>
           </svg>
           Easy
         </li>
-        <li className={s.modalContent}>
+        <li
+          onClick={() => {
+            setDifficulty('Normal');
+            handleClick('Normal');
+          }}
+          className={s.modalContent}
+        >
           <svg className={s.iconNormal}>
             <use href={sprite + '#icon-ellipse'}></use>
           </svg>
           Normal
         </li>
-        <li className={s.modalContent}>
+        <li
+          onClick={() => {
+            setDifficulty('Hard');
+            handleClick('Hard');
+          }}
+          className={s.modalContent}
+        >
           <svg className={s.iconHard}>
             <use href={sprite + '#icon-ellipse'}></use>
           </svg>

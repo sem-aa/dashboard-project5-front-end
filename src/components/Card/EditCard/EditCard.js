@@ -10,6 +10,8 @@ import { createCard } from '../../../redux/operations/cardOperations';
 import Complete from '../CompleteForm';
 import Calendar from '../../Calendar/Calendar';
 import { date, time } from '../../../helper/helper';
+import { CSSTransition } from 'react-transition-group';
+import cardTransition from './card.module.css';
 
 const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue }, ref) => {
   const [isDeleteModalShown, setDeleteModal] = useState(false);
@@ -26,7 +28,9 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
   return (
     <div className={task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       {complete ? (
-        <Complete data={data} />
+        <CSSTransition in timeout={500} classNames={cardTransition} appear>
+          <Complete data={data} />
+        </CSSTransition>
       ) : (
         <>
           <form className={s.formCard} onSubmit={handleSubmit}>
@@ -81,17 +85,22 @@ const EditCard = React.forwardRef(({ data, register, handleSubmit, getDateValue 
               </div>
               <div>
                 <div>
-                  <button className={s.buttonCard} ref={ref}>
+                  <button className={s.buttonCard} type="submit" ref={ref}>
                     <svg className={s.buttonSave}>
                       <use href={sprite + '#icon-save'}></use>
                     </svg>
                   </button>
-                  <button className={s.buttonClose} ref={ref} onClick={() => setDeleteModal(true)}>
+                  <button
+                    className={s.buttonClose}
+                    type="button"
+                    ref={ref}
+                    onClick={() => setDeleteModal(true)}
+                  >
                     <svg className={s.buttonClear}>
                       <use href={sprite + '#icon-clear'}></use>
                     </svg>
                   </button>
-                  <button className={s.buttonCard} ref={ref}>
+                  <button className={s.buttonCard} type="button" ref={ref}>
                     <svg onClick={() => setComlete(true)} className={s.buttonDone}>
                       <use href={sprite + '#icon-done'}></use>
                     </svg>

@@ -1,43 +1,75 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import cn from 'classnames';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
-import ModalDifficulty from '../../Modal/Modal-hard';
 import ModalStatus from '../../Modal/Modal-status';
 import { createCard } from '../../../redux/operations/cardOperations';
 import Calendar from '../../Calendar/Calendar';
+import Select from '../../Select';
 import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 
-const Card = React.forwardRef(({ register, handleSubmit, getDateValue, data }, ref) => {
-  const [isDeleteModalShown, setDeleteModal] = useState(false);
-  const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-  const [isOpenCategory, setIsOpenCategory] = useState(false);
-  const [task, setTask] = useState('Quest');
-  const [category, setCategory] = useState('STUFF');
-  console.log(data);
+export default function Card({ data }) {
+  const dispatch = useDispatch();
+  const inputTitle = useRef();
 
-  const categoryValue = value => {
-    setCategory(value);
+  // Modal
+  const [isDeleteModalShown, setModal] = useState(false);
+  const [isOpenCategory, setIsOpenCategory] = useState(false);
+
+  //Data
+  const [dateValue, setDate] = useState(new Date());
+  const [difficulty, setDifficulty] = useState('Normal');
+  const [category, setCategory] = useState('Stuff');
+  const [type, setType] = useState('Task');
+  const [title, setTitle] = useState('');
+
+  const LocalData = {
+    ...data,
+    difficulty,
+    category,
+    type,
+    title,
+    date: getCurrentFullDate(dateValue),
+    time: getCurrentTime(dateValue),
+  };
+
+  const getDateValue = value => setDate(value);
+
+  const handleChange = ({ target }) => {
+    const { value } = target;
+
+    setTitle(value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    try {
+      const body = { ...data, ...LocalData };
+      delete body._id;
+
+      if (body.title === '') return inputTitle.current.classList.add(s.titleError);
+
+      dispatch(createCard(body));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div className={s.container}>
+    <div className={cn(s.container, { [s.challenge]: LocalData.type === 'Challenge' })}>
       <form className={s.formCard} onSubmit={handleSubmit}>
         <div className={s.head}>
-          <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
-            {isDifficultyModalShown && <ModalDifficulty />}
-            <svg className={s.iconEllipse}>
-              <use href={sprite + '#icon-ellipse'}></use>
-            </svg>
-            <p className={s.difficulty}>Easy</p>
-            <svg className={s.iconPolygon}>
-              <use href={sprite + '#icon-polygon'}></use>
-            </svg>
-          </div>
-          <div className={s.iconContainer} onClick={() => setTask(!task)}>
-            {task ? (
+          <Select setDifficulty={setDifficulty} />
+          <div
+            className={s.iconContainer}
+            onClick={() =>
+              LocalData.type === 'Challenge' ? setType('Task') : setType('Challenge')
+            }
+          >
+            {LocalData.type === 'Task' ? (
               <svg className={s.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
               </svg>
@@ -50,7 +82,12 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue, data }, r
         </div>
         <div className={s.main}>
           <p className={s.textInput}>Create New Quest</p>
-          <input className={s.titleInput} {...register('title')} ref={ref}></input>
+          <input
+            className={s.titleInput}
+            onChange={handleChange}
+            value={title}
+            ref={inputTitle}
+          ></input>
           <div className={s.dateFlex}>
             <Calendar getDate={getDateValue}></Calendar>
           </div>
@@ -59,20 +96,21 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue, data }, r
           <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
             {isOpenCategory ? (
               <>
-                <ModalStatus getValue={categoryValue} /> <p className={s.category}>{category}</p>
+                <ModalStatus getValue={setCategory} />
+                <p className={s.category}>{LocalData.category}</p>
               </>
             ) : (
-              <p className={s.category}>{category}</p>
+              <p className={s.category}>{LocalData.category}</p>
             )}
           </div>
           <div>
             <div className={s.createCard}>
-              <button className={s.btnClose} ref={ref} onClick={() => setDeleteModal(true)}>
+              <button className={s.btnClose} type="button" onClick={() => setModal(true)}>
                 <svg className={s.buttonClear}>
                   <use href={sprite + '#icon-clear'}></use>
                 </svg>
               </button>
-              <button className={s.buttonCreate} ref={ref} type="submit">
+              <button className={s.buttonCreate} type="submit">
                 create
               </button>
             </div>
@@ -80,41 +118,8 @@ const Card = React.forwardRef(({ register, handleSubmit, getDateValue, data }, r
         </div>
       </form>
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={task}></ModalDelete>
+        <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
       )}
     </div>
-  );
-});
-
-export default function CreateCard({ data }) {
-  const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
-  const [dateValue, setDate] = useState(new Date());
-
-  const getDateValue = value => {
-    setDate(value);
-  };
-
-  const onSubmit = data => {
-    console.log(data);
-    const body = {
-      ...data,
-      category: 'Work',
-      type: 'Task',
-      difficulty: 'Easy',
-      date: getCurrentFullDate(dateValue),
-      time: getCurrentTime(dateValue),
-    };
-
-    dispatch(createCard(body));
-  };
-
-  return (
-    <Card
-      handleSubmit={handleSubmit(onSubmit)}
-      register={register}
-      data={data}
-      getDateValue={getDateValue}
-    />
   );
 }
