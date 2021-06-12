@@ -52,11 +52,14 @@ export const time = dateValue => {
 
 // Time
 
-export const getCurrentTime = () =>
-  new Date().toString().split(' ')[4].split('').splice(0, 5).join('');
+export const getCurrentTime = time => {
+  const date = time || new Date();
 
-export const getCurrentFullDate = () => {
-  const date = new Date();
+  return date.toString().split(' ')[4].split('').splice(0, 5).join('');
+};
+
+export const getCurrentFullDate = time => {
+  const date = time || new Date();
 
   return (
     date.getFullYear() +
