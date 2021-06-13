@@ -5,12 +5,15 @@ import sprite from '../../icon/sprite.svg';
 import s from '../Card/NewCard.module.css';
 import style from '../Modal/Modal-hard.module.css';
 
+
 const Select = ({ options = ['Easy', 'Normal', 'Hard'], difficulty, setDifficulty }) => {
+
   const [isDifficultyModalShown, setDifficultyModal] = useState(false);
 
   return (
     <div onClick={() => setDifficultyModal(!isDifficultyModalShown)} className={s.difficulty}>
       {isDifficultyModalShown && <ModalDifficulty setDifficulty={setDifficulty} />}
+
       <svg
         className={cn(s.iconEllipse, {
           [style.iconEasy]: difficulty === 'Easy',

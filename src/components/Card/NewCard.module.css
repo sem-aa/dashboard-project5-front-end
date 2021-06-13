@@ -365,15 +365,16 @@
   margin-left: 7px;
 }
 
-.challenge {
+.challenge .formCard {
   background-color: #15395a;
+  border-radius: 10px;
 }
 
 .challenge .inputDate::placeholder {
   color: #fff;
 }
 
-.challenge button {
+.challenge .buttonCard {
   background-color: #15395a;
 }
 

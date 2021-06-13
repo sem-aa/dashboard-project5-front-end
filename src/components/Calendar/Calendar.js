@@ -7,12 +7,13 @@ import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import s from './Calendar.module.css';
 
-const Calendar = ({ getDate }) => {
+const Calendar = ({ getDate, type }) => {
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
   const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
       <div className={s.dateValue}>{day + ', ' + value}</div>
       <button type="button" onClick={onClick} ref={ref}>
+
         <svg className={s.icon}>
           <use href={sprite + '#icon-calendar'}></use>
         </svg>

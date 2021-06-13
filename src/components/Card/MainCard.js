@@ -6,9 +6,10 @@ import CreateCard from '../Card/CreateCard';
 
 export default function Card({ data, isCreateCard }) {
   const [isEdit, setEdit] = useState(false);
+  const [type, setType] = useState(data.type);
 
   return isCreateCard ? (
-    <CreateCard data={data} />
+    <CreateCard data={data} type={type} setType={setType} />
   ) : (
     <div onClick={() => setEdit(true)} className={s.container}>
       {isEdit ? <EditCard data={data} setEdit={setEdit} /> : <CardRender data={data} />}

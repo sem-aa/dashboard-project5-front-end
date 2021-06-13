@@ -27,7 +27,9 @@ export default class ModalDelete extends Component {
     return (
       <div className={s.overlay} onClick={this.handleBackdropClick}>
         <div className={s.modal}>
-          <h1 className={s.title}>Delete this {this.props.type}?</h1>
+          <h1 className={s.title}>
+            Delete this {this.props.type === 'Task' ? `Quest` : `Challenge`}?
+          </h1>
           <div className={s.buttonsWrap}>
             <button type="button" onClick={this.props.onClose} className={s.buttonCancel}>
               Cancel
