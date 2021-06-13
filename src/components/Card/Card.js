@@ -3,7 +3,7 @@ import s from './NewCard.module.css';
 import { colorDifficult, colorCategory } from '../../helper/helper';
 
 export default function Card({ data, type, setType }) {
-  console.log(type);
+
   return (
     <div className={type === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       <form className={s.formCard}>
@@ -15,15 +15,15 @@ export default function Card({ data, type, setType }) {
             <p className={s.difficulty}>{data.difficulty}</p>
           </div>
           {type === 'Task' ? (
-            <div className={s.iconContainer} onClick={() => setType('Challenge')}>
+            <div className={s.iconContainer} >
               <svg className={s.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
               </svg>
             </div>
           ) : (
-            <div className={s.iconContainer} onClick={() => setType('Task')}>
+            <div className={s.iconContainer}  >
               <svg className={s.iconTrophy}>
-                <use x="-4" y="2" href={sprite + '#icon-trophy'}></use>
+                <use href={sprite + '#icon-trophy'}></use>
               </svg>
             </div>
           )}
