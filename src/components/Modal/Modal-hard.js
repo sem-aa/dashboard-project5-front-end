@@ -3,9 +3,10 @@ import s from './Modal-hard.module.css';
 import sprite from '../../icon/sprite.svg';
 
 
+
 const ModalHard = ({ task = {}, setDifficulty }) => {
   return (
-    <div className={type === 'Challenge' ? `${s.modal} ${s.challenge}` : s.modal}>
+    <div className={task === 'Challenge' ? `${s.modal} ${s.challenge}` : s.modal}>
       <ul>
         <li
           onClick={() => {
