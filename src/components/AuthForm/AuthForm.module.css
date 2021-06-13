@@ -23,7 +23,8 @@
 
 .btnGo {
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    padding-top: 23px;
 }
 
 @media screen and (min-width: 768px) {
