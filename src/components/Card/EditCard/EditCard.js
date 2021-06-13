@@ -10,6 +10,7 @@ import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
 export default function EditCard({ data, setEdit, type, setType }) {
+
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
@@ -35,6 +36,7 @@ export default function EditCard({ data, setEdit, type, setType }) {
 
   return (
     <div
+      style={style}
       className={
         type === 'Challenge' && complete === true ? `${s.container} ${s.challenge}` : s.container
       }
