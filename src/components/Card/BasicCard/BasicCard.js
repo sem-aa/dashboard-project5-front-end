@@ -9,7 +9,7 @@ import { getCurrentFullDate, getCurrentTime } from '../../../helper';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function Card({ data, children }) {
+export default function Card({ data, handleSubmit, isCreateCard, input, children }) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -18,10 +18,10 @@ export default function Card({ data, children }) {
 
   //Data
   const [dateValue, setDate] = useState(new Date());
-  const [difficulty, setDifficulty] = useState('Normal');
-  const [category, setCategory] = useState('Stuff');
-  const [type, setType] = useState('Task');
-  const [title, setTitle] = useState('');
+  const [difficulty, setDifficulty] = useState(data.difficulty);
+  const [category, setCategory] = useState(data.category);
+  const [type, setType] = useState(data.type);
+  const [title, setTitle] = useState(data.title);
 
   const LocalData = {
     ...data,
@@ -29,8 +29,8 @@ export default function Card({ data, children }) {
     category,
     type,
     title,
-    date: getCurrentFullDate(dateValue),
-    time: getCurrentTime(dateValue),
+    date: data.date || getCurrentFullDate(dateValue),
+    time: data.time || getCurrentTime(dateValue),
   };
 
   const getDateValue = value => setDate(value);
@@ -41,7 +41,7 @@ export default function Card({ data, children }) {
     setTitle(value);
   };
 
-  const handleSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
 
     try {
@@ -61,9 +61,12 @@ export default function Card({ data, children }) {
       style={{ position: 'relative' }}
       className={cn(s.container, { [s.challenge]: LocalData.type === 'Challenge' })}
     >
-      <form className={s.formCard} onSubmit={handleSubmit}>
+      <form
+        className={s.formCard}
+        onSubmit={handleSubmit ? e => handleSubmit(e, LocalData) : onSubmit}
+      >
         <div className={s.head}>
-          <Select setDifficulty={setDifficulty} />
+          <Select difficulty={difficulty} setDifficulty={setDifficulty} />
           <div
             className={s.iconContainer}
             onClick={() =>
@@ -82,12 +85,12 @@ export default function Card({ data, children }) {
           </div>
         </div>
         <div className={s.main}>
-          <p className={s.textInput}>Create New Quest</p>
+          {isCreateCard && <p className={s.textInput}>Create New Quest</p>}
           <input
             className={s.titleInput}
             onChange={handleChange}
             value={title}
-            ref={inputTitle}
+            ref={input || inputTitle}
           ></input>
           <div className={s.dateFlex}>
             <Calendar getDate={getDateValue}></Calendar>

@@ -4,11 +4,11 @@ import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
 import BasicCard from '../BasicCard';
 
-export default function Card() {
+export default function Card({ data }) {
   const [isDeleteModalShown, setModal] = useState(false);
 
   return (
-    <BasicCard>
+    <BasicCard data={data} isCreateCard>
       <div>
         <div className={s.createCard}>
           <button className={s.btnClose} type="button" onClick={() => setModal(true)}>

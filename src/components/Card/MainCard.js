@@ -12,11 +12,7 @@ export default function Card({ data, isCreateCard }) {
     <CreateCard data={data} type={type} setType={setType} />
   ) : (
     <div onClick={() => setEdit(true)} className={s.container}>
-      {isEdit ? (
-        <EditCard data={data} type={type} setType={setType} />
-      ) : (
-        <CardRender data={data} type={type} setType={setType} />
-      )}
+      {isEdit ? <EditCard data={data} setEdit={setEdit} /> : <CardRender data={data} />}
     </div>
   );
 }

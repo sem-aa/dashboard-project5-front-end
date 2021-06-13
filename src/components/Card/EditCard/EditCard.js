@@ -1,152 +1,68 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import sprite from '../../../icon/sprite.svg';
-import s from '../NewCard.module.css';
-import ModalDelete from '../../Modal/Modal-delete';
-import ModalDefficulty from '../../Modal/Modal-hard';
-import ModalCategory from '../../Modal/Modal-status';
-import { createCard } from '../../../redux/operations/cardOperations';
-import Complete from '../CompleteForm';
-import Calendar from '../../Calendar/Calendar';
-import { date, time } from '../../../helper/helper';
 import { CSSTransition } from 'react-transition-group';
 import cardTransition from './card.module.css';
+import ModalDelete from '../../Modal/Modal-delete';
+import Complete from '../CompleteForm';
+import BasicCard from '../BasicCard';
+import { editCard } from '../../../redux/operations/cardOperations';
+import sprite from '../../../icon/sprite.svg';
+import s from '../NewCard.module.css';
 
-const EditCard = React.forwardRef(
-  ({ data, register, handleSubmit, getDateValue, type, setType }, ref) => {
-    const [isDeleteModalShown, setDeleteModal] = useState(false);
-    const [isDifficultyModalShown, setDifficultyModal] = useState(false);
-    const [isOpenCategory, setIsOpenCategory] = useState(false);
-    const [category, setCategory] = useState('STUFF');
-    const [complete, setComlete] = useState(false);
-
-    const categoryValue = value => {
-      setCategory(value);
-    };
-
-    return (
-      <div className={type === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
-        {complete ? (
-          <CSSTransition in timeout={500} classNames={cardTransition} appear>
-            <Complete data={data} />
-          </CSSTransition>
-        ) : (
-          <>
-            <form className={s.formCard} onSubmit={handleSubmit}>
-              <div className={s.head}>
-                <div
-                  onClick={() => setDifficultyModal(!isDifficultyModalShown)}
-                  className={s.difficulty}
-                >
-                  {isDifficultyModalShown && <ModalDefficulty type={type} />}
-                  <svg className={s.iconEllipse}>
-                    <use href={sprite + '#icon-ellipse'}></use>
-                  </svg>
-                  <p className={s.difficulty}>Easy</p>
-                  <svg className={s.iconPolygon}>
-                    <use href={sprite + '#icon-polygon'}></use>
-                  </svg>
-                </div>
-                {type === 'Task' ? (
-                  <div className={s.iconContainer} onClick={() => setType('Challenge')}>
-                    <svg className={s.iconTask}>
-                      <use href={sprite + '#icon-star'}></use>
-                    </svg>
-                  </div>
-                ) : (
-                  <div className={s.iconContainer} onClick={() => setType('Task')}>
-                    <svg className={s.iconTrophy}>
-                      <use x="-4" y="2" href={sprite + '#icon-trophy'}></use>
-                    </svg>
-                  </div>
-                )}
-              </div>
-              <div className={s.main}>
-                <p className={s.textInput}>
-                  {type === 'Challenge' ? 'Edit challenge' : 'Edit quest'}
-                </p>
-                <input className={s.titleInput} {...register('title')} ref={ref}></input>
-                <div className={s.dateFlex}>
-                  <Calendar getDate={getDateValue} type={type}></Calendar>
-                </div>
-              </div>
-              <div className={s.foot}>
-                <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
-                  {isOpenCategory ? (
-                    <>
-                      {' '}
-                      <ModalCategory getValue={categoryValue} />{' '}
-                      <p className={s.category}>{category}</p>{' '}
-                    </>
-                  ) : (
-                    <p className={s.category}>{category}</p>
-                  )}
-                </div>
-                <div>
-                  <div>
-                    <button className={s.buttonCard} type="submit" ref={ref}>
-                      <svg className={s.buttonSave}>
-                        <use href={sprite + '#icon-save'}></use>
-                      </svg>
-                    </button>
-                    <button
-                      className={s.buttonClose}
-                      type="button"
-                      ref={ref}
-                      onClick={() => setDeleteModal(true)}
-                    >
-                      <svg className={s.buttonClear}>
-                        <use href={sprite + '#icon-clear'}></use>
-                      </svg>
-                    </button>
-                    <button className={s.buttonCard} type="button" ref={ref}>
-                      <svg onClick={() => setComlete(true)} className={s.buttonDone}>
-                        <use href={sprite + '#icon-done'}></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </>
-        )}
-        {isDeleteModalShown && (
-          <ModalDelete onClose={() => setDeleteModal(false)} type={type}></ModalDelete>
-        )}
-      </div>
-    );
-  },
-);
-
-export default function CardForm({ data, type, setType }) {
+export default function EditCard({ data, setEdit }) {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
-  const [dateValue, setDate] = useState(new Date());
+  const [isDeleteModalShown, setDeleteModal] = useState(false);
+  const [complete, setCompleted] = useState(false);
+  const inputTitle = useRef();
 
-  const getDateValue = value => {
-    setDate(value);
-  };
+  const handleSubmit = (e, localData) => {
+    e.preventDefault();
 
-  const onSubmit = data => {
-    const body = {
-      ...data,
-      type: data.type,
-      date: date(dateValue),
-      time: time(dateValue),
-    };
+    try {
+      const body = { ...data, ...localData };
+      const id = body._id;
+      delete body._id;
+      delete body.status;
 
-    dispatch(createCard(body));
+      if (body.title === '') return inputTitle.current.classList.add(s.titleError);
+
+      dispatch(editCard(id, body));
+      setEdit(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <EditCard
-      handleSubmit={handleSubmit(onSubmit)}
-      register={register}
-      data={data}
-      getDateValue={getDateValue}
-      type={type}
-      setType={setType}
-    />
+    <div className={data.task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
+      {complete ? (
+        <CSSTransition in timeout={500} classNames={cardTransition} appear>
+          <Complete data={data} />
+        </CSSTransition>
+      ) : (
+        <BasicCard data={data} handleSubmit={handleSubmit} input={inputTitle}>
+          <div>
+            <button className={s.buttonCard} type="submit">
+              <svg className={s.buttonSave}>
+                <use href={sprite + '#icon-save'}></use>
+              </svg>
+            </button>
+            <button className={s.buttonClose} type="button" onClick={() => setDeleteModal(true)}>
+              <svg className={s.buttonClear}>
+                <use href={sprite + '#icon-clear'}></use>
+              </svg>
+            </button>
+            <button className={s.buttonCard} type="button">
+              <svg onClick={() => setCompleted(true)} className={s.buttonDone}>
+                <use href={sprite + '#icon-done'}></use>
+              </svg>
+            </button>
+          </div>
+        </BasicCard>
+      )}
+      {isDeleteModalShown && (
+        <ModalDelete onClose={() => setDeleteModal(false)} type={data.task}></ModalDelete>
+      )}
+    </div>
   );
 }
