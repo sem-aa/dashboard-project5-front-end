@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 import actions from '../actions/cardActions';
+import handleError from './handleError';
 
 export const createCard = data => dispatch => {
   dispatch(actions.createCardRequest());
@@ -10,7 +11,10 @@ export const createCard = data => dispatch => {
     .then(({ data }) => {
       dispatch(actions.createCardSuccess(data));
     })
-    .catch(error => dispatch(actions.createCardError(error.message)));
+    .catch(error => {
+      dispatch(actions.createCardError(error.response.message));
+      handleError(error, dispatch);
+    });
 };
 
 export const deleteCard = id => dispatch => {
@@ -19,7 +23,10 @@ export const deleteCard = id => dispatch => {
   api
     .deleteCard(id)
     .then(() => dispatch(actions.deleteCardSuccess(id)))
-    .catch(error => dispatch(actions.deleteCardError(error)));
+    .catch(error => {
+      dispatch(actions.deleteCardError(error));
+      handleError(error, dispatch);
+    });
 };
 
 export const editCard = (id, data) => dispatch => {
@@ -28,10 +35,12 @@ export const editCard = (id, data) => dispatch => {
   api
     .editCard(id, data)
     .then(({ data }) => {
-      console.log('operations', data);
       dispatch(actions.editCardSuccess(data.editedCard));
     })
-    .catch(error => dispatch(actions.editCardError(error.message)));
+    .catch(error => {
+      dispatch(actions.editCardError(error.response.message));
+      handleError(error, dispatch);
+    });
 };
 // !! This code do not work !!
 // export const completeCard = id => dispatch => {
@@ -41,7 +50,7 @@ export const editCard = (id, data) => dispatch => {
 //     .then(({ data }) => {
 //       dispatch(actions.completeCardSuccess(data.completedCard));
 //     })
-//     .catch(error => console.log(error.message));
+//     .catch(error => console.log(error.response.message));
 // };
 
 export const completeCard = createAsyncThunk(
@@ -51,7 +60,7 @@ export const completeCard = createAsyncThunk(
       const { data } = await api.completeCard(id);
       return data.completedCard;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.message);
     }
   },
 );
