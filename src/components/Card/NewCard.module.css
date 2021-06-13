@@ -47,6 +47,7 @@
   fill: var(--accent-color);
   margin-left: 7px;
 }
+
 @media screen and (min-width: 768px) {
   .iconPolygon {
     width: 8px;
@@ -90,7 +91,6 @@
   font-size: 16px;
   font-family: HelveticaNeueCyr;
   color: var(--secondary-color);
-  margin-right: 7px;
   cursor: pointer;
 }
 @media screen and (min-width: 768px) {
@@ -207,14 +207,10 @@
   cursor: pointer;
 }
 
-.Stuff {
-  border-color: green;
-}
-
 @media screen and (min-width: 768px) {
   .category {
     font-size: 11px;
-    width: 88px;
+    width: 91px;
     height: 25px;
   }
 }

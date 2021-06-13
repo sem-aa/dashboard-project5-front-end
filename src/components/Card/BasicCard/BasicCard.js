@@ -5,7 +5,7 @@ import ModalStatus from '../../Modal/Modal-status';
 import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { createCard } from '../../../redux/operations/cardOperations';
-import { getCurrentFullDate, getCurrentTime } from '../../../helper';
+import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../helper';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
@@ -79,7 +79,7 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
               </svg>
             ) : (
               <svg className={s.iconTrophy}>
-                <use x="-4" y="2" href={sprite + '#icon-trophy'}></use>
+                <use href={sprite + '#icon-trophy'}></use>
               </svg>
             )}
           </div>
@@ -101,10 +101,16 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
             {isOpenCategory ? (
               <>
                 <ModalStatus getValue={setCategory} />
-                <p className={s.category}>{LocalData.category}</p>
+                <p style={{ backgrounColor: colorCategory(LocalData.category) }} className={s.category}>{LocalData.category}</p>
               </>
             ) : (
-              <p className={s.category}>{LocalData.category}</p>
+
+              <p style={{ backgroundColor: colorCategory(LocalData.category) }} className={s.category}>{LocalData.category}
+                <svg width="8px" height="4px" className={s.iconPolygon}>
+                  <use href={sprite + '#icon-polygon'}></use>
+                </svg>
+              </p>
+
             )}
           </div>
 
