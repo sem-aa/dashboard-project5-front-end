@@ -12,6 +12,8 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
+  const error = useSelector(getError)
+
 
 
 
@@ -22,25 +24,20 @@ const AuthForm = () => {
 
     event.preventDefault();
     if (email && password) {
-
-      try { dispatch(authOperations.handleLogIn({ email, password })) }
-      catch (error) {
-        console.log(error);
-        dispatch(authOperations.handleSignUp({ email, password }))
-      }
+      dispatch(authOperations.handleLogIn({ email, password }))
       formReset()
     }
 
   };
 
 
-  // const onRegistration = () => {
-  //   if (email && password) {
-  //     dispatch(authOperations.handleSignUp({ email, password }));
-  //     formReset();
-  //     console.log(user);
-  //   }
-  // };
+  const onRegistration = () => {
+    if (email && password) {
+      dispatch(authOperations.handleSignUp({ email, password }));
+      formReset();
+
+    }
+  };
 
   const formReset = () => {
     setEmail('');
@@ -80,6 +77,9 @@ const AuthForm = () => {
             type="submit"
           // onClick={onRegistration}
           />
+          <button>
+            Register
+          </button>
         </div>
       </form>
     </>
