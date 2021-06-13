@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './ButtonSign.module.css';
 
-const ButtonSign = ({ handleLogIn }) => (
+const ButtonSign = ({ handleSignUp }) => (
 
-   <button className={s.buttonSign} type="submit" onClick={handleLogIn}>
-      <h2 className={s.btnText}>Log</h2>
+   <button className={s.buttonSign} type="submit" onClick={handleSignUp}>
+      <h2 className={s.btnText}>Sign</h2>
    </button>
 );
 
