@@ -32,10 +32,6 @@ export default function MainPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const deleteNewCard = () => {
-    setNewCard(null);
-  };
-
   useEffect(() => {
     if (token) {
       api.token.set(token);
@@ -47,12 +43,7 @@ export default function MainPage() {
       <Header />
       <div className={s.main}>
         <Container>
-          <Section
-            title={'today'}
-            data={cardsSorted.today}
-            newCard={newCard}
-            deleteNewCard={deleteNewCard}
-          />
+          <Section title={'today'} data={cardsSorted.today} newCard={newCard} />
           <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
           <Section title={'done'} data={cardsSorted.done} />
 
