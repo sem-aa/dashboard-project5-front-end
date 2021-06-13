@@ -25,18 +25,18 @@
   border-bottom: 1px solid var(--accent-color);
   max-width: 200px;
   margin-left: 10px;
-  
+
   white-space: nowrap; /* Отменяем перенос текста */
-    overflow: hidden; /* Обрезаем содержимое */
-    padding: 5px; /* Поля */
-    text-overflow: ellipsis; /* Многоточие */
-   }
+  overflow: hidden; /* Обрезаем содержимое */
+  padding: 5px; /* Поля */
+  text-overflow: ellipsis; /* Многоточие */
+}
 
 .award {
   width: 203.76px;
-  height: 161.60px;
+  height: 161.6px;
   display: block;
-  margin: 20px auto 0;
+  margin: 0 auto 0;
   text-align: center;
 }
 
@@ -67,36 +67,38 @@
   color: var(--secondary-color);
 }
 
-
 /* |--------------------TABLETS----------------------------------------------------------------------------------------------------------- */
 
 @media screen and (min-width: 768px) {
+  .completedTitle {
+    font-size: 12px;
+    max-width: 95px;
+    margin-left: 7px;
+  }
 
-.completedTitle {
-  font-size: 12px;
-  max-width: 95px;
-  margin-left: 7px;
-   }
+  .award {
+    width: 144.04px;
+    height: 123.68px;
+    /* display: block; */
+    margin: 0px auto 0;
+    /* text-align: center; */
+  }
 
-.award {
-  width: 144.04px;
-  height: 123.68px;
-  /* display: block; */
-  margin: 10px auto 0;
-  /* text-align: center; */
+  .arrow {
+    width: 7px;
+    height: 5px;
+    margin-left: 7px;
+  }
+
+  .btnText {
+    font-size: 12px;
+  }
 }
 
-.arrow {
-  width: 7px;
-  height: 5px;
-  margin-left: 7px;
+/* CHALLENGE */
+
+.challenge {
+  background-color: var(--bg-card-chellenge);
+  color: var(--white-color);
+  border-radius: 10px;
 }
-
-.btnText {
-  font-size: 12px;
-}
-
-}
-
-
-
