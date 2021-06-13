@@ -11,7 +11,7 @@ const landing = () => (
       <LandingText />
       <Form />
     </div>
-  </>      
+  </>
 );
 
 export default landing;
