@@ -81,7 +81,6 @@ const AuthForm = () => {
   return (
     <>
       <form className={s.landingForm} onSubmit={onSubmit}>
-
         <div className={s.landingBox}>
           <label htmlFor="AuthorizationForm__email">
             {emailError && <span style={{ color: 'red' }}>*</span>}
@@ -98,10 +97,8 @@ const AuthForm = () => {
           <p style={{ color: 'black' }} >{emailError}</p>
         </div>
         <div className={s.landingBox} >
-          <label
-            htmlFor="AuthorizationForm__password">
+          <label htmlFor="AuthorizationForm__password">
             {passwordError && <span style={{ color: 'red' }}>*</span>}
-            Пароль:
           </label>
           <input
             className={s.landingInput}
@@ -109,6 +106,7 @@ const AuthForm = () => {
             id="AuthorizationForm__password"
             value={password}
             onChange={changePasswordValue}
+            type="password"
             placeholder="Пароль"
           />
           <p style={{ color: 'black' }}>{passwordError}</p>
