@@ -361,6 +361,10 @@
   margin-left: 7px;
 }
 
+.challenge {
+  background-color: var(--bg-card-chellenge);
+}
+
 .challenge .formCard {
   background-color: var(--bg-card-chellenge);
   border-radius: 10px;

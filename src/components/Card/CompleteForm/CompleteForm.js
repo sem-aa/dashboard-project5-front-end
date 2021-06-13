@@ -12,13 +12,27 @@ export default function CompleteForm({ data }) {
   };
 
   return (
-    <section className={s.completed}>
+    <section
+      className={data.type === 'Challenge' ? `${s.completed} ${s.challenge}` : `${s.completed}`}
+    >
       <div className={s.completedHeader}>
-        <h2 className={s.statusCompleted}>completed:</h2>
+        <h2
+          className={
+            data.type === 'Challenge'
+              ? `${s.statusCompleted} ${s.challenge}`
+              : `${s.statusCompleted}`
+          }
+        >
+          completed:
+        </h2>
         <p className={s.completedTitle}>{data.title}</p>
       </div>
       <svg className={s.award}>
-        <use href={sprite + '#icon-award'}></use>
+        {data.type === 'Challenge' ? (
+          <use href={sprite + '#icon-cup'}></use>
+        ) : (
+          <use href={sprite + '#icon-award'}></use>
+        )}
       </svg>
       <div className={s.completedFooter}>
         <button

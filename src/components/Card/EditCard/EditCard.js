@@ -34,7 +34,13 @@ export default function EditCard({ data, setEdit }) {
   };
 
   return (
-    <div className={data.task === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
+    <div
+      className={
+        data.type === 'Challenge' && complete === true
+          ? `${s.container} ${s.challenge}`
+          : s.container
+      }
+    >
       {complete ? (
         <CSSTransition in timeout={500} classNames={cardTransition} appear>
           <Complete data={data} />
