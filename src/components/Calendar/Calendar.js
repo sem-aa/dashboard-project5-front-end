@@ -11,9 +11,10 @@ const Calendar = ({ getDate, type }) => {
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
   const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
-      <div className={s.dateValue}>{day + ', ' + value}</div>
+      <div className={type === 'Challenge' ? `${s.dateValue} ${s.challenge}` : `${s.dateValue}`}>
+        {day + ', ' + value}
+      </div>
       <button type="button" onClick={onClick} ref={ref}>
-
         <svg className={s.icon}>
           <use href={sprite + '#icon-calendar'}></use>
         </svg>
@@ -35,9 +36,9 @@ const Calendar = ({ getDate, type }) => {
 
   const getDay = function () {
     if (chosenDate === todayDate) {
-      return 'Today';
+      return type === 'Challenge' ? `by Today` : `Today`;
     } else if (chosenDate === tomorrowDate) {
-      return 'Tomorrow';
+      return type === 'Challenge' ? `by Tomorrow` : `Tomorrow`;
     } else {
       const date = startDate.toLocaleString('en-us', {
         month: 'long',

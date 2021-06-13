@@ -3,10 +3,10 @@
   width: 290px;
   height: 260px;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 10px;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
-  background-color: #fff;
+  background-color: var(--white-color);
 }
 @media screen and (min-width: 768px) {
   .container {
@@ -235,8 +235,8 @@
   }
 }
 .buttonClose {
-  border-right: 1px solid #b9c3c8;
-  border-left: 1px solid #b9c3c8;
+  border-right: 1px solid var(--bg-stuff);
+  border-left: 1px solid var(--bg-stuff);
   padding-left: 9px;
   padding-right: 9px;
   padding-top: 4px;
@@ -310,7 +310,7 @@
 }
 
 .btnClose {
-  border-right: 1px solid #b9c3c8;
+  border-right: 1px solid var(--bg-stuff);
   padding-left: 9px;
   padding-right: 7px;
   padding-top: 4px;
@@ -362,25 +362,25 @@
 }
 
 .challenge .formCard {
-  background-color: #15395a;
+  background-color: var(--bg-card-chellenge);
   border-radius: 10px;
 }
 
 .challenge .inputDate::placeholder {
-  color: #fff;
+  color: var(--white-color);
 }
 
 .challenge .buttonCard {
-  background-color: #15395a;
+  background-color: var(--bg-card-chellenge);
 }
 
 .challenge input {
-  color: #fff;
-  background-color: #15395a;
+  color: var(--white-color);
+  background-color: var(--bg-card-chellenge);
 }
 
 .challengeTitle {
-  color: #fff;
+  color: var(--white-color);
 }
 
 .challengeLabel {
@@ -393,5 +393,5 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  color: #b9c3c8;
+  color: var(--bg-stuff);
 }

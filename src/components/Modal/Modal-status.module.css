@@ -41,3 +41,12 @@
   color: var(--bg-stuff);
   cursor: pointer;
 }
+
+.challenge {
+  background-color: var(--challenge-secondary-color);
+  color: var(--bg-stuff);
+}
+
+.challengeText:hover {
+  color: var(--primary-text-color);
+}
