@@ -4,29 +4,35 @@ import authOperations from '../../redux/operations/authOperetions';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import s from './AuthForm.module.css';
 
+import { getError } from '../../redux/selectors'
+import { useSelector } from 'react-redux';
+
 const AuthForm = () => {
-
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
+
+
+
 
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
 
   const onSubmit = event => {
-    event.preventDefault();
 
+    event.preventDefault();
     if (email && password) {
 
-      try { dispatch(authOperations.handleLogIn({ email, password })) } catch {
+      try { dispatch(authOperations.handleLogIn({ email, password })) }
+      catch (error) {
+        console.log(error);
         dispatch(authOperations.handleSignUp({ email, password }))
       }
-
       formReset()
     }
+
   };
+
 
   // const onRegistration = () => {
   //   if (email && password) {
