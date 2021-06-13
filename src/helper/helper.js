@@ -1,17 +1,20 @@
+import { COLOR } from './constants'
+
+
 export const colorDifficult = diff => {
   let color = '';
   switch (diff) {
     case 'Easy':
-      color = '#00d7ff';
+      color = COLOR.easy;
       break;
     case 'Normal':
-      color = '#24d40c';
+      color = COLOR.normal;
       break;
     case 'Hard':
-      color = '#db0837';
+      color = COLOR.hard;
       break;
     default:
-      color = '#00d7ff';
+      color = COLOR.easy;
   }
   return color;
 };
@@ -20,25 +23,25 @@ export const colorCategory = category => {
   let color = '';
   switch (category) {
     case 'Stuff':
-      color = '#b9c3c8';
+      color = COLOR.stuff;
       break;
     case 'Family':
-      color = '#ffe6d3';
+      color = COLOR.family;
       break;
     case 'Health':
-      color = '#cdf7ff';
+      color = COLOR.health;
       break;
     case 'Learning':
-      color = '#fff6c0';
+      color = COLOR.learning;
       break;
     case 'Leisure':
-      color = '#f8d2ff';
+      color = COLOR.leisure;
       break;
     case 'Work':
-      color = '#d3f6ce';
+      color = COLOR.work;
       break;
     default:
-      color = '#b9c3c8';
+      color = COLOR.stuff;
   }
   return color;
 };
