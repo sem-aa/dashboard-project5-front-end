@@ -31,7 +31,7 @@ export default function Card({
   const [category, setCategory] = useState(data.category);
 
   const [title, setTitle] = useState(data.title);
-  console.log('data', data);
+
   const LocalData = {
     ...data,
     difficulty,
@@ -41,8 +41,6 @@ export default function Card({
     date: data.date || getCurrentFullDate(dateValue),
     time: data.time || getCurrentTime(dateValue),
   };
-
-  console.log('LocalData', LocalData);
 
   const getDateValue = value => setDate(value);
 
