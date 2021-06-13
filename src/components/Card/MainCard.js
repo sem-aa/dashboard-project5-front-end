@@ -1,5 +1,4 @@
-
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
 
 import s from './NewCard.module.css';
 import Loader from 'react-loader-spinner';
@@ -11,7 +10,7 @@ const CardRender = lazy(() => import('./Card'));
 const EditCard = lazy(() => import('./EditCard/EditCard'));
 const CreateCard = lazy(() => import('../Card/CreateCard'));
 
-export default function Card({ data, isCreateCard }) {
+export default function Card({ data, isCreateCard, deleteNewCard }) {
   const [isEdit, setEdit] = useState(false);
   const [type, setType] = useState(data.type);
   const [height, setHeight] = useState(document.body.clientHeight + 'px');
@@ -34,7 +33,7 @@ export default function Card({ data, isCreateCard }) {
   });
 
   return isCreateCard ? (
-    <CreateCard data={data} type={type} />
+    <CreateCard data={data} type={type} deleteNewCard={deleteNewCard} setType={setType} />
   ) : (
     <Suspense
       fallback={<Loader type="TailSpin" color="var(--accent-color)" className={s.loader} />}

@@ -10,7 +10,6 @@ import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
 export default function EditCard({ data, setEdit, type, setType }) {
-
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
@@ -36,7 +35,7 @@ export default function EditCard({ data, setEdit, type, setType }) {
 
   return (
     <div
-      style={style}
+      // style={style}
       className={
         type === 'Challenge' && complete === true ? `${s.container} ${s.challenge}` : s.container
       }
@@ -73,7 +72,12 @@ export default function EditCard({ data, setEdit, type, setType }) {
         </BasicCard>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={type}></ModalDelete>
+        <ModalDelete
+          onClose={() => setDeleteModal(false)}
+          type={type}
+          id={data._id}
+          isEdit
+        ></ModalDelete>
       )}
     </div>
   );

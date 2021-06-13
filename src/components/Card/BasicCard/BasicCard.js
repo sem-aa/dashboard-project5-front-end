@@ -9,7 +9,16 @@ import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../help
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function Card({ data, type, setType, handleSubmit, isCreateCard, input, children }) {
+export default function Card({
+  data,
+  type,
+  setType,
+  handleSubmit,
+  isCreateCard,
+  input,
+  children,
+  deleteNewCard,
+}) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -22,7 +31,7 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
   const [category, setCategory] = useState(data.category);
 
   const [title, setTitle] = useState(data.title);
-
+  console.log('data', data);
   const LocalData = {
     ...data,
     difficulty,
@@ -32,6 +41,8 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
     date: data.date || getCurrentFullDate(dateValue),
     time: data.time || getCurrentTime(dateValue),
   };
+
+  console.log('LocalData', LocalData);
 
   const getDateValue = value => setDate(value);
 
@@ -54,6 +65,7 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
     } catch (error) {
       console.log(error);
     }
+    deleteNewCard();
   };
 
   return (

@@ -4,7 +4,7 @@ import s from './section.module.css';
 import sprite from '../../icon/sprite.svg';
 import NewCard from '../Card/MainCard';
 
-export default function Section({ title, data, newCard }) {
+export default function Section({ title, data, newCard, deleteNewCard }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
   const [isOpen, setOpen] = useState(true);
 
@@ -27,7 +27,7 @@ export default function Section({ title, data, newCard }) {
       <div className={s.collection}>
         {isOpen && (
           <>
-            {newCard && <NewCard data={newCard} isCreateCard />}
+            {newCard && <NewCard data={newCard} isCreateCard deleteNewCard={deleteNewCard} />}
             {data.map(el => (
               <NewCard data={el} key={el._id} />
             ))}
