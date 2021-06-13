@@ -18,7 +18,6 @@ export default function ModalDelete({ onClose, type, id, isCreate, isEdit, delet
       onClose();
     }
   };
-
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -41,6 +40,7 @@ export default function ModalDelete({ onClose, type, id, isCreate, isEdit, delet
           )}
           {isCreate && (
             <button onClick={() => deleteNewCard()} className={s.button + ' ' + s.buttonDelete}>
+
               Delete
             </button>
           )}

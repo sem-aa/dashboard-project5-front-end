@@ -22,13 +22,14 @@ export const deleteCard = id => dispatch => {
     .catch(error => dispatch(actions.deleteCardError(error)));
 };
 
-export const editCard = data => dispatch => {
+export const editCard = (id, data) => dispatch => {
   dispatch(actions.editCardRequest());
 
   api
-    .editCard(data)
+    .editCard(id, data)
     .then(({ data }) => {
-      dispatch(actions.editCardSuccess({ ...data }));
+      console.log('operations', data);
+      dispatch(actions.editCardSuccess(data.editedCard));
     })
     .catch(error => dispatch(actions.editCardError(error.message)));
 };

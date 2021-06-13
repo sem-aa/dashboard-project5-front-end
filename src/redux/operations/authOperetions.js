@@ -45,7 +45,7 @@ const getCurrentUser = () => (dispatch, getState) => {
     api.token.set(token);
     dispatch(authActions.getCurrentUserRequest());
     api
-      .userDataGet()
+      .refreshToken()
       .then(({ data }) => {
         dispatch(authActions.getCurrentUserSuccess(data));
       })
