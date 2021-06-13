@@ -399,3 +399,8 @@
 
   color: var(--bg-stuff);
 }
+
+/* Стили лоадера */
+.loader {
+  margin: 25% 25%;
+}

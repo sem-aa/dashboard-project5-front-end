@@ -4,7 +4,7 @@ import sprite from '../../../icon/sprite.svg';
 import s from './CompleteForm.module.css';
 import { completeCard } from '../../../redux/operations/cardOperations';
 
-export default function CompleteForm({ data }) {
+export default function CompleteForm({ data, type }) {
   const dispatch = useDispatch();
 
   const continueBtnHandler = data => {
@@ -12,15 +12,11 @@ export default function CompleteForm({ data }) {
   };
 
   return (
-    <section
-      className={data.type === 'Challenge' ? `${s.completed} ${s.challenge}` : `${s.completed}`}
-    >
+    <section className={type === 'Challenge' ? `${s.completed} ${s.challenge}` : `${s.completed}`}>
       <div className={s.completedHeader}>
         <h2
           className={
-            data.type === 'Challenge'
-              ? `${s.statusCompleted} ${s.challenge}`
-              : `${s.statusCompleted}`
+            type === 'Challenge' ? `${s.statusCompleted} ${s.challenge}` : `${s.statusCompleted}`
           }
         >
           completed:
@@ -28,7 +24,7 @@ export default function CompleteForm({ data }) {
         <p className={s.completedTitle}>{data.title}</p>
       </div>
       <svg className={s.award}>
-        {data.type === 'Challenge' ? (
+        {type === 'Challenge' ? (
           <use href={sprite + '#icon-cup'}></use>
         ) : (
           <use href={sprite + '#icon-award'}></use>

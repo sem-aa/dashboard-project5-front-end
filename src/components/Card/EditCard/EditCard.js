@@ -9,7 +9,8 @@ import { editCard } from '../../../redux/operations/cardOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function EditCard({ data, setEdit, style }) {
+export default function EditCard({ data, setEdit, type, setType }) {
+
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
@@ -37,17 +38,21 @@ export default function EditCard({ data, setEdit, style }) {
     <div
       style={style}
       className={
-        data.type === 'Challenge' && complete === true
-          ? `${s.container} ${s.challenge}`
-          : s.container
+        type === 'Challenge' && complete === true ? `${s.container} ${s.challenge}` : s.container
       }
     >
       {complete ? (
-        <CSSTransition in timeout={500} classNames={cardTransition} >
-          <Complete data={data} />
+        <CSSTransition in timeout={300} classNames={cardTransition} appear>
+          <Complete data={data} type={type} />
         </CSSTransition>
       ) : (
-        <BasicCard data={data} handleSubmit={handleSubmit} input={inputTitle}>
+        <BasicCard
+          data={data}
+          type={type}
+          setType={setType}
+          handleSubmit={handleSubmit}
+          input={inputTitle}
+        >
           <div>
             <button className={s.buttonCard} type="submit">
               <svg className={s.buttonSave}>
@@ -68,7 +73,7 @@ export default function EditCard({ data, setEdit, style }) {
         </BasicCard>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={data.task}></ModalDelete>
+        <ModalDelete onClose={() => setDeleteModal(false)} type={type}></ModalDelete>
       )}
     </div>
   );
