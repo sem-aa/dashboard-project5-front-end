@@ -1,19 +1,20 @@
 .modal {
   position: absolute;
-  top: -90%;
-  left: -8.5%;
+  top: 60%;
+  left: 0;
+  z-index: 1;
   width: 90px;
   height: 110px;
   background: var(--white-color);
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05), 3px 4px 4px rgba(21, 57, 90, 0.05);
   border-radius: 10px;
 }
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .modal {
-    top: -125%;
-    left: -13%;
+    top: 60%;
+    left: 0;
   }
-}
+} */
 
 .list {
   margin-top: 10px;

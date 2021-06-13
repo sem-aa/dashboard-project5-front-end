@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/operations/authOperetions';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import s from './AuthForm.module.css';
 
 const AuthForm = () => {
-  const user = useSelector(state => state.auth.user.email)
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -78,5 +79,6 @@ const AuthForm = () => {
     </>
   );
 };
+
 
 export default AuthForm;
