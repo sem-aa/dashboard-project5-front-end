@@ -114,7 +114,7 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
                 className={s.category}
               >
                 {LocalData.category}
-                <svg width="8px" height="4px" className={s.iconPolygon}>
+                <svg className={s.iconPolygon}>
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </p>

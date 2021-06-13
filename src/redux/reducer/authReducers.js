@@ -6,7 +6,16 @@ import user from './userReducer';
 const token = createReducer(null, {
   [authActions.logInSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.logOutSuccess]: () => null,
-  [authActions.setGoogleToken]: (_, { payload }) => payload,
+});
+
+const refreshToken = createReducer(null, {
+  [authActions.logInSuccess]: (_, { payload }) => payload.refreshToken,
+  [authActions.logOutSuccess]: () => null,
+});
+
+const sid = createReducer(null, {
+  [authActions.logInSuccess]: (_, { payload }) => payload.sid,
+  [authActions.logOutSuccess]: () => null,
 });
 
 const isAuthenticated = createReducer(false, {
@@ -20,4 +29,6 @@ export default combineReducers({
   user,
   isAuthenticated,
   token,
+  refreshToken,
+  sid
 });

@@ -40,13 +40,13 @@ const handleLogOut = () => dispatch => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   const {
-    auth: { token },
+    auth: { refreshToken, sid },
   } = getState();
-  if (token) {
-    api.token.set(token);
+  if (refreshToken) {
+    api.token.set(refreshToken);
     dispatch(authActions.getCurrentUserRequest());
     api
-      .refreshToken()
+      .refreshToken(sid)
       .then(({ data }) => {
         dispatch(authActions.getCurrentUserSuccess(data));
       })

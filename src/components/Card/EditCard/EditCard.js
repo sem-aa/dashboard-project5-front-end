@@ -42,7 +42,7 @@ export default function EditCard({ data, setEdit }) {
       }
     >
       {complete ? (
-        <CSSTransition in timeout={500} classNames={cardTransition} appear>
+        <CSSTransition in timeout={500} classNames={cardTransition} >
           <Complete data={data} />
         </CSSTransition>
       ) : (
