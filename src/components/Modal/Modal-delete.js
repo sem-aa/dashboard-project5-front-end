@@ -1,55 +1,49 @@
-import { useEffect } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './Modal-delete.module.css';
-import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../redux/operations/cardOperations';
 
-export default function ModalDelete({ onClose, type, id, isCreate, isEdit, deleteNewCard }) {
-  const dispatch = useDispatch();
-  const onDeleteCard = id => dispatch(deleteCard(id));
+export default class ModalDelete extends Component {
+  static propTypes = {
+    onClose: PropTypes.func,
+  };
 
-  const handleKeyDown = e => {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+  handleKeyDown = e => {
     if (e.code === 'Escape') {
-      onClose();
+      this.props.onClose();
     }
   };
-  const handleBackdropClick = e => {
+  handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      onClose();
+      this.props.onClose();
     }
   };
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  });
-
-  return (
-    <div className={s.overlay} onClick={handleBackdropClick}>
-      <div className={s.modal}>
-        <h1 className={s.title}>Delete this {type === 'Task' ? 'Quest' : 'Challenge'}?</h1>
-        <div className={s.buttonsWrap}>
-          <button onClick={onClose} className={s.buttonCancel}>
-            Cancel
-          </button>
-          {isEdit && (
-            <button onClick={() => onDeleteCard(id)} className={s.button + ' ' + s.buttonDelete}>
+  render() {
+    return (
+      <div className={s.overlay} onClick={this.handleBackdropClick}>
+        <div className={s.modal}>
+          <h1 className={s.title}>
+            Delete this {this.props.type === 'Task' ? `Quest` : `Challenge`}?
+          </h1>
+          <div className={s.buttonsWrap}>
+            <button type="button" onClick={this.props.onClose} className={s.buttonCancel}>
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={this.props.onDelete}
+              className={s.button + ' ' + s.buttonDelete}
+            >
               Delete
             </button>
-          )}
-          {isCreate && (
-            <button onClick={() => deleteNewCard()} className={s.button + ' ' + s.buttonDelete}>
-
-              Delete
-            </button>
-          )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-ModalDelete.propTypes = {
-  onClose: PropTypes.func,
-};
