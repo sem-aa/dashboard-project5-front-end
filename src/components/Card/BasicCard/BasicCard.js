@@ -66,7 +66,7 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
         onSubmit={handleSubmit ? e => handleSubmit(e, LocalData) : onSubmit}
       >
         <div className={s.head}>
-          <Select difficulty={difficulty} setDifficulty={setDifficulty} />
+          <Select difficulty={difficulty} setDifficulty={setDifficulty} type={LocalData.type} />
           <div
             className={s.iconContainer}
             onClick={() =>
@@ -93,24 +93,31 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
             ref={input || inputTitle}
           ></input>
           <div className={s.dateFlex}>
-            <Calendar getDate={getDateValue}></Calendar>
+            <Calendar getDate={getDateValue} type={LocalData.type}></Calendar>
           </div>
         </div>
         <div className={s.foot}>
           <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
             {isOpenCategory ? (
               <>
-                <ModalStatus getValue={setCategory} />
-                <p style={{ backgrounColor: colorCategory(LocalData.category) }} className={s.category}>{LocalData.category}</p>
+                <ModalStatus getValue={setCategory} type={LocalData.type} />
+                <p
+                  style={{ backgrounColor: colorCategory(LocalData.category) }}
+                  className={s.category}
+                >
+                  {LocalData.category}
+                </p>
               </>
             ) : (
-
-              <p style={{ backgroundColor: colorCategory(LocalData.category) }} className={s.category}>{LocalData.category}
+              <p
+                style={{ backgroundColor: colorCategory(LocalData.category) }}
+                className={s.category}
+              >
+                {LocalData.category}
                 <svg width="8px" height="4px" className={s.iconPolygon}>
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </p>
-
             )}
           </div>
 

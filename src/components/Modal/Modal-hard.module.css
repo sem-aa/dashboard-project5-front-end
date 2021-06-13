@@ -54,5 +54,5 @@
 }
 
 .challenge {
-  background-color: #3e4e6c;
+  background-color: var(--challenge-secondary-color);
 }

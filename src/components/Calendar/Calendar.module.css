@@ -17,5 +17,5 @@
 }
 
 .challenge {
-  color: #fff;
+  color: var(--white-color);
 }
