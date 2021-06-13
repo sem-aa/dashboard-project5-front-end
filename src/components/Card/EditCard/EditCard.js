@@ -10,6 +10,7 @@ import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
 export default function EditCard({ data, setEdit }) {
+
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
@@ -61,7 +62,11 @@ export default function EditCard({ data, setEdit }) {
         </BasicCard>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={data.task}></ModalDelete>
+        <ModalDelete
+        onClose={() => setDeleteModal(false)} 
+        type={data.task}>
+        id={data._id}
+        </ModalDelete>
       )}
     </div>
   );
