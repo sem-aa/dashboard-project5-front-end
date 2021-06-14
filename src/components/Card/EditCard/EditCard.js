@@ -9,7 +9,9 @@ import { editCard } from '../../../redux/operations/cardOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function EditCard({ data, setEdit }) {
+
+export default function EditCard({ data, setEdit, type, setType }) {
+
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
@@ -35,6 +37,9 @@ export default function EditCard({ data, setEdit }) {
 
   return (
     <div
+
+      // style={style}
+
       className={
         data.type === 'Challenge' && complete === true
           ? `${s.container} ${s.challenge}`
@@ -67,7 +72,14 @@ export default function EditCard({ data, setEdit }) {
         </BasicCard>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={data.task}></ModalDelete>
+
+        <ModalDelete
+          onClose={() => setDeleteModal(false)}
+          type={type}
+          id={data._id}
+          isEdit
+        ></ModalDelete>
+
       )}
     </div>
   );

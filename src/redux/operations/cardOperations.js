@@ -28,7 +28,6 @@ export const editCard = (id, data) => dispatch => {
   api
     .editCard(id, data)
     .then(({ data }) => {
-      console.log('operations', data);
       dispatch(actions.editCardSuccess(data.editedCard));
     })
     .catch(error => dispatch(actions.editCardError(error.message)));
