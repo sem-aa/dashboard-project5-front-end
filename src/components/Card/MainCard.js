@@ -1,4 +1,3 @@
-
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import s from './NewCard.module.css';
 import Loader from 'react-loader-spinner';
@@ -7,9 +6,7 @@ const CardRender = lazy(() => import('./Card'));
 const EditCard = lazy(() => import('./EditCard/EditCard'));
 const CreateCard = lazy(() => import('../Card/CreateCard'));
 
-
 export default function Card({ data, isCreateCard, deleteNewCard }) {
-
   const [isEdit, setEdit] = useState(false);
   const [type, setType] = useState(data.type);
   const [height, setHeight] = useState(document.body.clientHeight + 'px');
@@ -33,24 +30,26 @@ export default function Card({ data, isCreateCard, deleteNewCard }) {
 
   return isCreateCard ? (
     <CreateCard data={data} type={type} deleteNewCard={deleteNewCard} setType={setType} />
-
   ) : (
-
     <>
       <Suspense
         fallback={<Loader type="TailSpin" color="var(--accent-color)" className={s.loader} />}
       >
         <div onClick={() => setEdit(true)} className={s.container}>
-          {isEdit ?
-            <EditCard data={data} setEdit={setEdit} style={editStyle} />
-            :
-            <CardRender data={data} />
-          }
-
+          {isEdit ? (
+            <EditCard
+              data={data}
+              setEdit={setEdit}
+              style={editStyle}
+              type={type}
+              setType={setType}
+            />
+          ) : (
+            <CardRender data={data} type={type} />
+          )}
         </div>
       </Suspense>
       {isEdit && <div style={backDrop} onClick={() => setEdit(false)} />}
     </>
-
   );
 }
