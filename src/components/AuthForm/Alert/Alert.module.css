@@ -1,0 +1,36 @@
+.alert{
+  position: absolute;
+  top: 10%;
+  right: 50%;
+  width: 370px;
+  height: 100px;
+  background-color: red;
+  border-radius: 4px;
+  color: yellow;
+  font-size: 22px;
+  padding-left: 0px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.enter{
+  transform: translateX(100%);
+}
+
+.enterActive{
+  transform: translateX(0);
+  transition: all 250ms linear;
+}
+
+.exit{
+  transform: translateX(0);
+}
+
+.exitActive{
+  transform: translateX(100%);
+  transition: all 250ms linear;
+}
