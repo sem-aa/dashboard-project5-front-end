@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import authOperations from '../../../redux/operations/authOperetions';
+import authOperations from '../../../redux/operations/authOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from './LogoutBtn.module.css';
 

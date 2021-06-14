@@ -1,9 +1,6 @@
 
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import s from './NewCard.module.css';
-// import CardRender from './Card';
-// import EditCard from './EditCard/EditCard';
-// import CreateCard from '../Card/CreateCard';
 import Loader from 'react-loader-spinner';
 
 const CardRender = lazy(() => import('./Card'));

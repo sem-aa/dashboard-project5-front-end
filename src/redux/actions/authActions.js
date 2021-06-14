@@ -16,6 +16,10 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const refreshTokenRequest = createAction('auth/refreshTokenRequest');
+const refreshTokenSuccess = createAction('auth/refreshTokenSuccess');
+const refreshTokenError = createAction('auth/refreshTokenError');
+
 
 
 // eslint-disable-next-line
@@ -32,5 +36,7 @@ export default {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
-//   setGoogleToken,
+  refreshTokenRequest,
+  refreshTokenSuccess,
+  refreshTokenError
 };

@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch } from 'react-router-dom';
-import './App.css';
 import Loader from 'react-loader-spinner';
 import PrivateRoute from './components/Route/PrivateRoute';
 import PublicRoute from './components/Route/PublicRoute';

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getError } from '../../redux/selectors'
-import authOperations from '../../redux/operations/authOperetions'
+import authOperations from '../../redux/operations/authOperations'
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo'
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign'
 import s from './AuthForm.module.css'
