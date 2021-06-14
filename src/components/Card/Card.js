@@ -2,9 +2,9 @@ import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
 import { colorDifficult, colorCategory } from '../../helper/helper';
 
-export default function Card({ data, type }) {
+export default function Card({ data }) {
   return (
-    <div className={type === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
+    <div className={data.type === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       <form className={s.formCard}>
         <div className={s.head}>
           <div className={s.difficulty}>
@@ -13,7 +13,7 @@ export default function Card({ data, type }) {
             </svg>
             <p className={s.difficulty}>{data.difficulty}</p>
           </div>
-          {type === 'Task' ? (
+          {data.type === 'Task' ? (
             <div className={s.iconContainer}>
               <svg className={s.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
@@ -28,12 +28,14 @@ export default function Card({ data, type }) {
           )}
         </div>
         <div className={s.main}>
-          {type === 'Challenge' ? <h2 className={s.challengeLabel}>Challenge</h2> : null}
-          <h2 className={type === 'Challenge' ? `${s.title} ${s.challengeTitle}` : s.title}>
+          {data.type === 'Challenge' ? <h2 className={s.challengeLabel}>Challenge</h2> : null}
+          <h2 className={data.type === 'Challenge' ? `${s.title} ${s.challengeTitle}` : s.title}>
             {data.title}
           </h2>
           <p className={s.date}>
-            {type === 'Challenge' ? `by ${data.date} ${data.time}` : `${data.date} ${data.time}`}
+            {data.type === 'Challenge'
+              ? `by ${data.date} ${data.time}`
+              : `${data.date} ${data.time}`}
           </p>
         </div>
         <div className={s.foot}>

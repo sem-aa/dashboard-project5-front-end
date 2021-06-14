@@ -4,7 +4,7 @@ import s from '../NewCard.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
 import BasicCard from '../BasicCard';
 
-export default function Card({ data, type }) {
+export default function Card({ data }) {
   const [isDeleteModalShown, setModal] = useState(false);
 
   return (
@@ -21,7 +21,7 @@ export default function Card({ data, type }) {
           </button>
         </div>
         {isDeleteModalShown && (
-          <ModalDelete onClose={() => setModal(false)} type={type}></ModalDelete>
+          <ModalDelete onClose={() => setModal(false)} type="Quest"></ModalDelete>
         )}
       </div>
     </BasicCard>
