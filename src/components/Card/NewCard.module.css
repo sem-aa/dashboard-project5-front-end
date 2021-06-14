@@ -45,7 +45,7 @@
   width: 12px;
   height: 8px;
   fill: var(--accent-color);
-  margin-left: 7px;
+  margin-left: 5px;
 }
 
 @media screen and (min-width: 768px) {
@@ -64,7 +64,7 @@
   width: 19px;
   height: 19px;
 }
-@media screen and(min-widht: 768px) {
+@media screen and (min-width: 768px) {
   .iconContainer {
     width: 15px;
     height: 15px;
@@ -119,6 +119,10 @@
   letter-spacing: 00.02em;
   font-weight: 700;
   color: var(--secondary-color);
+}
+
+.loader {
+  margin: 25% 25%;
 }
 
 .titleInput {

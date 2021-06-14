@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getError } from '../../redux/selectors';
@@ -11,6 +12,7 @@ import Alert from './Alert';
 import { CSSTransition } from 'react-transition-group';
 import st from './Alert/Alert.module.css';
 // ---------------------------------------------
+
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -118,10 +120,11 @@ const AuthForm = () => {
           {emailError && <Alert text={emailError} errorStatus={isError} />}
           {/* ============================================== */}
         </div>
+
         <div className={s.landingBox}>
+
           <label htmlFor="AuthorizationForm__password">
             {passwordError && <span style={{ color: 'red' }}>*</span>}
-            Пароль:
           </label>
           <input
             className={s.landingInput}
@@ -129,6 +132,7 @@ const AuthForm = () => {
             id="AuthorizationForm__password"
             value={password}
             onChange={changePasswordValue}
+            type="password"
             placeholder="Пароль"
           />
 

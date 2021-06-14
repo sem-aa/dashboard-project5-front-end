@@ -9,13 +9,11 @@ import { getCards } from '../../redux/selectors';
 import { getCurrentFullDate, getCurrentTime } from '../../helper';
 import s from './main.module.css';
 import api from '../../services/api';
-
 export default function MainPage() {
   const token = useSelector(getToken);
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
   const [newCard, setNewCard] = useState(null);
-
   const addCard = () => {
     const templateData = {
       _id: Math.random(),
@@ -32,28 +30,36 @@ export default function MainPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const deleteNewCard = () => {
+    setNewCard(null);
+  };
+
   useEffect(() => {
     if (token) {
       api.token.set(token);
     }
   }, [token]);
-
   return (
     <>
       <Header />
-      <div className={s.main}>
+
+      <main className={s.main}>
         <Container>
-          <Section title={'today'} data={cardsSorted.today} newCard={newCard} />
+          <Section
+            title={'today'}
+            data={cardsSorted.today}
+            newCard={newCard}
+            deleteNewCard={deleteNewCard}
+          />
           <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
           <Section title={'done'} data={cardsSorted.done} />
 
           <ButtonAdd className={s.btn} handleClick={addCard} />
         </Container>
-      </div>
+      </main>
     </>
   );
 }
-
 const sortCards = cards =>
   cards.reduce(
     (acc, el) => {
@@ -61,10 +67,8 @@ const sortCards = cards =>
         acc.done.push(el);
         return acc;
       }
-
       const today = getCurrentFullDate();
       el.date === today ? acc.today.push(el) : acc.tomorrow.push(el);
-
       return acc;
     },
     { done: [], today: [], tomorrow: [] },

@@ -9,13 +9,21 @@ import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../help
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function Card({ data, handleSubmit, isCreateCard, input, children }) {
+
+export default function Card({
+  data,
+  handleSubmit,
+  isCreateCard,
+  input,
+  children,
+  deleteNewCard,
+}) {
+
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
   // Modal
   const [isOpenCategory, setIsOpenCategory] = useState(false);
-
   //Data
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState(data.difficulty);
@@ -32,30 +40,23 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
     date: data.date || getCurrentFullDate(dateValue),
     time: data.time || getCurrentTime(dateValue),
   };
-
   const getDateValue = value => setDate(value);
-
   const handleChange = ({ target }) => {
     const { value } = target;
-
     setTitle(value);
   };
-
   const onSubmit = e => {
     e.preventDefault();
-
     try {
       const body = { ...data, ...LocalData };
       delete body._id;
-
       if (body.title === '') return inputTitle.current.classList.add(s.titleError);
-
       dispatch(createCard(body));
     } catch (error) {
       console.log(error);
     }
+    deleteNewCard();
   };
-
   return (
     <div
       style={{ position: 'relative' }}
@@ -114,13 +115,12 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
                 className={s.category}
               >
                 {LocalData.category}
-                <svg width="8px" height="4px" className={s.iconPolygon}>
+                <svg className={s.iconPolygon}>
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </p>
             )}
           </div>
-
           {children}
         </div>
       </form>

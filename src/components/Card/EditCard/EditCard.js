@@ -9,23 +9,21 @@ import { editCard } from '../../../redux/operations/cardOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function EditCard({ data, setEdit }) {
+
+export default function EditCard({ data, setEdit, type, style }) {
+
   const dispatch = useDispatch();
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
   const inputTitle = useRef();
-
   const handleSubmit = (e, localData) => {
     e.preventDefault();
-
     try {
       const body = { ...data, ...localData };
       const id = body._id;
       delete body._id;
       delete body.status;
-
       if (body.title === '') return inputTitle.current.classList.add(s.titleError);
-
       dispatch(editCard(id, body));
       setEdit(false);
     } catch (error) {
@@ -35,6 +33,9 @@ export default function EditCard({ data, setEdit }) {
 
   return (
     <div
+
+      style={style}
+
       className={
         data.type === 'Challenge' && complete === true
           ? `${s.container} ${s.challenge}`
@@ -42,11 +43,15 @@ export default function EditCard({ data, setEdit }) {
       }
     >
       {complete ? (
-        <CSSTransition in timeout={500} classNames={cardTransition} appear>
+
+        <CSSTransition in timeout={300} classNames={cardTransition} appear>
           <Complete data={data} />
         </CSSTransition>
       ) : (
-        <BasicCard data={data} handleSubmit={handleSubmit} input={inputTitle}>
+        <BasicCard
+          data={data}
+          handleSubmit={handleSubmit}
+          input={inputTitle}>
           <div>
             <button className={s.buttonCard} type="submit">
               <svg className={s.buttonSave}>
@@ -67,7 +72,15 @@ export default function EditCard({ data, setEdit }) {
         </BasicCard>
       )}
       {isDeleteModalShown && (
-        <ModalDelete onClose={() => setDeleteModal(false)} type={data.task}></ModalDelete>
+
+
+        <ModalDelete
+          onClose={() => setDeleteModal(false)}
+          type={type}
+          id={data._id}
+          isEdit
+        ></ModalDelete>
+
       )}
     </div>
   );
