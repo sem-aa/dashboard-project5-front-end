@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 import actions from '../actions/cardActions';
 import handleError from './handleError';
@@ -39,25 +39,29 @@ export const editCard = (id, data) => dispatch => {
       handleError(error, dispatch);
     });
 };
-// !! This code do not work !!
-// export const completeCard = id => dispatch => {
-//   dispatch(actions.completeCardRequest(id));
-//   api
-//     .completeCard(id)
-//     .then(({ data }) => {
-//       dispatch(actions.completeCardSuccess(data.completedCard));
-//     })
-//     .catch(error => console.log(error.response.message));
-// };
 
-export const completeCard = createAsyncThunk(
-  actions.completeCard,
-  async (id, { rejectWithValue }) => {
-    try {
-      const { data } = await api.completeCard(id);
-      return data.completedCard;
-    } catch (error) {
-      return rejectWithValue(error.response.message);
-    }
-  },
-);
+// !! This code do not work !!
+export const completeCard = id => dispatch => {
+  dispatch(actions.completeCardRequest(id));
+  api
+    .completeCard(id)
+    .then(({ data }) => {
+      dispatch(actions.completeCardSuccess(data.completedCard));
+    })
+    .catch(error => {
+      console.log(error.response.message);
+      handleError(error, dispatch);
+    });
+};
+
+// export const completeCard = createAsyncThunk(
+//   actions.completeCard,
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       const { data } = await api.completeCard(id);
+//       return data.completedCard;
+//     } catch (error) {
+//       return rejectWithValue(error.response.message);
+//     }
+//   },
+// );
