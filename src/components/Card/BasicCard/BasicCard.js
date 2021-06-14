@@ -5,7 +5,7 @@ import ModalStatus from '../../Modal/Modal-status';
 import Calendar from '../../Calendar/Calendar';
 import Select from '../../Select';
 import { createCard } from '../../../redux/operations/cardOperations';
-import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../helper';
+import { getDateFormat, getTimeFormat, colorCategory } from '../../../helper';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
@@ -36,9 +36,10 @@ export default function Card({
     category,
     type,
     title,
-    date: data.date || getCurrentFullDate(dateValue),
-    time: data.time || getCurrentTime(dateValue),
+    date: getDateFormat(dateValue),
+    time: getTimeFormat(dateValue),
   };
+
   const getDateValue = value => setDate(value);
   const handleChange = ({ target }) => {
     const { value } = target;
@@ -95,7 +96,12 @@ export default function Card({
             ref={input || inputTitle}
           ></input>
           <div className={s.dateFlex}>
-            <Calendar getDate={getDateValue} type={type}></Calendar>
+            <Calendar
+              getDate={getDateValue}
+              type={type}
+              date={data.date}
+              time={data.time}
+            ></Calendar>
           </div>
         </div>
         <div className={s.foot}>
