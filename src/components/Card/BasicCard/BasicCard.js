@@ -9,7 +9,7 @@ import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../help
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function Card({ data, type, setType, handleSubmit, isCreateCard, input, children }) {
+export default function Card({ data, handleSubmit, isCreateCard, input, children }) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -20,7 +20,7 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState(data.difficulty);
   const [category, setCategory] = useState(data.category);
-
+  const [type, setType] = useState(data.type);
   const [title, setTitle] = useState(data.title);
 
   const LocalData = {
@@ -59,17 +59,19 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
   return (
     <div
       style={{ position: 'relative' }}
-      className={cn(s.container, { [s.challenge]: type === 'Challenge' })}
+      className={cn(s.container, { [s.challenge]: LocalData.type === 'Challenge' })}
     >
       <form
         className={s.formCard}
         onSubmit={handleSubmit ? e => handleSubmit(e, LocalData) : onSubmit}
       >
         <div className={s.head}>
-          <Select difficulty={difficulty} setDifficulty={setDifficulty} type={type} />
+          <Select difficulty={difficulty} setDifficulty={setDifficulty} type={LocalData.type} />
           <div
             className={s.iconContainer}
-            onClick={() => (type === 'Challenge' ? setType('Task') : setType('Challenge'))}
+            onClick={() =>
+              LocalData.type === 'Challenge' ? setType('Task') : setType('Challenge')
+            }
           >
             {LocalData.type === 'Task' ? (
               <svg className={s.iconTask}>
@@ -91,14 +93,14 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
             ref={input || inputTitle}
           ></input>
           <div className={s.dateFlex}>
-            <Calendar getDate={getDateValue} type={type}></Calendar>
+            <Calendar getDate={getDateValue} type={LocalData.type}></Calendar>
           </div>
         </div>
         <div className={s.foot}>
           <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
             {isOpenCategory ? (
               <>
-                <ModalStatus getValue={setCategory} type={type} />
+                <ModalStatus getValue={setCategory} type={LocalData.type} />
                 <p
                   style={{ backgrounColor: colorCategory(LocalData.category) }}
                   className={s.category}
