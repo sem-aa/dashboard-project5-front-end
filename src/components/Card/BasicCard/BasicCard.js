@@ -9,7 +9,18 @@ import { getCurrentFullDate, getCurrentTime, colorCategory } from '../../../help
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
-export default function Card({ data, handleSubmit, isCreateCard, input, children }) {
+
+export default function Card({
+  data,
+  // type,
+  // setType,
+  handleSubmit,
+  isCreateCard,
+  input,
+  children,
+  deleteNewCard,
+}) {
+
   const dispatch = useDispatch();
   const inputTitle = useRef();
 
@@ -46,6 +57,7 @@ export default function Card({ data, handleSubmit, isCreateCard, input, children
     } catch (error) {
       console.log(error);
     }
+    deleteNewCard();
   };
   return (
     <div
