@@ -42,7 +42,8 @@ export default function MainPage() {
   return (
     <>
       <Header />
-      <div className={s.main}>
+
+      <main className={s.main}>
         <Container>
           <Section
             title={'today'}
@@ -55,7 +56,7 @@ export default function MainPage() {
 
           <ButtonAdd className={s.btn} handleClick={addCard} />
         </Container>
-      </div>
+      </main>
     </>
   );
 }

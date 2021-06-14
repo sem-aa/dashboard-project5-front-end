@@ -4,7 +4,7 @@ import s from './ButtonGo.module.css';
 const ButtonGo = ({ handleLogIn }) => (
 
    <button className={s.buttonGo} type="submit" onClick={handleLogIn}>
-      <h2 className={s.btnText}>go!</h2>
+      <h2 className={s.btnText}>log</h2>
    </button>
 );
 

@@ -12,8 +12,6 @@ import s from '../NewCard.module.css';
 
 export default function Card({
   data,
-  // type,
-  // setType,
   handleSubmit,
   isCreateCard,
   input,

@@ -121,6 +121,10 @@
   color: var(--secondary-color);
 }
 
+.loader {
+  margin: 25% 25%;
+}
+
 .titleInput {
   margin-bottom: 5px;
   padding: 0px;
