@@ -15,7 +15,6 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
 
   // Modal
   const [isOpenCategory, setIsOpenCategory] = useState(false);
-
   //Data
   const [dateValue, setDate] = useState(new Date());
   const [difficulty, setDifficulty] = useState(data.difficulty);
@@ -32,30 +31,22 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
     date: data.date || getCurrentFullDate(dateValue),
     time: data.time || getCurrentTime(dateValue),
   };
-
   const getDateValue = value => setDate(value);
-
   const handleChange = ({ target }) => {
     const { value } = target;
-
     setTitle(value);
   };
-
   const onSubmit = e => {
     e.preventDefault();
-
     try {
       const body = { ...data, ...LocalData };
       delete body._id;
-
       if (body.title === '') return inputTitle.current.classList.add(s.titleError);
-
       dispatch(createCard(body));
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div
       style={{ position: 'relative' }}
@@ -118,7 +109,6 @@ export default function Card({ data, type, setType, handleSubmit, isCreateCard, 
               </p>
             )}
           </div>
-
           {children}
         </div>
       </form>

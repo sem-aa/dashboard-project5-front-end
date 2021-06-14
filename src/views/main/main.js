@@ -9,13 +9,11 @@ import { getCards } from '../../redux/selectors';
 import { getCurrentFullDate, getCurrentTime } from '../../helper';
 import s from './main.module.css';
 import api from '../../services/api';
-
 export default function MainPage() {
   const token = useSelector(getToken);
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
   const [newCard, setNewCard] = useState(null);
-
   const addCard = () => {
     const templateData = {
       _id: Math.random(),
@@ -36,7 +34,6 @@ export default function MainPage() {
       api.token.set(token);
     }
   }, [token]);
-
   return (
     <>
       <Header />
@@ -52,7 +49,6 @@ export default function MainPage() {
     </>
   );
 }
-
 const sortCards = cards =>
   cards.reduce(
     (acc, el) => {
@@ -60,10 +56,8 @@ const sortCards = cards =>
         acc.done.push(el);
         return acc;
       }
-
       const today = getCurrentFullDate();
       el.date === today ? acc.today.push(el) : acc.tomorrow.push(el);
-
       return acc;
     },
     { done: [], today: [], tomorrow: [] },
