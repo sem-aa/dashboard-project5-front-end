@@ -113,14 +113,10 @@ const AuthForm = () => {
             onChange={changeEmailValue}
             placeholder="Email"
           />
-          {/* <p style={{ color: 'black' }}>{emailError}</p> */}
+
           {/* =================ALRT======================== */}
-          {emailError && (
-            <CSSTransition in={isError} classNames={st} unmountOnExit timeout={250}>
-              <p className={st.alert}> {emailError}</p>
-            </CSSTransition>
-          )}
-          {/* --------------------------------------------- */}
+          {emailError && <Alert text={emailError} errorStatus={isError} />}
+          {/* ============================================== */}
         </div>
         <div className={s.landingBox}>
           <label htmlFor="AuthorizationForm__password">
@@ -135,14 +131,10 @@ const AuthForm = () => {
             onChange={changePasswordValue}
             placeholder="Пароль"
           />
-          {/* <p style={{ color: 'black' }}>{passwordError}</p> */}
+
           {/* =================ALRT======================== */}
-          {passwordError && (
-            <CSSTransition in={isError} classNames={st} unmountOnExit timeout={250}>
-              <p className={st.alert}> {passwordError}</p>
-            </CSSTransition>
-          )}
-          {/* --------------------------------------------- */}
+          {passwordError && <Alert text={passwordError} errorStatus={isError} />}
+          {/* ============================================== */}
         </div>
         <div className={s.btnGo}>
           <ButtonGo type="submit" />
