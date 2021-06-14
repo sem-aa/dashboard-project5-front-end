@@ -13,12 +13,20 @@ const App = () => {
 
   return (
     <>
-      <Suspense
-        fallback={<Loader type="TailSpin" color="var(--accent-color)" height={80} width={80} />}
-      >
+      <Suspense fallback={<Loader color='var(--bg-header)' />}>
         <Switch>
-          <PublicRoute path="/" exact restricted redirectTo="/main" component={LandingPage} />
-          <PrivateRoute path="/main" redirectTo="/" component={MainPage} />
+          <PublicRoute
+            path="/"
+            exact
+            restricted
+            redirectTo="/main"
+            component={LandingPage}
+          />
+          <PrivateRoute
+            path="/main"
+            redirectTo="/"
+            component={MainPage}
+          />
         </Switch>
       </Suspense>
     </>
