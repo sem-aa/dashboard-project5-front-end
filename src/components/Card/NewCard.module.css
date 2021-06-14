@@ -248,6 +248,10 @@
   cursor: pointer;
 }
 
+.buttonClose.complete {
+  border-right: none;
+}
+
 .buttonClear {
   fill: var(--hard-color);
   height: 14px;
