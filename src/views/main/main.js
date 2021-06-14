@@ -28,6 +28,7 @@ export default function MainPage() {
     };
 
     setNewCard(templateData);
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -40,7 +41,7 @@ export default function MainPage() {
   return (
     <>
       <Header />
-      <main className={s.main}>
+      <div className={s.main}>
         <Container>
           <Section title={'today'} data={cardsSorted.today} newCard={newCard} />
           <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
@@ -48,7 +49,7 @@ export default function MainPage() {
 
           <ButtonAdd className={s.btn} handleClick={addCard} />
         </Container>
-      </main>
+      </div>
     </>
   );
 }
