@@ -31,7 +31,7 @@ const error = createReducer(null, {
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
   [cardActions.createCardError]: (_, { payload }) => payload,
 
-  [completeCard]: (_, { payload }) => payload,
+  [cardActions.completeCardError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
