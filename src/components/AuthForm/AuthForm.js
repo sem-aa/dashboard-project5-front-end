@@ -7,6 +7,7 @@ import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
 import s from './AuthForm.module.css';
 
 // =================ALRT========================
+import Verification from './Verification';
 import Alert from './Alert';
 import { CSSTransition } from 'react-transition-group';
 import st from './Alert/Alert.module.css';
@@ -24,7 +25,7 @@ const AuthForm = () => {
   const [isError, setIsError] = useState(false);
   const getAlert = () => {
     setIsError(true);
-    setTimeout(() => setIsError(false), 3000);
+    setTimeout(() => setIsError(false), 1000);
   };
   const showAlert = (setstate, message) => {
     setstate(message);
@@ -149,6 +150,8 @@ const AuthForm = () => {
           </CSSTransition>
         )}
       </form>
+
+      {/* <Verification verifyData={{ email, password }} /> */}
     </>
   );
 };
