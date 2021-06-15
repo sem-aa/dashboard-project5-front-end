@@ -14,13 +14,14 @@ export default function EditCard({ data, setEdit, type, setType, style }) {
   const [isDeleteModalShown, setDeleteModal] = useState(false);
   const [complete, setCompleted] = useState(false);
   const inputTitle = useRef();
-  const handleSubmit = (e, localData) => {
+  const handleSubmit = (e, { title, difficulty, category, date, time, type, _id }) => {
     e.preventDefault();
     try {
-      const body = { ...data, ...localData };
+      const body = { title, difficulty, category, date, time, type, _id };
       const id = body._id;
       delete body._id;
-      delete body.status;
+      delete body.id;
+
       if (body.title === '') return inputTitle.current.classList.add(s.titleError);
       dispatch(editCard(id, body));
       setEdit(false);
