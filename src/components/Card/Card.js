@@ -1,8 +1,8 @@
 import sprite from '../../icon/sprite.svg';
 import s from './NewCard.module.css';
-import { colorDifficult, colorCategory } from '../../helper/helper';
+import { colorDifficult, colorCategory, getDayName, getMonth } from '../../helper/helper';
 
-export default function Card({ data, type }) {
+export default function Card({ data, type, isDoneSection }) {
   return (
     <div className={type === 'Challenge' ? `${s.container} ${s.challenge}` : s.container}>
       <form className={s.formCard}>
@@ -33,7 +33,9 @@ export default function Card({ data, type }) {
             {data.title}
           </h2>
           <p className={s.date}>
-            {type === 'Challenge' ? `by ${data.date} ${data.time}` : `${data.date} ${data.time}`}
+            {isDoneSection
+              ? getMonth(data.date, type) + ', ' + data.time
+              : getDayName(data.date, type) + ', ' + data.time}
           </p>
         </div>
         <div className={s.foot}>

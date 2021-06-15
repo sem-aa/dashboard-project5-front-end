@@ -1,5 +1,4 @@
-import { COLOR } from './constants'
-
+import { COLOR } from './constants';
 
 export const colorDifficult = diff => {
   let color = '';
@@ -46,11 +45,22 @@ export const colorCategory = category => {
   return color;
 };
 
-export const date = dateValue => {
-  return dateValue.getFullYear() + '-' + (dateValue.getMonth() + 1) + '-' + dateValue.getDate();
+export const getDateFormat = dateValue => {
+  return (
+    dateValue.getFullYear() +
+    '-' +
+    (dateValue.getMonth() + 1 < 10 ? '0' + (dateValue.getMonth() + 1) : dateValue.getMonth() + 1) +
+    '-' +
+    (dateValue.getDate() < 10 ? '0' + dateValue.getDate() : dateValue.getDate())
+  );
 };
-export const time = dateValue => {
-  return dateValue.getHours() + ':' + dateValue.getMinutes();
+
+export const getTimeFormat = dateValue => {
+  return (
+    (dateValue.getHours() < 10 ? '0' + dateValue.getHours() : dateValue.getHours()) +
+    ':' +
+    (dateValue.getMinutes() === 30 ? '30' : '00')
+  );
 };
 
 // Time
@@ -71,4 +81,28 @@ export const getCurrentFullDate = time => {
     '-' +
     (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
   );
+};
+
+const today = new Date();
+const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+const todayDate = getDateFormat(today);
+const tomorrowDate = getDateFormat(tomorrow);
+
+export const getMonth = function (date, type) {
+  const dateFormat = new Date(date.split('-').join(','));
+  const dateValue = dateFormat.toLocaleString('en-us', {
+    month: 'long',
+    day: 'numeric',
+  });
+  return type === 'Challenge' ? `by ${dateValue}` : dateValue;
+};
+
+export const getDayName = function (date, type) {
+  if (date === todayDate) {
+    return type === 'Challenge' ? `by Today` : `Today`;
+  } else if (date === tomorrowDate) {
+    return type === 'Challenge' ? `by Tomorrow` : `Tomorrow`;
+  } else {
+    return getMonth(date, type);
+  }
 };
