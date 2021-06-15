@@ -4,7 +4,7 @@ export default async function handleError(err, dispatch, fn, data = {}) {
   try {
     if (err.response?.status === 401) {
       await dispatch(operations.refreshToken());
-      await dispatch(fn(...Object.values(data)));
+      fn && dispatch(fn(...Object.values(data)));
     }
   } catch (error) {
     return err;
