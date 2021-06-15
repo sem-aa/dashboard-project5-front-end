@@ -1,4 +1,3 @@
-// import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 import actions from '../actions/cardActions';
 import handleError from './handleError';
@@ -45,7 +44,7 @@ export const editCard = (id, data) => dispatch => {
 };
 
 export const completeCard = id => dispatch => {
-  dispatch(actions.completeCardRequest(id));
+  dispatch(actions.completeCardRequest());
   api
     .completeCard(id)
     .then(({ data }) => {
@@ -54,6 +53,7 @@ export const completeCard = id => dispatch => {
     .catch(error => {
       console.log('error:', error);
       dispatch(actions.completeCardError(error.message));
+      handleError(error, dispatch);
     });
 };
 
