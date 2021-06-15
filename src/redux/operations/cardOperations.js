@@ -12,8 +12,9 @@ export const createCard = data => dispatch => {
       dispatch(actions.createCardSuccess(data));
     })
     .catch(error => {
-      dispatch(actions.createCardError(error.response.message));
-      handleError(error, dispatch);
+      dispatch(actions.createCardError(error.response?.message));
+
+      handleError(error, dispatch, createCard, { data });
     });
 };
 
@@ -24,7 +25,8 @@ export const deleteCard = id => dispatch => {
     .then(() => dispatch(actions.deleteCardSuccess(id)))
     .catch(error => {
       dispatch(actions.deleteCardError(error));
-      handleError(error, dispatch);
+
+      handleError(error, dispatch, deleteCard, { id });
     });
 };
 
@@ -36,8 +38,9 @@ export const editCard = (id, data) => dispatch => {
       dispatch(actions.editCardSuccess(data.editedCard));
     })
     .catch(error => {
-      dispatch(actions.editCardError(error.response.message));
-      handleError(error, dispatch);
+      dispatch(actions.editCardError(error.response?.message));
+
+      handleError(error, dispatch, editCard, { id, data });
     });
 };
 

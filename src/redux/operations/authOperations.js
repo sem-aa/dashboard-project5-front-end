@@ -12,8 +12,7 @@ const handleLogIn = credentials => async dispatch => {
       dispatch(authActions.logInSuccess(data));
     })
     .catch(error => {
-      dispatch(authActions.logInError());
-      dispatch(authActions.logInError(error.response.message));
+      dispatch(authActions.logInError(error.response?.message));
     });
 };
 
@@ -26,7 +25,7 @@ const handleSignUp = credentials => dispatch => {
       handleLogIn(credentials)(dispatch);
     })
     .catch(error => {
-      dispatch(authActions.signUpError(error.response.message));
+      dispatch(authActions.signUpError(error.response?.message));
     });
 };
 
@@ -39,8 +38,8 @@ const handleLogOut = () => dispatch => {
       dispatch(authActions.logOutSuccess());
     })
     .catch(error => {
-      dispatch(authActions.logOutError(error.response.message));
-      handleError(error, dispatch);
+      dispatch(authActions.logOutError(error.response?.message));
+      handleError(error, dispatch, handleLogOut);
     });
 };
 
@@ -58,7 +57,9 @@ const getCurrentUser = () => (dispatch, getState) => {
         dispatch(authActions.getCurrentUserSuccess(data));
       })
       .catch(error => {
-        dispatch(authActions.getCurrentUserError());
+        dispatch(authActions.getCurrentUserError(error.response?.message));
+
+        handleError(error, dispatch, getCurrentUser);
       });
   }
 };
@@ -71,12 +72,15 @@ const refreshToken = () => (dispatch, getState) => {
   if (refreshToken) {
     dispatch(authActions.refreshTokenRequest());
 
-    api
-      .refreshToken(sid)
-      .then(data => {
-        dispatch(authActions.refreshTokenSuccess(data));
+    api.token.set(refreshToken);
+
+    return api
+      .refreshToken({ sid })
+      .then(({ data }) => {
+        api.token.set(data.newAccessToken);
+        dispatch(authActions.refreshTokenSuccess({ ...data }));
       })
-      .catch(error => dispatch(authActions.refreshTokenError(error.response.message)));
+      .catch(error => dispatch(authActions.refreshTokenError(error.response?.message)));
   }
 };
 
