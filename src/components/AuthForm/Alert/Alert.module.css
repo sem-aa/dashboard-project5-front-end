@@ -1,12 +1,13 @@
 .alert{
   position: absolute;
-  top: 10%;
-  right: 50%;
+  top: 50%;
+  left:50%;
   width: 370px;
   height: 100px;
-  background-color: red;
-  border-radius: 4px;
-  color: yellow;
+  background-color:var(--accent-color);
+  border-radius: 10px;
+  color:yellow;
+  color: var(--primary-text-color);
   font-size: 22px;
   padding-left: 0px;
   font-weight: 400;
@@ -15,6 +16,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  z-index: 200;
 }
 
 .enter{
