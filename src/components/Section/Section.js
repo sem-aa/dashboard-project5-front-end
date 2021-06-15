@@ -29,7 +29,7 @@ export default function Section({ title, data, newCard, deleteNewCard }) {
           <>
             {newCard && <NewCard data={newCard} isCreateCard deleteNewCard={deleteNewCard} />}
             {data.map(el => (
-              <NewCard data={el} key={el._id} />
+              <NewCard data={el} key={el._id} isDoneSection={isDoneSection} />
             ))}
           </>
         )}

@@ -22,8 +22,8 @@ export default function MainPage() {
       difficulty: 'Easy',
       category: 'Stuff',
       type: 'Task',
-      date: getCurrentFullDate(),
-      time: getCurrentTime(),
+      // date: getCurrentFullDate(),
+      // time: getCurrentTime(),
     };
 
     setNewCard(templateData);

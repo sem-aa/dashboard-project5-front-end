@@ -6,7 +6,7 @@ const CardRender = lazy(() => import('./Card'));
 const EditCard = lazy(() => import('./EditCard/EditCard'));
 const CreateCard = lazy(() => import('../Card/CreateCard'));
 
-export default function Card({ data, isCreateCard, deleteNewCard }) {
+export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection }) {
   const [isEdit, setEdit] = useState(false);
   const [type, setType] = useState(data.type);
   const [height, setHeight] = useState(document.body.clientHeight + 'px');
@@ -45,7 +45,7 @@ export default function Card({ data, isCreateCard, deleteNewCard }) {
               setType={setType}
             />
           ) : (
-            <CardRender data={data} type={type} />
+            <CardRender data={data} type={type} isDoneSection={isDoneSection} />
           )}
         </div>
       </Suspense>

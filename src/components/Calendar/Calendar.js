@@ -3,16 +3,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
 import sprite from '../../icon/sprite.svg';
-import setHours from 'date-fns/setHours';
-import setMinutes from 'date-fns/setMinutes';
 import s from './Calendar.module.css';
+import { getDateFormat, getDayName } from '../../helper';
 
-const Calendar = ({ getDate, type }) => {
-  const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 1));
+const Calendar = ({ getDate, type, date, time }) => {
+  const [startDate, setStartDate] = useState(date ? new Date(`${date}T${time}:00`) : new Date());
   const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <div className={s.dateContainer}>
       <div className={type === 'Challenge' ? `${s.dateValue} ${s.challenge}` : `${s.dateValue}`}>
-        {day + ', ' + value}
+        {dayName + ', ' + value}
       </div>
       <button type="button" onClick={onClick} ref={ref}>
         <svg className={s.icon}>
@@ -26,28 +25,8 @@ const Calendar = ({ getDate, type }) => {
     getDate(startDate);
   }, [startDate, getDate]);
 
-  const today = new Date();
-  const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-  const todayDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
-  const tomorrowDate =
-    tomorrow.getFullYear() + '/' + (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate();
-  const chosenDate =
-    startDate.getFullYear() + '/' + (startDate.getMonth() + 1) + '/' + startDate.getDate();
-
-  const getDay = function () {
-    if (chosenDate === todayDate) {
-      return type === 'Challenge' ? `by Today` : `Today`;
-    } else if (chosenDate === tomorrowDate) {
-      return type === 'Challenge' ? `by Tomorrow` : `Tomorrow`;
-    } else {
-      const date = startDate.toLocaleString('en-us', {
-        month: 'long',
-        day: 'numeric',
-      });
-      return date;
-    }
-  };
-  const day = getDay();
+  const chosenDate = getDateFormat(startDate);
+  const dayName = getDayName(chosenDate, type);
 
   return (
     <div>
