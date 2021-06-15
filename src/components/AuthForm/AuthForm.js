@@ -20,6 +20,8 @@ const AuthForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const [message, setMessage] = useState([])
+
   // =================ALRT========================
   const [isError, setIsError] = useState(false);
   const getAlert = () => {
@@ -154,3 +156,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
