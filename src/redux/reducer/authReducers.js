@@ -5,18 +5,21 @@ import user from './userReducer';
 
 const token = createReducer(null, {
   [authActions.logInSuccess]: (_, { payload }) => payload.accessToken,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newAccessToken,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newAccessToken,
   [authActions.logOutSuccess]: () => null,
 });
 
 const refreshToken = createReducer(null, {
-  [authActions.logInSuccess]: (_, { payload }) => payload.accessToken,
+  [authActions.logInSuccess]: (_, { payload }) => payload.refreshToken,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newRefreshToken,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newRefreshToken,
   [authActions.logOutSuccess]: () => null,
 });
 
 const sid = createReducer(null, {
   [authActions.logInSuccess]: (_, { payload }) => payload.sid,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newSid,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newSid,
   [authActions.logOutSuccess]: () => null,
 });

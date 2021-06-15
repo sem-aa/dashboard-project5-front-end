@@ -2,8 +2,9 @@ import api from '../../services/api';
 import authActions from '../actions/authActions';
 import handleError from './handleError';
 
-const handleLogIn = credentials => dispatch => {
+const handleLogIn = credentials => async dispatch => {
   dispatch(authActions.logInRequest());
+
   api
     .logIn(credentials)
     .then(({ data }) => {
@@ -11,8 +12,8 @@ const handleLogIn = credentials => dispatch => {
       dispatch(authActions.logInSuccess(data));
     })
     .catch(error => {
+      dispatch(authActions.logInError());
       dispatch(authActions.logInError(error.response.message));
-      handleError(error, dispatch);
     });
 };
 
@@ -26,7 +27,6 @@ const handleSignUp = credentials => dispatch => {
     })
     .catch(error => {
       dispatch(authActions.signUpError(error.response.message));
-      handleError(error, dispatch);
     });
 };
 
@@ -46,19 +46,19 @@ const handleLogOut = () => dispatch => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   const {
-    auth: { token },
+    auth: { refreshToken, sid },
   } = getState();
-  if (token) {
-    api.token.set(token);
+  if (refreshToken && sid) {
+    api.token.set(refreshToken);
     dispatch(authActions.getCurrentUserRequest());
     api
-      .refreshToken()
+      .refreshToken(sid)
       .then(({ data }) => {
+        console.log(data);
         dispatch(authActions.getCurrentUserSuccess(data));
       })
       .catch(error => {
-        dispatch(authActions.getCurrentUserError(error.response.message));
-        handleError(error, dispatch);
+        dispatch(authActions.getCurrentUserError());
       });
   }
 };
@@ -72,9 +72,9 @@ const refreshToken = () => (dispatch, getState) => {
     dispatch(authActions.refreshTokenRequest());
 
     api
-      .refreshToken({ sid })
+      .refreshToken(sid)
       .then(data => {
-        dispatch(authActions.refreshTokenSuccess({ ...data }));
+        dispatch(authActions.refreshTokenSuccess(data));
       })
       .catch(error => dispatch(authActions.refreshTokenError(error.response.message)));
   }
