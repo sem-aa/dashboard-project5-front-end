@@ -8,11 +8,13 @@ const cards = createReducer([], {
   [cardActions.createCardSuccess]: (state, { payload }) => [payload.createdCard, ...state],
   [cardActions.deleteCardSuccess]: (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload),
-  [completeCard.fulfilled]: (state, { payload }) => [
-    payload,
-    ...state.filter(card => card._id !== payload._id),
-  ],
-
+  [completeCard.fulfilled]: (state, { payload }) => {
+    console.log(payload);
+    if (state.length > 1) {
+      return [payload, ...state.filter(card => card._id !== payload._id)];
+    }
+    return [payload];
+  },
   [cardActions.editCardSuccess]: (state, { payload }) =>
     state.map(el => (el._id === payload._id ? payload : el)),
 });
