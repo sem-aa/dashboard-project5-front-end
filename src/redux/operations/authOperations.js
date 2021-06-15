@@ -66,10 +66,12 @@ const refreshToken = () => (dispatch, getState) => {
   const {
     auth: { refreshToken, sid },
   } = getState();
-  console.log(dispatch);
+
   if (refreshToken) {
     dispatch(authActions.refreshTokenRequest());
+
     api.token.set(refreshToken);
+
     return api
       .refreshToken({ sid })
       .then(({ data }) => {
