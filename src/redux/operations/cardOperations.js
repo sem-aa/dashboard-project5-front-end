@@ -2,6 +2,7 @@
 import api from '../../services/api';
 import actions from '../actions/cardActions';
 import handleError from './handleError';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const createCard = data => dispatch => {
   dispatch(actions.createCardRequest());
@@ -40,17 +41,16 @@ export const editCard = (id, data) => dispatch => {
     });
 };
 
-// !! This code do not work !!
 export const completeCard = id => dispatch => {
   dispatch(actions.completeCardRequest(id));
   api
     .completeCard(id)
     .then(({ data }) => {
-      dispatch(actions.completeCardSuccess(data.completedCard));
+      dispatch(actions.completeCardSuccess(data.editedCard));
     })
     .catch(error => {
-      console.log(error.response.message);
-      handleError(error, dispatch);
+      console.log('error:', error);
+      dispatch(actions.completeCardError(error.message));
     });
 };
 
@@ -59,7 +59,9 @@ export const completeCard = id => dispatch => {
 //   async (id, { rejectWithValue }) => {
 //     try {
 //       const { data } = await api.completeCard(id);
-//       return data.completedCard;
+//       console.log('response:', data.editedCard);
+
+//       return data.editedCard;
 //     } catch (error) {
 //       return rejectWithValue(error.response.message);
 //     }

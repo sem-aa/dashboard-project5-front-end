@@ -30,7 +30,7 @@
   margin-left: 10px;
 
   transition: transform var(--animation) var(--cubic);
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
 }
 
 .icon {
