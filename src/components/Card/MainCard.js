@@ -1,10 +1,9 @@
-import React, { useState, Suspense, lazy, useEffect } from 'react';
-import s from './NewCard.module.css';
+import React, { useState, Suspense, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-
-const CardRender = lazy(() => import('./Card'));
-const EditCard = lazy(() => import('./EditCard/EditCard'));
-const CreateCard = lazy(() => import('../Card/CreateCard'));
+import CardRender from './Card';
+import EditCard from './EditCard/EditCard';
+import CreateCard from '../Card/CreateCard';
+import s from './NewCard.module.css';
 
 export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection }) {
   const [isEdit, setEdit] = useState(false);
@@ -26,7 +25,7 @@ export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection 
 
   useEffect(() => {
     setHeight(document.body.clientHeight + 'px');
-  });
+  }, [setHeight]);
 
   return isCreateCard ? (
     <CreateCard data={data} type={type} deleteNewCard={deleteNewCard} setType={setType} />

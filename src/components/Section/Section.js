@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import cn from 'classnames';
-import s from './section.module.css';
-import sprite from '../../icon/sprite.svg';
 import NewCard from '../Card/MainCard';
+import sprite from '../../icon/sprite.svg';
+import s from './section.module.css';
 
 export default function Section({ title, data, newCard, deleteNewCard }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
