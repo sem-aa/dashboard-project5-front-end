@@ -6,24 +6,22 @@ import ButtonAdd from '../../components/Buttons/ButtonAdd';
 import Section from '../../components/Section';
 import { getToken } from '../../redux/selectors';
 import { getCards } from '../../redux/selectors';
-import { getCurrentFullDate, getCurrentTime } from '../../helper';
-import s from './main.module.css';
+import { getCurrentFullDate } from '../../helper';
 import api from '../../services/api';
+import s from './main.module.css';
+
 export default function MainPage() {
   const token = useSelector(getToken);
   const cards = useSelector(getCards);
   const cardsSorted = sortCards(cards);
   const [newCard, setNewCard] = useState(null);
+
   const addCard = () => {
     const templateData = {
-      // ??? id створюється в БД
-      _id: Math.random(),
       title: '',
       difficulty: 'Easy',
       category: 'Stuff',
       type: 'Task',
-      // date: getCurrentFullDate(),
-      // time: getCurrentTime(),
     };
 
     setNewCard(templateData);
@@ -31,15 +29,14 @@ export default function MainPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const deleteNewCard = () => {
-    setNewCard(null);
-  };
+  const deleteNewCard = () => setNewCard(null);
 
   useEffect(() => {
     if (token) {
       api.token.set(token);
     }
   }, [token]);
+
   return (
     <>
       <Header />
