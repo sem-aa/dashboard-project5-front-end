@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getError } from '../../redux/selectors';
@@ -12,7 +11,6 @@ import Alert from './Alert';
 import { CSSTransition } from 'react-transition-group';
 import st from './Alert/Alert.module.css';
 // ---------------------------------------------
-
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -79,7 +77,8 @@ const AuthForm = () => {
 
   const validateEmail = email => {
     // eslint-disable-next-line
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -123,7 +122,6 @@ const AuthForm = () => {
         </div>
 
         <div className={s.landingBox}>
-
           <label htmlFor="AuthorizationForm__password">
             {passwordError && <span style={{ color: 'red' }}>*</span>}
           </label>
@@ -143,7 +141,7 @@ const AuthForm = () => {
         </div>
         <div className={s.btnGo}>
           <ButtonGo type="submit" />
-          <ButtonSign type="button" onClick={onRegistration} />
+          <ButtonSign type="button" handleSignUp={onRegistration} />
         </div>
         {error && (
           <CSSTransition in={isError} classNames={st} unmountOnExit timeout={250}>

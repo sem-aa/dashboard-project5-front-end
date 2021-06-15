@@ -7,13 +7,6 @@ import { completeCard } from '../operations/cardOperations';
 const email = createReducer('', {
   [authActions.logInSuccess]: (_, { payload }) => payload.userData.email,
   [authActions.logOutSuccess]: () => '',
-  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.email,
-});
-
-const id = createReducer('', {
-  [authActions.logInSuccess]: (_, { payload }) => payload.userData.id,
-  [authActions.logOutSuccess]: () => '',
-  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.id,
 });
 
 const loadingCards = createReducer(false, {
@@ -43,7 +36,6 @@ const error = createReducer(null, {
 
 export default combineReducers({
   email,
-  id,
   loadingCards,
   error,
 });

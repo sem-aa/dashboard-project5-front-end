@@ -16,6 +16,7 @@ export default function MainPage() {
   const [newCard, setNewCard] = useState(null);
   const addCard = () => {
     const templateData = {
+      // ??? id створюється в БД
       _id: Math.random(),
       title: '',
       difficulty: 'Easy',
