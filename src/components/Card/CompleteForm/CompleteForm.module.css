@@ -30,6 +30,7 @@
   overflow: hidden; /* Обрезаем содержимое */
   padding: 5px; /* Поля */
   text-overflow: ellipsis; /* Многоточие */
+  cursor: pointer;
 }
 
 .award {
