@@ -41,19 +41,22 @@ export default function MainPage() {
     <>
       <Header />
 
-      <main className={s.main}>
-        <Container>
-          <Section
-            title={'today'}
-            data={cardsSorted.today}
-            newCard={newCard}
-            deleteNewCard={deleteNewCard}
-          />
-          <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
-          <Section title={'done'} data={cardsSorted.done} />
+      <main >
+        <div className={s.main}>
+          <Container>
+            <Section
+              title={'today'}
+              data={cardsSorted.today}
+              newCard={newCard}
+              deleteNewCard={deleteNewCard}
+            />
+            <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
+            <Section title={'done'} data={cardsSorted.done} />
 
-          <ButtonAdd className={s.btn} handleClick={addCard} />
-        </Container>
+            <ButtonAdd className={s.btn} handleClick={addCard} />
+          </Container>
+        </div>
+
       </main>
     </>
   );

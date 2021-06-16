@@ -3,18 +3,18 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
 import sprite from '../../icon/sprite.svg';
-import s from './Calendar.module.css';
+import style from './Calendar.module.css';
 import { getDateFormat, getDayName } from '../../helper';
 
 const Calendar = ({ getDate, type, date, time }) => {
   const [startDate, setStartDate] = useState(date ? new Date(`${date}T${time}:00`) : new Date());
   const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
-    <div className={s.dateContainer}>
-      <div className={type === 'Challenge' ? `${s.dateValue} ${s.challenge}` : `${s.dateValue}`}>
+    <div className={style.dateContainer}>
+      <div className={type === 'Challenge' ? `${style.dateValue} ${style.challenge}` : `${style.dateValue}`}>
         {dayName + ', ' + value}
       </div>
       <button type="button" onClick={onClick} ref={ref}>
-        <svg className={s.icon}>
+        <svg className={style.icon}>
           <use href={sprite + '#icon-calendar'}></use>
         </svg>
       </button>

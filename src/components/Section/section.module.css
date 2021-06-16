@@ -1,19 +1,19 @@
 .section {
-  margin-top: 25px;
+  padding-top: 25px;
 }
 
 .section:first-child {
-  margin-top: 0;
+  padding-top: 0;
 }
 
 .doneSection {
-  margin-top: 50px;
+  padding-top: 50px;
   padding-bottom: 82px;
 }
 
 .head {
   display: flex;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .title {
@@ -62,10 +62,10 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-top: -20px;
+    padding-top: -20px;
   }
   .collection > * {
-    margin-top: 20px;
+    padding-top: 20px;
   }
 }
 @media screen and (min-width: 638px) {

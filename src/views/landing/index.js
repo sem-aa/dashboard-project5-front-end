@@ -1,12 +1,12 @@
 import React from 'react';
-import s from './landing.module.css';
+import style from './landing.module.css';
 import Form from '../../components/AuthForm/AuthForm';
 import LandingText from '../../components/LandingText/LandingText';
 
 const landing = () => (
 
   <>
-    <div className={s.landing}>
+    <div className={style.landing}>
       <LandingText />
       <Form />
     </div>

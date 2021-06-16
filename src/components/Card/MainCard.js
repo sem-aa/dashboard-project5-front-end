@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner';
 import CardRender from './Card';
 import EditCard from './EditCard/EditCard';
 import CreateCard from '../Card/CreateCard';
-import s from './NewCard.module.css';
+import style from './NewCard.module.css';
 
 export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection }) {
   const [isEdit, setEdit] = useState(false);
@@ -32,9 +32,9 @@ export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection 
   ) : (
     <>
       <Suspense
-        fallback={<Loader type="TailSpin" color="var(--accent-color)" className={s.loader} />}
+        fallback={<Loader type="TailSpin" color="var(--accent-color)" className={style.loader} />}
       >
-        <div onClick={() => setEdit(true)} className={s.container}>
+        <div onClick={() => setEdit(true)} className={style.container}>
           {isEdit ? (
             <EditCard
               data={data}

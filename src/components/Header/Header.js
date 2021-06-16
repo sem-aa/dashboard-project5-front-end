@@ -2,13 +2,13 @@ import Container from '../Container/Container';
 import Logo from './Logo';
 import UserEmail from './UserEmail';
 import LogoutBtn from './LogoutBtn';
-import s from './Header.module.css';
+import style from './Header.module.css';
 
 const Header = () => {
   return (
-    <header className={s.header}>
+    <header className={style.header}>
       <Container>
-        <div className={s.wrapper}>
+        <div className={style.wrapper}>
           <Logo />
           <UserEmail />
           <LogoutBtn />

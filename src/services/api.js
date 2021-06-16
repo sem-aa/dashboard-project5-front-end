@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://dashboard-project-back-end.herokuapp.com';
-// axios.defaults.baseURL = 'http://localhost:3001';
+
 
 const token = {
   set(token) {
