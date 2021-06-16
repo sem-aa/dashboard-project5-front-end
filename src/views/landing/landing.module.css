@@ -1,6 +1,5 @@
 @media screen and (min-width: 320px) {
   .landing {
-    height: 648px;
     color: var(--white-color);
     background: url('./Images/pic2mobile.png') bottom center no-repeat,
       url('./Images/pic1mobile.png') bottom center no-repeat;
@@ -9,7 +8,6 @@
 
 @media screen and (min-width: 768px) {
   .landing {
-    height: 1024px;
     background: url('./Images/pic1tablet.png') right top no-repeat,
       url('./Images/pic2tablet.png') bottom right no-repeat;
   }
@@ -17,12 +15,12 @@
 
 @media screen and (min-width: 1280px) {
   .landing {
-    height: 100vh;
     background: url('./Images/pic1.png') right top no-repeat,
       url('./Images/pic2desc.png') bottom right no-repeat;
   }
 }
 
 .landing {
+  height: 100vh;
   background-color: #fff;
 }
