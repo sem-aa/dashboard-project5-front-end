@@ -58,8 +58,10 @@ export default function MainPage() {
     </>
   );
 }
-const sortCards = cards =>
-  cards.reduce(
+const sortCards = cards => {
+  const sortByTime = array => array.sort((a, b) => (a.time > b.time ? 1 : -1));
+
+  return cards.reduce(
     (acc, el) => {
       if (el.status === 'Complete') {
         acc.done.push(el);
@@ -67,7 +69,11 @@ const sortCards = cards =>
       }
       const today = getCurrentFullDate();
       el.date === today ? acc.today.push(el) : acc.tomorrow.push(el);
+      sortByTime(acc.today);
+      sortByTime(acc.tomorrow);
+
       return acc;
     },
     { done: [], today: [], tomorrow: [] },
   );
+};
