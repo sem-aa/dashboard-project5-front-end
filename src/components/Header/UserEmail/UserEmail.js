@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import { getUserEmail } from '../../../redux/selectors';
-import s from './UserEmail.module.css';
+import style from './UserEmail.module.css';
 
 const UserEmail = () => {
   const email = useSelector(getUserEmail);
   const firstLeterEmail = email[0].toUpperCase();
   return (
-    <div className={s.user}>
-      <div className={s.user__logo}>{firstLeterEmail}</div>
-      <div className={s.user__email}>{email} Quest Log</div>
+    <div className={style.user}>
+      <div className={style.user__logo}>{firstLeterEmail}</div>
+      <div className={style.user__email}>{email} Quest Log</div>
     </div>
   );
 };

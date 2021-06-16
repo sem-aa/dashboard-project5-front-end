@@ -57,16 +57,4 @@ export const completeCard = id => dispatch => {
     });
 };
 
-// export const completeCard = createAsyncThunk(
-//   actions.completeCard,
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const { data } = await api.completeCard(id);
-//       console.log('response:', data.editedCard);
 
-//       return data.editedCard;
-//     } catch (error) {
-//       return rejectWithValue(error.response.message);
-//     }
-//   },
-// );

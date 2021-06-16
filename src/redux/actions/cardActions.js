@@ -31,5 +31,5 @@ export default {
   completeCardSuccess,
   completeCardRequest,
   completeCardError,
-  // completeCard,
+
 };

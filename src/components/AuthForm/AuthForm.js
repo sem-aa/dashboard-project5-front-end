@@ -4,33 +4,17 @@ import { getError } from '../../redux/selectors';
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
-import s from './AuthForm.module.css';
+import style from './AuthForm.module.css';
+import { useAlert } from 'react-alert';
 
-// =================ALRT========================
-import Verification from './Verification';
-import Alert from './Alert';
-import { CSSTransition } from 'react-transition-group';
-import st from './Alert/Alert.module.css';
-// ---------------------------------------------
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
-  // =================ALRT========================
-  const [isError, setIsError] = useState(false);
-  const getAlert = () => {
-    setIsError(true);
-    setTimeout(() => setIsError(false), 1000);
-  };
-  const showAlert = (setstate, message) => {
-    setstate(message);
-    getAlert();
-  };
+  const alert = useAlert()
 
-  // ---------------------------------------------
+
   const error = useSelector(getError);
   const dispatch = useDispatch();
 
@@ -40,16 +24,14 @@ const AuthForm = () => {
   const onSubmit = event => {
     event.preventDefault();
 
-    !validateEmail(email)
-      ? showAlert(setEmailError, 'Некорректно введен e-mail.')
-      : setEmailError('');
+    if (!email || !password) {
+      alert.show('email и пароль - обязательные поля')
+      return
+    }
 
-    !validatePassword(password)
-      ? showAlert(setPasswordError, 'Пароль должен быть от 4 до 16 символов.')
-      : setPasswordError('');
+    if (!validateEmail(email)) { alert.show('Некорректно введен e-mail.') }
+    if (!validatePassword(password)) { alert.show('Пароль должен содержать от 4 до 16 символов.') }
 
-    !email && showAlert(setEmailError, 'email - обязательное поле');
-    !password && showAlert(setPasswordError, 'пароль - обязательное поле');
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogIn({ email, password }));
@@ -58,15 +40,14 @@ const AuthForm = () => {
   };
 
   const onRegistration = () => {
-    !validateEmail(email)
-      ? showAlert(setEmailError, 'Некорректно введен e-mail.')
-      : setEmailError('');
 
-    !validatePassword(password)
-      ? showAlert(setPasswordError, 'Пароль должен быть от 4 до 16 символов.')
-      : setPasswordError('');
-    !email && showAlert(setEmailError, 'email - обязательное поле');
-    !password && showAlert(setPasswordError, 'пароль - обязательное поле');
+    if (!email || !password) {
+      alert.show('email и пароль - обязательные поля')
+      return
+    }
+
+    if (!validateEmail(email)) { alert.show('Некорректно введен e-mail.') }
+    if (!validatePassword(password)) { alert.show('Пароль должен содержать от 4 до 16 символов.') }
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleSignUp({ email, password }));
@@ -76,8 +57,7 @@ const AuthForm = () => {
 
   const validateEmail = email => {
     // eslint-disable-next-line
-    const re =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -100,13 +80,12 @@ const AuthForm = () => {
 
   return (
     <>
-      <form className={s.landingForm} onSubmit={onSubmit}>
-        <div className={s.landingBox}>
+      <form className={style.landingForm} onSubmit={onSubmit}>
+        <div className={style.landingBox}>
           <label htmlFor="AuthorizationForm__email">
-            {emailError && <span style={{ color: 'red' }}>*</span>}
           </label>
           <input
-            className={s.landingInput}
+            className={style.landingInput}
             type="email"
             name="email"
             id="AuthorizationForm__email"
@@ -114,18 +93,13 @@ const AuthForm = () => {
             onChange={changeEmailValue}
             placeholder="Email"
           />
-
-          {/* =================ALRT======================== */}
-          {emailError && <Alert text={emailError} errorStatus={isError} />}
-          {/* ============================================== */}
         </div>
 
-        <div className={s.landingBox}>
+        <div className={style.landingBox}>
           <label htmlFor="AuthorizationForm__password">
-            {passwordError && <span style={{ color: 'red' }}>*</span>}
           </label>
           <input
-            className={s.landingInput}
+            className={style.landingInput}
             name="password"
             id="AuthorizationForm__password"
             value={password}
@@ -133,23 +107,15 @@ const AuthForm = () => {
             type="password"
             placeholder="Пароль"
           />
-
-          {/* =================ALRT======================== */}
-          {passwordError && <Alert text={passwordError} errorStatus={isError} />}
-          {/* ============================================== */}
         </div>
-        <div className={s.btnGo}>
+        <div className={style.btnGo}>
           <ButtonGo type="submit" />
           <ButtonSign type="button" handleSignUp={onRegistration} />
         </div>
-        {error && (
-          <CSSTransition in={isError} classNames={st} unmountOnExit timeout={250}>
-            <p style={{ color: 'black' }}>{errorMessage()}</p>
-          </CSSTransition>
-        )}
+        {error && <p style={{ color: 'black' }}>{errorMessage()}</p>
+        }
       </form>
 
-      {/* <Verification verifyData={{ email, password }} /> */}
     </>
   );
 };

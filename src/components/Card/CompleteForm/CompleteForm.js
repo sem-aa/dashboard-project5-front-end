@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from '../../../icon/sprite.svg';
-import s from './CompleteForm.module.css';
+import style from './CompleteForm.module.css';
 import { completeCard } from '../../../redux/operations/cardOperations';
 
 export default function CompleteForm({ data, setCompleted }) {
@@ -13,39 +13,39 @@ export default function CompleteForm({ data, setCompleted }) {
 
   return (
     <section
-      className={data.type === 'Challenge' ? `${s.completed} ${s.challenge}` : `${s.completed}`}
+      className={data.type === 'Challenge' ? `${style.completed} ${style.challenge}` : `${style.completed}`}
     >
-      <div className={s.completedHeader}>
+      <div className={style.completedHeader}>
         <h2
           className={
             data.type === 'Challenge'
-              ? `${s.statusCompleted} ${s.challenge}`
-              : `${s.statusCompleted}`
+              ? `${style.statusCompleted} ${style.challenge}`
+              : `${style.statusCompleted}`
           }
         >
           completed:
         </h2>
-        <p className={s.completedTitle} onClick={() => setCompleted(false)}>
+        <p className={style.completedTitle} onClick={() => setCompleted(false)}>
           {data.title}
         </p>
       </div>
-      <svg className={s.award}>
+      <svg className={style.award}>
         {data.type === 'Challenge' ? (
           <use href={sprite + '#icon-cup'}></use>
         ) : (
           <use href={sprite + '#icon-award'}></use>
         )}
       </svg>
-      <div className={s.completedFooter}>
+      <div className={style.completedFooter}>
         <button
           type="button"
-          className={s.buttonCard}
+          className={style.buttonCard}
           onClick={() => {
             continueBtnHandler(data);
           }}
         >
-          <span className={s.btnText}>Continue</span>
-          <svg className={s.arrow}>
+          <span className={style.btnText}>Continue</span>
+          <svg className={style.arrow}>
             <use href={sprite + '#icon-arrow'}></use>
           </svg>
         </button>

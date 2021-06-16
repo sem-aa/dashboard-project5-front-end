@@ -10,12 +10,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+
+
+
+const options = {
+  position: positions.MIDDLE,
+  timeout: 5000,
+  offset: '30px',
+  transition: transitions.SCALE,
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store.store}>
-      <PersistGate loading={null} persistor={store.persistor}>
-        <App />
-      </PersistGate>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <PersistGate loading={null} persistor={store.persistor}>
+          <App />
+        </PersistGate>
+      </AlertProvider>
     </Provider>
   </BrowserRouter>,
 

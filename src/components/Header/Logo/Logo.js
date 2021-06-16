@@ -1,7 +1,7 @@
-import s from './Logo.module.css';
+import style from './Logo.module.css';
 
 const Logo = () => {
-  return <div className={s.logo}>Questify</div>;
+  return <div className={style.logo}>Questify</div>;
 };
 
 export default Logo;

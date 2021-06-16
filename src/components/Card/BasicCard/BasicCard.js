@@ -7,7 +7,7 @@ import Select from '../../Select';
 import { createCard } from '../../../redux/operations/cardOperations';
 import { getDateFormat, getTimeFormat, colorCategory } from '../../../helper';
 import sprite from '../../../icon/sprite.svg';
-import s from '../NewCard.module.css';
+import style from '../NewCard.module.css';
 
 export default function Card({
   data,
@@ -50,7 +50,7 @@ export default function Card({
     try {
       const body = { ...data, ...LocalData };
       delete body._id;
-      if (body.title === '') return inputTitle.current.classList.add(s.titleError);
+      if (body.title === '') return inputTitle.current.classList.add(style.titleError);
       dispatch(createCard(body));
     } catch (error) {
       console.log(error);
@@ -60,42 +60,42 @@ export default function Card({
   return (
     <div
       style={{ position: 'relative' }}
-      className={cn(s.container, { [s.challenge]: type === 'Challenge' })}
+      className={cn(style.container, { [style.challenge]: type === 'Challenge' })}
     >
       <form
-        className={s.formCard}
+        className={style.formCard}
         onSubmit={handleSubmit ? e => handleSubmit(e, LocalData) : onSubmit}
       >
-        <div className={s.head}>
+        <div className={style.head}>
           <Select difficulty={difficulty} setDifficulty={setDifficulty} type={type} />
           <div
-            className={s.iconContainer}
+            className={style.iconContainer}
             onClick={() => (type === 'Challenge' ? setType('Task') : setType('Challenge'))}
           >
             {type === 'Task' ? (
-              <svg className={s.iconTask}>
+              <svg className={style.iconTask}>
                 <use href={sprite + '#icon-star'}></use>
               </svg>
             ) : (
-              <svg className={s.iconTrophy}>
+              <svg className={style.iconTrophy}>
                 <use href={sprite + '#icon-trophy'}></use>
               </svg>
             )}
           </div>
         </div>
-        <div className={s.main}>
+        <div className={style.main}>
           {isCreateCard && (
-            <p className={s.textInput}>
+            <p className={style.textInput}>
               {type === 'Challenge' ? 'Create New Challenge' : 'Create New Quest'}
             </p>
           )}
           <input
-            className={s.titleInput}
+            className={style.titleInput}
             onChange={handleChange}
             value={title}
             ref={input || inputTitle}
           ></input>
-          <div className={s.dateFlex}>
+          <div className={style.dateFlex}>
             <Calendar
               getDate={getDateValue}
               type={type}
@@ -104,14 +104,14 @@ export default function Card({
             ></Calendar>
           </div>
         </div>
-        <div className={s.foot}>
+        <div className={style.foot}>
           <div onClick={() => setIsOpenCategory(!isOpenCategory)}>
             {isOpenCategory ? (
               <>
                 <ModalStatus getValue={setCategory} type={type} />
                 <p
                   style={{ backgrounColor: colorCategory(LocalData.category) }}
-                  className={s.category}
+                  className={style.category}
                 >
                   {LocalData.category}
                 </p>
@@ -119,10 +119,10 @@ export default function Card({
             ) : (
               <p
                 style={{ backgroundColor: colorCategory(LocalData.category) }}
-                className={s.category}
+                className={style.category}
               >
                 {LocalData.category}
-                <svg className={s.iconPolygon}>
+                <svg className={style.iconPolygon}>
                   <use href={sprite + '#icon-polygon'}></use>
                 </svg>
               </p>
