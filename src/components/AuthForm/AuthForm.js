@@ -7,10 +7,10 @@ import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
 import s from './AuthForm.module.css';
 
 // =================ALRT========================
-import Verification from './Verification';
-import Alert from './Alert';
-import { CSSTransition } from 'react-transition-group';
-import st from './Alert/Alert.module.css';
+// import Verification from './Verification';
+// import Alert from './Alert';
+// import { CSSTransition } from 'react-transition-group';
+// import st from './Alert/Alert.module.css';
 // ---------------------------------------------
 
 const AuthForm = () => {
@@ -18,19 +18,18 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
   const [message, setMessage] = useState([])
 
   // =================ALRT========================
-  const [isError, setIsError] = useState(false);
-  const getAlert = () => {
-    setIsError(true);
-    setTimeout(() => setIsError(false), 1000);
-  };
-  const showAlert = (setstate, message) => {
-    setstate(message);
-    getAlert();
-  };
+  // const [isError, setIsError] = useState(false);
+  // const getAlert = () => {
+  //   setIsError(true);
+  //   setTimeout(() => setIsError(false), 1000);
+  // };
+  // const showAlert = (setstate, message) => {
+  //   setstate(message);
+  //   getAlert();
+  // };
 
   // ---------------------------------------------
   const error = useSelector(getError);
@@ -43,15 +42,15 @@ const AuthForm = () => {
     event.preventDefault();
 
     !validateEmail(email)
-      ? showAlert(setEmailError, 'Некорректно введен e-mail.')
+      ? setEmailError('Некорректно введен e-mail.')
       : setEmailError('');
 
     !validatePassword(password)
-      ? showAlert(setPasswordError, 'Пароль должен быть от 4 до 16 символов.')
+      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
       : setPasswordError('');
 
-    !email && showAlert(setEmailError, 'email - обязательное поле');
-    !password && showAlert(setPasswordError, 'пароль - обязательное поле');
+    !email && setEmailError('email - обязательное поле');
+    !password && setPasswordError('пароль - обязательное поле');
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogIn({ email, password }));
@@ -61,14 +60,14 @@ const AuthForm = () => {
 
   const onRegistration = () => {
     !validateEmail(email)
-      ? showAlert(setEmailError, 'Некорректно введен e-mail.')
+      ? setEmailError('Некорректно введен e-mail.')
       : setEmailError('');
 
     !validatePassword(password)
-      ? showAlert(setPasswordError, 'Пароль должен быть от 4 до 16 символов.')
+      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
       : setPasswordError('');
-    !email && showAlert(setEmailError, 'email - обязательное поле');
-    !password && showAlert(setPasswordError, 'пароль - обязательное поле');
+    !email && setEmailError('email - обязательное поле');
+    !password && setPasswordError('пароль - обязательное поле');
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleSignUp({ email, password }));
@@ -117,9 +116,8 @@ const AuthForm = () => {
             placeholder="Email"
           />
 
-          {/* =================ALRT======================== */}
-          {emailError && <Alert text={emailError} errorStatus={isError} />}
-          {/* ============================================== */}
+          {emailError && <p style={{ color: 'black' }}>{emailError}</p>}
+
         </div>
 
         <div className={s.landingBox}>
@@ -135,23 +133,17 @@ const AuthForm = () => {
             type="password"
             placeholder="Пароль"
           />
+          {emailError && <p style={{ color: 'black' }}> {passwordError}</p>}
 
-          {/* =================ALRT======================== */}
-          {passwordError && <Alert text={passwordError} errorStatus={isError} />}
-          {/* ============================================== */}
         </div>
         <div className={s.btnGo}>
           <ButtonGo type="submit" />
           <ButtonSign type="button" handleSignUp={onRegistration} />
         </div>
-        {error && (
-          <CSSTransition in={isError} classNames={st} unmountOnExit timeout={250}>
-            <p style={{ color: 'black' }}>{errorMessage()}</p>
-          </CSSTransition>
-        )}
+        {error && <p style={{ color: 'black' }}>{errorMessage()}</p>
+        }
       </form>
 
-      {/* <Verification verifyData={{ email, password }} /> */}
     </>
   );
 };

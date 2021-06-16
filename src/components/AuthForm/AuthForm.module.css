@@ -1,6 +1,7 @@
 .landingInput {
   width: 290px;
   border: none;
+
   border-bottom: 1px solid var(--accent-color);
   box-sizing: border-box;
   font-style: normal;
