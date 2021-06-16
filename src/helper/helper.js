@@ -85,8 +85,8 @@ export const getCurrentFullDate = time => {
 
 const today = new Date();
 const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-const todayDate = getDateFormat(today);
-const tomorrowDate = getDateFormat(tomorrow);
+export const todayDate = getDateFormat(today);
+export const tomorrowDate = getDateFormat(tomorrow);
 
 export const getMonth = function (date, type) {
   const dateFormat = new Date(date.split('-').join(','));
