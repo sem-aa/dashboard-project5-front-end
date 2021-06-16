@@ -4,7 +4,7 @@ import sprite from '../../../icon/sprite.svg';
 import style from './CompleteForm.module.css';
 import { completeCard } from '../../../redux/operations/cardOperations';
 
-export default function CompleteForm({ data, setCompleted }) {
+export default function CompleteForm({ data, setCompleted, setIsBackDrop }) {
   const dispatch = useDispatch();
 
   const continueBtnHandler = data => {
@@ -13,7 +13,9 @@ export default function CompleteForm({ data, setCompleted }) {
 
   return (
     <section
-      className={data.type === 'Challenge' ? `${style.completed} ${style.challenge}` : `${style.completed}`}
+      className={
+        data.type === 'Challenge' ? `${style.completed} ${style.challenge}` : `${style.completed}`
+      }
     >
       <div className={style.completedHeader}>
         <h2
@@ -25,7 +27,13 @@ export default function CompleteForm({ data, setCompleted }) {
         >
           completed:
         </h2>
-        <p className={style.completedTitle} onClick={() => setCompleted(false)}>
+        <p
+          className={style.completedTitle}
+          onClick={() => {
+            setCompleted(false);
+            setIsBackDrop(true);
+          }}
+        >
           {data.title}
         </p>
       </div>

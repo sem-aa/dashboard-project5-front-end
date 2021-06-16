@@ -9,7 +9,7 @@ import { getDateFormat, getTimeFormat, colorCategory } from '../../../helper';
 import sprite from '../../../icon/sprite.svg';
 import style from '../NewCard.module.css';
 
-export default function Card({
+export default function BasicCard({
   data,
   handleSubmit,
   isCreateCard,
@@ -45,18 +45,22 @@ export default function Card({
     const { value } = target;
     setTitle(value);
   };
+
   const onSubmit = e => {
     e.preventDefault();
+
     try {
       const body = { ...data, ...LocalData };
       delete body._id;
       if (body.title === '') return inputTitle.current.classList.add(style.titleError);
+
       dispatch(createCard(body));
     } catch (error) {
       console.log(error);
     }
     deleteNewCard();
   };
+
   return (
     <div
       style={{ position: 'relative' }}
@@ -109,12 +113,7 @@ export default function Card({
             {isOpenCategory ? (
               <>
                 <ModalStatus getValue={setCategory} type={type} />
-                <p
-                  style={{ backgrounColor: colorCategory(LocalData.category) }}
-                  className={style.category}
-                >
-                  {LocalData.category}
-                </p>
+                <p className={style.category}>{LocalData.category}</p>
               </>
             ) : (
               <p

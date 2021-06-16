@@ -53,6 +53,7 @@ const getCurrentUser = () => (dispatch, getState) => {
     api
       .refreshToken(sid)
       .then(({ data }) => {
+        api.token.set(data.newAccessToken);
         dispatch(authActions.getCurrentUserSuccess(data));
       })
       .catch(error => {
