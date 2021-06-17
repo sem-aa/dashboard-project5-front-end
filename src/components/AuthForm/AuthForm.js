@@ -16,6 +16,7 @@ const AuthForm = () => {
 
 
   const error = useSelector(getError);
+
   const dispatch = useDispatch();
 
   const changeEmailValue = event => setEmail(event.target.value);
@@ -47,7 +48,7 @@ const AuthForm = () => {
     }
 
     if (!validateEmail(email)) { alert.show('Некорректно введен e-mail.') }
-    if (!validatePassword(password)) { alert.show('Пароль должен содержать от 4 до 16 символов.') }
+    if (!validatePassword(password)) { alert.show('Пароль должен содержать от 6 до 16 символов.') }
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleSignUp({ email, password }));
@@ -57,12 +58,12 @@ const AuthForm = () => {
 
   const validateEmail = email => {
     // eslint-disable-next-line
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     return re.test(email);
   };
 
   const validatePassword = password => {
-    return Boolean(password.length >= 4 && password.length <= 16);
+    return Boolean(password.length >= 6 && password.length <= 16);
   };
 
   const formReset = () => {

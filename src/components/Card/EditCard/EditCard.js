@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import cardTransition from './card.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
 import Complete from '../CompleteForm';
 import BasicCard from '../BasicCard';
-import { editCard, completeCard } from '../../../redux/operations/cardOperations';
+import { editCard } from '../../../redux/operations/cardOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
