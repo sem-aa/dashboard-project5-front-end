@@ -7,6 +7,7 @@ import style from './NewCard.module.css';
 
 export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection }) {
   const [isEdit, setEdit] = useState(false);
+  const [isBackDrop, setIsBackDrop] = useState(false);
   const [type, setType] = useState(data.type);
   const [height, setHeight] = useState(document.body.clientHeight + 'px');
 
@@ -20,7 +21,7 @@ export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection 
   };
 
   const editStyle = {
-    zIndex: 3,
+    zIndex: isBackDrop && 3,
   };
 
   useEffect(() => {
@@ -34,11 +35,18 @@ export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection 
       <Suspense
         fallback={<Loader type="TailSpin" color="var(--accent-color)" className={style.loader} />}
       >
-        <div onClick={() => setEdit(true)} className={style.container}>
+        <div
+          onClick={() => {
+            !isEdit && setEdit(true);
+            !isEdit && setIsBackDrop(true);
+          }}
+          className={style.container}
+        >
           {isEdit ? (
             <EditCard
               data={data}
               setEdit={setEdit}
+              setIsBackDrop={setIsBackDrop}
               style={editStyle}
               type={type}
               setType={setType}
@@ -48,7 +56,15 @@ export default function Card({ data, isCreateCard, deleteNewCard, isDoneSection 
           )}
         </div>
       </Suspense>
-      {isEdit && <div style={backDrop} onClick={() => setEdit(false)} />}
+      {isBackDrop && (
+        <div
+          style={backDrop}
+          onClick={() => {
+            setEdit(false);
+            setIsBackDrop(false);
+          }}
+        />
+      )}
     </>
   );
 }
