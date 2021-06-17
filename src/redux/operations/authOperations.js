@@ -27,7 +27,8 @@ const handleSignUp = credentials => dispatch => {
       handleLogIn(credentials)(dispatch);
     })
     .catch(error => {
-      dispatch(authActions.signUpError(error.response?.message || error.response?.data?.message));
+      dispatch(authActions.signUpError(error.response?.data?.message));
+      console.log(error.response.data.message);
     });
 };
 
