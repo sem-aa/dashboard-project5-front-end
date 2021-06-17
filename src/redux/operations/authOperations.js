@@ -12,7 +12,9 @@ const handleLogIn = credentials => async dispatch => {
       dispatch(authActions.logInSuccess(data));
     })
     .catch(error => {
-      dispatch(authActions.logInError(error.response?.message));
+      dispatch(authActions.logInError(error.response?.data?.message));
+      console.log(credentials);
+      handleError(error, dispatch, handleSignUp, credentials);
     });
 };
 
@@ -25,7 +27,7 @@ const handleSignUp = credentials => dispatch => {
       handleLogIn(credentials)(dispatch);
     })
     .catch(error => {
-      dispatch(authActions.signUpError(error.response?.message));
+      dispatch(authActions.signUpError(error.response?.message || error.response?.data?.message));
     });
 };
 
