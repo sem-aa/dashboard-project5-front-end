@@ -26,7 +26,7 @@ const error = createReducer(null, {
 
   [authActions.logInError]: (_, { payload }) => payload,
   [authActions.logOutError]: (_, { payload }) => payload,
-  [cardActions.signUpError]: (_, { payload }) => payload,
+  [authActions.signUpError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
   [cardActions.createCardError]: (_, { payload }) => payload,
 
