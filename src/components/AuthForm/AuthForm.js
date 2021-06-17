@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getError } from '../../redux/selectors';
+import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import style from './AuthForm.module.css';
@@ -11,7 +10,6 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const alert = useAlert();
-  // const error = useSelector(getError);
   const dispatch = useDispatch();
 
   const changeEmailValue = event => setEmail(event.target.value);
@@ -30,40 +28,19 @@ const AuthForm = () => {
     if (!validatePassword(password)) {
       alert.show('Пароль должен содержать от 6 до 16 символов.');
     }
-    // if (error) {
-    //   alert.show(error)
 
-    // }
+
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogIn({ email, password }));
       formReset();
     }
-
-
-
   };
 
-  // const onRegistration = () => {
-  //   if (!email || !password) {
-  //     alert.show('email и пароль - обязательные поля');
-  //     return;
-  //   }
 
-
-  //   if (!validateEmail(email)) { alert.show('Некорректно введен e-mail.') }
-  //   if (!validatePassword(password)) { alert.show('Пароль должен содержать от 6 до 16 символов.') }
-
-
-  //   if (validateEmail(email) && validatePassword(password)) {
-  //     dispatch(authOperations.handleSignUp({ email, password }));
-  //     formReset();
-  //   }
-  // };
 
   const validateEmail = email => {
     // eslint-disable-next-line
-
     const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     return re.test(email);
@@ -78,13 +55,6 @@ const AuthForm = () => {
     setPassword('');
   };
 
-  // const errorMessage = () => {
-  //   if (error === '') {
-  //     return 'Пользователь с таким email уже зарегистрирован';
-  //   } else if (error === 'Email or password is wrong') {
-  //     alert.show('Некорректный пароль или email')
-  //   }
-  // };
 
   return (
     <>
@@ -116,9 +86,7 @@ const AuthForm = () => {
         </div>
         <div className={style.btnGo}>
           <ButtonGo type="submit" />
-          {/* <ButtonSign type="button" handleSignUp={onRegistration} /> */}
         </div>
-        {/* {error && <p style={{ color: 'black' }}>{errorMessage()}</p>} */}
       </form>
     </>
   );

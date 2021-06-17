@@ -53,7 +53,6 @@ export default function MainPage() {
             <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
             <Section title={'other'} data={cardsSorted.other} />
             <Section title={'done'} data={cardsSorted.done} />
-
             <ButtonAdd className={s.btn} handleClick={addCard} />
           </Container>
         </div>
