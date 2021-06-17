@@ -6,6 +6,10 @@ export default async function handleError(err, dispatch, fn, data = {}) {
       await dispatch(operations.refreshToken());
       fn && dispatch(fn(...Object.values(data)));
     }
+
+    if (err.response?.status === 403) {
+      fn && dispatch(fn(data));
+    }
   } catch (error) {
     return err;
   }
