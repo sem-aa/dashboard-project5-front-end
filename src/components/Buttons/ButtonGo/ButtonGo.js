@@ -3,7 +3,7 @@ import style from './ButtonGo.module.css';
 
 const ButtonGo = ({ handleLogIn, type }) => (
   <button className={style.buttonGo} type={type} onClick={handleLogIn}>
-    <h2 className={style.btnText}>log</h2>
+    <h2 className={style.btnText}>go!</h2>
   </button>
 );
 
