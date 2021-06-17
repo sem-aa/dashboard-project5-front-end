@@ -6,7 +6,7 @@ import style from './section.module.css';
 
 export default function Section({ title, data, newCard, deleteNewCard }) {
   const isDoneSection = title.toUpperCase() === 'DONE';
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(isDoneSection ? false : true);
 
   return (
     <section className={cn(style.section, { [style.doneSection]: isDoneSection })}>
