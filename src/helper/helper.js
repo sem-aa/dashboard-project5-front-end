@@ -88,6 +88,27 @@ const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
 export const todayDate = getDateFormat(today);
 export const tomorrowDate = getDateFormat(tomorrow);
 
+export const isNextWeek = input => {
+  const inputDate = new Date(input);
+  const now = today;
+  const monday = now.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7));
+  const firstDay = Date.parse(new Date(monday));
+  const check = Date.parse(new Date(input));
+  const lastWeek = Date.parse(new Date(inputDate.getTime() + 6 * 24 * 60 * 60 * 1000));
+
+  return check >= firstDay && check <= lastWeek;
+};
+
+export const isExpiredDate = (date, time) => {
+  const inputDate = new Date(date);
+  const arrInputDate = String(inputDate).split(' ');
+  time && arrInputDate.splice(4, 1, `${time}:00`);
+  const input = Date.parse(arrInputDate.join(' '));
+  const now = new Date();
+
+  return input < now;
+};
+
 export const getMonth = function (date, type) {
   const dateFormat = new Date(date.split('-').join(','));
   const dateValue = dateFormat.toLocaleString('en-us', {

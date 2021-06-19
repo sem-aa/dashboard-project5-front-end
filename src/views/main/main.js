@@ -6,15 +6,15 @@ import ButtonAdd from '../../components/Buttons/ButtonAdd';
 import Section from '../../components/Section';
 import { getToken } from '../../redux/selectors';
 import { getCards } from '../../redux/selectors';
-import { todayDate, tomorrowDate } from '../../helper';
+import { todayDate, tomorrowDate, isNextWeek, isExpiredDate } from '../../helper';
 import api from '../../services/api';
 import s from './main.module.css';
 
 export default function MainPage() {
   const token = useSelector(getToken);
   const cards = useSelector(getCards);
-  const cardsSorted = sortCards(cards);
   const [newCard, setNewCard] = useState(null);
+  const { expired, today, tomorrow, nextWeek, other, done } = sortCards(cards);
 
   const addCard = () => {
     const templateData = {
@@ -44,15 +44,19 @@ export default function MainPage() {
       <main>
         <div className={s.main}>
           <Container>
-            <Section
-              title={'today'}
-              data={cardsSorted.today}
-              newCard={newCard}
-              deleteNewCard={deleteNewCard}
-            />
-            <Section title={'tomorrow'} data={cardsSorted.tomorrow} />
-            <Section title={'other'} data={cardsSorted.other} />
-            <Section title={'done'} data={cardsSorted.done} />
+            {expired[0] && <Section title={'Expired'} data={expired} />}
+            {(newCard || today[0]) && (
+              <Section
+                title={'today'}
+                data={today}
+                newCard={newCard}
+                deleteNewCard={deleteNewCard}
+              />
+            )}
+            {tomorrow[0] && <Section title={'tomorrow'} data={tomorrow} />}
+            {nextWeek[0] && <Section title={'next week'} data={nextWeek} />}
+            {other[0] && <Section title={'other'} data={other} />}
+            {done[0] && <Section title={'done'} data={done} />}
 
             <ButtonAdd className={s.btn} handleClick={addCard} />
           </Container>
@@ -61,8 +65,8 @@ export default function MainPage() {
     </>
   );
 }
+
 const sortCards = cards => {
-  const sortByTime = array => array.sort((a, b) => (a.time > b.time ? 1 : -1));
   const sortByDateAndTime = array =>
     array.sort(function (a, b) {
       const dateA = new Date(`${a.date}T${a.time}:00`);
@@ -74,21 +78,20 @@ const sortCards = cards => {
     (acc, el) => {
       const today = todayDate;
       const tomorrow = tomorrowDate;
-      if (el.status === 'Complete') {
-        acc.done.push(el);
-        sortByDateAndTime(acc.done);
-      } else if (el.date === today) {
-        acc.today.push(el);
-        sortByTime(acc.today);
-      } else if (el.date === tomorrow) {
-        acc.tomorrow.push(el);
-        sortByTime(acc.tomorrow);
-      } else {
-        acc.other.push(el);
-        sortByDateAndTime(acc.other);
-      }
+      const addAndSort = (addTo, element) => {
+        element && addTo.push(element);
+        sortByDateAndTime(addTo);
+      };
+
+      if (el.status === 'Complete') addAndSort(acc.done, el);
+      else if (isExpiredDate(el.date, el.time)) addAndSort(acc.expired, el);
+      else if (el.date === today) addAndSort(acc.today, el);
+      else if (el.date === tomorrow) addAndSort(acc.tomorrow, el);
+      else if (isNextWeek(el.date, el.time)) addAndSort(acc.nextWeek, el);
+      else addAndSort(acc.other, el);
+
       return acc;
     },
-    { done: [], today: [], tomorrow: [], other: [] },
+    { done: [], expired: [], today: [], tomorrow: [], nextWeek: [], other: [] },
   );
 };

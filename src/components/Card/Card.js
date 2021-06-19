@@ -4,7 +4,9 @@ import { colorDifficult, colorCategory, getDayName, getMonth } from '../../helpe
 
 export default function Card({ data, type, isDoneSection }) {
   return (
-    <div className={type === 'Challenge' ? `${style.container} ${style.challenge}` : style.container}>
+    <div
+      className={type === 'Challenge' ? `${style.container} ${style.challenge}` : style.container}
+    >
       <form className={style.formCard}>
         <div className={style.head}>
           <div className={style.difficulty}>
@@ -29,7 +31,11 @@ export default function Card({ data, type, isDoneSection }) {
         </div>
         <div className={style.main}>
           {type === 'Challenge' ? <h2 className={style.challengeLabel}>Challenge</h2> : null}
-          <h2 className={type === 'Challenge' ? `${style.title} ${style.challengeTitle}` : style.title}>
+          <h2
+            className={
+              type === 'Challenge' ? `${style.title} ${style.challengeTitle}` : style.title
+            }
+          >
             {data.title}
           </h2>
           <p className={style.date}>

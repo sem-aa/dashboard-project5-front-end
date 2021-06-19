@@ -11,9 +11,9 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const alert = useAlert();
-  // const error = useSelector(getError);
+  const error = useSelector(getError);
   const dispatch = useDispatch();
-
+  console.log(error);
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
 
@@ -39,9 +39,6 @@ const AuthForm = () => {
       dispatch(authOperations.handleLogIn({ email, password }));
       formReset();
     }
-
-
-
   };
 
   // const onRegistration = () => {
@@ -50,10 +47,8 @@ const AuthForm = () => {
   //     return;
   //   }
 
-
   //   if (!validateEmail(email)) { alert.show('Некорректно введен e-mail.') }
   //   if (!validatePassword(password)) { alert.show('Пароль должен содержать от 6 до 16 символов.') }
-
 
   //   if (validateEmail(email) && validatePassword(password)) {
   //     dispatch(authOperations.handleSignUp({ email, password }));
