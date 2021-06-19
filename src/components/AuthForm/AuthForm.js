@@ -11,7 +11,6 @@ const AuthForm = () => {
 
   const alert = useAlert();
   const dispatch = useDispatch();
-
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
 
@@ -29,15 +28,11 @@ const AuthForm = () => {
       alert.show('Пароль должен содержать от 6 до 16 символов.');
     }
 
-
-
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogIn({ email, password }));
       formReset();
     }
   };
-
-
 
   const validateEmail = email => {
     // eslint-disable-next-line
@@ -54,7 +49,6 @@ const AuthForm = () => {
     setEmail('');
     setPassword('');
   };
-
 
   return (
     <>
