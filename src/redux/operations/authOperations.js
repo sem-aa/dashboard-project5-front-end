@@ -58,7 +58,7 @@ const getCurrentUser = () => (dispatch, getState) => {
         dispatch(authActions.getCurrentUserSuccess(data));
       })
       .catch(error => {
-        dispatch(authActions.getCurrentUserError(error.response?.data?.message));
+        dispatch(authActions.getCurrentUserError(error.response?.data?.message || error.message));
 
         handleError(error, dispatch, getCurrentUser);
       });
