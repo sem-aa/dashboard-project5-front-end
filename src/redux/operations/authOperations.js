@@ -12,7 +12,7 @@ const handleLogIn = credentials => async dispatch => {
       dispatch(authActions.logInSuccess(data));
     })
     .catch(error => {
-      dispatch(authActions.logInError(error.response?.data?.message));
+      dispatch(authActions.logInError(error.error.response?.data?.message || error.message));
       handleError(error, dispatch, handleSignUp, credentials);
     });
 };
@@ -26,7 +26,7 @@ const handleSignUp = credentials => dispatch => {
       handleLogIn(credentials)(dispatch);
     })
     .catch(error => {
-      dispatch(authActions.signUpError(error.response?.data?.message));
+      dispatch(authActions.signUpError(error.response?.data?.message || error.message));
     });
 };
 
@@ -35,11 +35,11 @@ const handleLogOut = () => dispatch => {
   api
     .logOut()
     .then(() => {
-      api.token.unset();
+      // api.token.unset();
       dispatch(authActions.logOutSuccess());
     })
     .catch(error => {
-      dispatch(authActions.logOutError(error.response?.message));
+      dispatch(authActions.logOutError(error.response?.data?.message || error.message));
       handleError(error, dispatch, handleLogOut);
     });
 };
@@ -81,7 +81,10 @@ const refreshToken = () => (dispatch, getState) => {
         api.token.set(data.newAccessToken);
         dispatch(authActions.refreshTokenSuccess({ ...data }));
       })
-      .catch(error => dispatch(authActions.refreshTokenError(error.response?.message)));
+      .catch(error => {
+        dispatch(authActions.refreshTokenError(error.response?.data?.message || error.message));
+        return handleError(error);
+      });
   }
 };
 
