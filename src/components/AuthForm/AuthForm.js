@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getError } from '../../redux/selectors/index'
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
@@ -9,33 +10,66 @@ import { useAlert } from 'react-alert';
 const AuthForm = ({ registered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errAuth, setErrAuth] = useState('');
 
   const alert = useAlert();
+  const error = useSelector(getError)
+
+  console.log(error);
+
+  useEffect(() => {
+    if (error === 'Email or password is wrong' || 'Email in use') {
+      setErrAuth(error)
+    }
+    if (errAuth) {
+      alert.show(errAuth)
+    }
+  }, [error, errAuth, alert, setErrAuth])
+
+
+
+
+  const deleteErr = () => setErrAuth('')
+
+
   const dispatch = useDispatch();
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
 
+  // if (errAuth) {
+  //   alert.show(errAuth)
+  // }
+
   const onSubmit = event => {
     event.preventDefault();
-
     if (!email || !password) {
-      alert.show('email и пароль - обязательные поля');
+      // alert.show('email и пароль - обязательные поля');
       return;
     }
 
     if (!validateEmail(email)) {
-      alert.show('Некорректно введен e-mail.');
+      // alert.show('Некорректно введен e-mail.');
     }
     if (!validatePassword(password)) {
-      alert.show('Пароль должен содержать от 6 до 16 символов.');
+      // alert.show('Пароль должен содержать от 6 до 16 символов.');
     }
 
+
     if (validateEmail(email) && validatePassword(password)) {
+      console.log('err перед сбросом ошибки - ', errAuth);
+
+      deleteErr()
+      console.log('err полсле сброса ошибки - ', errAuth);
       registered
         ? dispatch(authOperations.handleLogIn({ email, password }))
         : dispatch(authOperations.handleSignUp({ email, password }));
+
+
       formReset();
     }
+
+
+
   };
 
   const validateEmail = email => {
