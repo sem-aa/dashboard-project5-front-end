@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Joi from 'joi';
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
@@ -18,34 +19,18 @@ const AuthForm = ({ registered }) => {
   const onSubmit = event => {
     event.preventDefault();
 
-    if (!email || !password) {
-      alert.show('email и пароль - обязательные поля');
-      return;
+    const error = validateUser({ password, email });
+    if (error) {
+      const message = error.message;
+      alert.show(message);
     }
 
-    if (!validateEmail(email)) {
-      alert.show('Некорректно введен e-mail.');
-    }
-    if (!validatePassword(password)) {
-      alert.show('Пароль должен содержать от 6 до 16 символов.');
-    }
-
-    if (validateEmail(email) && validatePassword(password)) {
+    if (!error) {
       registered
         ? dispatch(authOperations.handleLogIn({ email, password }))
         : dispatch(authOperations.handleSignUp({ email, password }));
       formReset();
     }
-  };
-
-  const validateEmail = email => {
-    // eslint-disable-next-line
-    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return re.test(email);
-  };
-
-  const validatePassword = password => {
-    return Boolean(password.length >= 6 && password.length <= 16);
   };
 
   const formReset = () => {
@@ -99,6 +84,26 @@ const AuthForm = ({ registered }) => {
       </form>
     </>
   );
+};
+
+const validateUser = body => {
+  const schemaUser = Joi.object({
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: { allow: ['com', 'net'] },
+      })
+      .required(),
+    password: Joi.string().min(6).max(20).required(),
+  });
+
+  const { error } = schemaUser.validate(body);
+  if (error) {
+    const [{ message }] = error.details;
+    return {
+      message,
+    };
+  }
 };
 
 export default AuthForm;
