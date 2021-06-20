@@ -2,7 +2,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://dashboard-project-back-end.herokuapp.com';
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -24,6 +23,7 @@ const editCard = (id, data) => axios.patch(`/card/${id}`, data);
 const deleteCard = id => axios.delete(`/card/${id}`);
 const getAllCards = () => axios.get('/card');
 const completeCard = id => axios.patch(`/card/${id}/complete`);
+const incompleteCard = id => axios.patch(`/card/${id}/incomplete`);
 
 // eslint-disable-next-line
 export default {
@@ -37,4 +37,5 @@ export default {
   deleteCard,
   getAllCards,
   completeCard,
+  incompleteCard,
 };
