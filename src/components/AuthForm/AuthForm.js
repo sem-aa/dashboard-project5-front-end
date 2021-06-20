@@ -35,6 +35,26 @@ const AuthForm = ({ register }) => {
     }
   };
 
+  const onRegister = event => {
+    event.preventDefault();
+    if (!email || !password) {
+      alert.show('email и пароль - обязательные поля');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      alert.show('Некорректно введен e-mail.');
+    }
+    if (!validatePassword(password)) {
+      alert.show('Пароль должен содержать от 6 до 16 символов.');
+    }
+
+    if (validateEmail(email) && validatePassword(password)) {
+      dispatch(authOperations.handleSignUp({ email, password }));
+      formReset();
+    }
+  }
+
   const validateEmail = email => {
     // eslint-disable-next-line
     const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -79,7 +99,7 @@ const AuthForm = ({ register }) => {
           />
         </div>
         <div className={style.btnGo}>
-          {register ? <ButtonSign /> :
+          {register ? <ButtonSign onClick={onRegister} /> :
             <div className={style.restorePassword}>
               <ButtonGo type="submit" />
               <p className={style.restore}>Forgot your password?
@@ -87,7 +107,6 @@ const AuthForm = ({ register }) => {
               </p>
             </div>}
         </div>
-
       </form>
     </>
   );
