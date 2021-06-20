@@ -45,18 +45,13 @@ export default function MainPage() {
         <div className={s.main}>
           <Container>
             {expired[0] && <Section title={'Expired'} data={expired} />}
-            {(newCard || today[0]) && (
-              <Section
-                title={'today'}
-                data={today}
-                newCard={newCard}
-                deleteNewCard={deleteNewCard}
-              />
-            )}
+
+            <Section title={'today'} data={today} newCard={newCard} deleteNewCard={deleteNewCard} />
+
             {tomorrow[0] && <Section title={'tomorrow'} data={tomorrow} />}
             {nextWeek[0] && <Section title={'next week'} data={nextWeek} />}
             {other[0] && <Section title={'other'} data={other} />}
-            {done[0] && <Section title={'done'} data={done} />}
+            <Section title={'done'} data={done} />
 
             <ButtonAdd className={s.btn} handleClick={addCard} />
           </Container>

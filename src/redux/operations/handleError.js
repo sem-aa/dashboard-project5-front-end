@@ -10,13 +10,15 @@ export default async function handleError(err, dispatch, fn, data = {}) {
   }
   console.log('не сработал ');
   try {
+
+    if (err?.massage === 'Invalid session' || err?.response?.data?.message === 'Invalid session') {
+      return err;
+
+    }
+
     if (err.response?.status === 401) {
       const error = await dispatch(operations.refreshToken());
       !error && fn && dispatch(fn(...Object.values(data)));
-    }
-
-    if (err.response?.status === 403) {
-      fn && dispatch(fn(data));
     }
   } catch (error) {
     return err;
