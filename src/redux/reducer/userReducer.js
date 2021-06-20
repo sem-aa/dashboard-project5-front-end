@@ -6,6 +6,7 @@ import cardActions from '../actions/cardActions';
 const email = createReducer('', {
   [authActions.logInSuccess]: (_, { payload }) => payload.userData.email,
   [authActions.logOutSuccess]: () => '',
+  [authActions.refreshTokenError]: () => '',
 });
 
 const loadingCards = createReducer(false, {
@@ -19,15 +20,17 @@ const loadingCards = createReducer(false, {
 });
 
 const error = createReducer(null, {
-  [cardActions.signUpRequest]: () => null,
-  [cardActions.logInRequest]: () => null,
-  [cardActions.logOutRequest]: () => null,
-  [cardActions.getCurrentUserRequest]: () => null,
+  [authActions.signUpRequest]: () => null,
+  [authActions.logInRequest]: () => null,
+  [authActions.logOutRequest]: () => null,
+  [authActions.getCurrentUserRequest]: () => null,
+  [authActions.refreshTokenRequest]: () => null,
 
   [authActions.logInError]: (_, { payload }) => payload,
   [authActions.logOutError]: (_, { payload }) => payload,
   [authActions.signUpError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
+  [authActions.refreshTokenError]: (_, { payload }) => payload,
   [cardActions.createCardError]: (_, { payload }) => payload,
 
   [cardActions.completeCardError]: (_, { payload }) => payload,
