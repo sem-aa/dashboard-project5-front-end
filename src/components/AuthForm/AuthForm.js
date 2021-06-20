@@ -66,6 +66,7 @@ const AuthForm = ({ registered }) => {
             value={email}
             onChange={changeEmailValue}
             placeholder="Email"
+            autoComplete="none"
           />
         </div>
 
@@ -79,6 +80,7 @@ const AuthForm = ({ registered }) => {
             onChange={changePasswordValue}
             type="password"
             placeholder="Пароль"
+            autoComplete="current-password"
           />
         </div>
         <div className={style.btnGo}>

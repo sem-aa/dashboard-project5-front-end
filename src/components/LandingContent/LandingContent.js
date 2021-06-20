@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import style from './LandingText.module.css';
+import style from './LandingContent.module.css';
 import Form from '../AuthForm/AuthForm';
 
-const LandingText = () => {
+const LandingContent = () => {
   const [registered, setRegistered] = useState(true);
 
   return (
@@ -18,11 +18,11 @@ const LandingText = () => {
       </div>
       <div className={style.landingRequestBox}>
         <p className={style.landingRequest}>
-          Write your email to
+          Write your email to{' '}
           <span className={style.linkAuth} onClick={() => setRegistered(false)}>
-            sign up
+            sign up{' '}
           </span>
-          or
+          or{' '}
           <span className={style.linkAuth} onClick={() => setRegistered(true)}>
             log in
           </span>
@@ -33,4 +33,4 @@ const LandingText = () => {
   );
 };
 
-export default LandingText;
+export default LandingContent;
