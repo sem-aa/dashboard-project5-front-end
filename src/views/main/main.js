@@ -25,7 +25,6 @@ export default function MainPage() {
     };
 
     setNewCard(templateData);
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

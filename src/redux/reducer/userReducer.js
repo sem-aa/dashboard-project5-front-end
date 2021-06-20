@@ -34,7 +34,6 @@ const error = createReducer(null, {
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
   [authActions.refreshTokenError]: (_, { payload }) => payload,
   [cardActions.createCardError]: (_, { payload }) => payload,
-
   [cardActions.completeCardError]: (_, { payload }) => payload,
   [cardActions.incompleteCardError]: (_, { payload }) => payload,
 });

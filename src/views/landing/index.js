@@ -1,14 +1,11 @@
 import React from 'react';
 import style from './landing.module.css';
-// import Form from '../../components/AuthForm/AuthForm';
-import LandingText from '../../components/LandingText/LandingText';
+import LandingContent from '../../components/LandingContent/LandingContent';
 
 const landing = () => (
-
   <>
     <div className={style.landing}>
-      <LandingText />
-      {/* <Form /> */}
+      <LandingContent />
     </div>
   </>
 );

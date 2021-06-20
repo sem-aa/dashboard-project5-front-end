@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import authActions from '../actions/authActions';
 import cardActions from '../actions/cardActions';
-// import { completeCard } from '../operations/cardOperations';
 
 const cards = createReducer([], {
   [authActions.logInSuccess]: (_, { payload }) => payload.userData.cards,
