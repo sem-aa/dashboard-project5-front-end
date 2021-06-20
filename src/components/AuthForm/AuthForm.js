@@ -6,7 +6,7 @@ import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
 import style from './AuthForm.module.css';
 import { useAlert } from 'react-alert';
 
-const AuthForm = ({ register }) => {
+const AuthForm = ({ registered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,6 +17,7 @@ const AuthForm = ({ register }) => {
 
   const onSubmit = event => {
     event.preventDefault();
+
     if (!email || !password) {
       alert.show('email и пароль - обязательные поля');
       return;
@@ -30,7 +31,9 @@ const AuthForm = ({ register }) => {
     }
 
     if (validateEmail(email) && validatePassword(password)) {
-      dispatch(authOperations.handleLogIn({ email, password }));
+      registered
+        ? dispatch(authOperations.handleLogIn({ email, password }))
+        : dispatch(authOperations.handleSignUp({ email, password }));
       formReset();
     }
   };
@@ -79,15 +82,18 @@ const AuthForm = ({ register }) => {
           />
         </div>
         <div className={style.btnGo}>
-          {register ? <ButtonSign /> :
+          {registered ? (
             <div className={style.restorePassword}>
               <ButtonGo type="submit" />
-              <p className={style.restore}>Forgot your password?
+              <p className={style.restore}>
+                Forgot your password?
                 <button className={style.btnRestore}>click</button>
               </p>
-            </div>}
+            </div>
+          ) : (
+            <ButtonSign type="submit" />
+          )}
         </div>
-
       </form>
     </>
   );
