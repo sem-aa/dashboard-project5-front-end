@@ -23,6 +23,11 @@
   color: var(--bg-stuff);
 }
 
+.linkAuth {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 320px) {
   .landingTittleBox {
     padding: 60px 0px 0px 15px;
