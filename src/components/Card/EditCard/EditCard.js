@@ -5,7 +5,7 @@ import cardTransition from './card.module.css';
 import ModalDelete from '../../Modal/Modal-delete';
 import Complete from '../CompleteForm';
 import BasicCard from '../BasicCard';
-import { editCard } from '../../../redux/operations/cardOperations';
+import { editCard, incompleteCard } from '../../../redux/operations/cardOperations';
 import sprite from '../../../icon/sprite.svg';
 import s from '../NewCard.module.css';
 
@@ -74,11 +74,17 @@ export default function EditCard({ data, setEdit, type, setType, style, setIsBac
                 <use href={sprite + '#icon-clear'}></use>
               </svg>
             </button>
-            {data.status === 'Complete' ? <button className={s.buttonCard} type="button">
-              <svg className={s.buttonDone}>
-                <use href={sprite + '#icon-back'}></use>
-              </svg>
-            </button> : (
+            {data.status === 'Complete' ? (
+              <button
+                onClick={() => dispatch(incompleteCard(data._id))}
+                className={s.buttonCard}
+                type="button"
+              >
+                <svg className={s.buttonDone}>
+                  <use href={sprite + '#icon-back'}></use>
+                </svg>
+              </button>
+            ) : (
               <button onClick={handleDone} className={s.buttonCard} type="button">
                 <svg className={s.buttonDone}>
                   <use href={sprite + '#icon-done'}></use>

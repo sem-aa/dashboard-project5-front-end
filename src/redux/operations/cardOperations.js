@@ -51,10 +51,28 @@ export const completeCard = id => dispatch => {
       dispatch(actions.completeCardSuccess(data.editedCard));
     })
     .catch(error => {
-      console.log('error:', error);
-      dispatch(actions.completeCardError(error.message));
-      handleError(error, dispatch);
+      dispatch(
+        actions.completeCardError(
+          error.message || error.response?.data?.message || error.response?.message,
+        ),
+      );
+      handleError(error, dispatch, completeCard, { id });
     });
 };
 
-
+export const incompleteCard = id => dispatch => {
+  dispatch(actions.incompleteCardRequest());
+  api
+    .incompleteCard(id)
+    .then(({ data }) => {
+      dispatch(actions.incompleteCardSuccess(data.editedCard));
+    })
+    .catch(error => {
+      dispatch(
+        actions.incompleteCardError(
+          error.message || error.response?.data?.message || error.response?.message,
+        ),
+      );
+      handleError(error, dispatch, incompleteCard, { id });
+    });
+};
