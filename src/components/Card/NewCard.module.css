@@ -84,7 +84,6 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  font-family: HelveticaNeueCyr;
   color: var(--secondary-color);
   cursor: pointer;
 }
@@ -98,7 +97,7 @@
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: 700;
-  font-family: HelveticaNeueCyr;
+  font-family: 'HelveticaNeueCyr-Bold';
   text-align: center;
 }
 @media screen and (min-width: 768px) {
