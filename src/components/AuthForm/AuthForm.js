@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
+import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
 import style from './AuthForm.module.css';
 import { useAlert } from 'react-alert';
 
-const AuthForm = () => {
+const AuthForm = ({ register }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -78,8 +79,15 @@ const AuthForm = () => {
           />
         </div>
         <div className={style.btnGo}>
-          <ButtonGo type="submit" />
+          {register ? <ButtonSign /> :
+            <div className={style.restorePassword}>
+              <ButtonGo type="submit" />
+              <p className={style.restore}>Forgot your password?
+                <button className={style.btnRestore}>click</button>
+              </p>
+            </div>}
         </div>
+
       </form>
     </>
   );
