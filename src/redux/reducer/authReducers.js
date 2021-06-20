@@ -8,6 +8,7 @@ const token = createReducer(null, {
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newAccessToken,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newAccessToken,
   [authActions.logOutSuccess]: () => null,
+  [authActions.refreshTokenError]: () => null,
 });
 
 const refreshToken = createReducer(null, {
@@ -15,6 +16,7 @@ const refreshToken = createReducer(null, {
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newRefreshToken,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newRefreshToken,
   [authActions.logOutSuccess]: () => null,
+  [authActions.refreshTokenError]: () => null,
 });
 
 const sid = createReducer(null, {
@@ -22,6 +24,7 @@ const sid = createReducer(null, {
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newSid,
   [authActions.refreshTokenSuccess]: (_, { payload }) => payload.newSid,
   [authActions.logOutSuccess]: () => null,
+  [authActions.refreshTokenError]: () => null,
 });
 
 const isAuthenticated = createReducer(false, {
@@ -29,6 +32,7 @@ const isAuthenticated = createReducer(false, {
   [authActions.logOutSuccess]: () => false,
   [authActions.getCurrentUserSuccess]: () => true,
   [authActions.getCurrentUserError]: () => false,
+  [authActions.refreshTokenError]: () => false,
 });
 
 export default combineReducers({
