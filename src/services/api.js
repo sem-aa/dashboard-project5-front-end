@@ -16,6 +16,7 @@ const signUp = credentials => axios.post('/auth/register', credentials);
 const logIn = credentials => axios.post('/auth/login', credentials);
 const logOut = () => axios.post('/auth/logout');
 const refreshToken = sid => axios.post('/auth/refresh', { sid });
+const updatePassword = email => axios.post('/​auth​/restorePassword', email);
 
 /* Card */
 const createCard = data => axios.post('/card', data);
@@ -32,6 +33,7 @@ export default {
   logIn,
   logOut,
   refreshToken,
+  updatePassword,
   createCard,
   editCard,
   deleteCard,

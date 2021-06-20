@@ -38,6 +38,11 @@ const AuthForm = ({ registered }) => {
     setPassword('');
   };
 
+  const handleUpdatePassword = e => {
+    e.preventDefault();
+    dispatch(authOperations.updatePassword(email));
+  };
+
   return (
     <>
       <form className={style.landingForm} onSubmit={onSubmit}>
@@ -74,7 +79,9 @@ const AuthForm = ({ registered }) => {
               <ButtonGo type="submit" />
               <p className={style.restore}>
                 Forgot your password?
-                <button className={style.btnRestore}>click</button>
+                <button onClick={handleUpdatePassword} className={style.btnRestore}>
+                  click
+                </button>
               </p>
             </div>
           ) : (

@@ -35,7 +35,7 @@ const handleLogOut = () => dispatch => {
   api
     .logOut()
     .then(() => {
-      // api.token.unset();
+      api.token.unset();
       dispatch(authActions.logOutSuccess());
     })
     .catch(error => {
@@ -82,11 +82,28 @@ const refreshToken = () => (dispatch, getState) => {
         dispatch(authActions.refreshTokenSuccess({ ...data }));
       })
       .catch(error => {
+        api.token.unset();
         dispatch(authActions.refreshTokenError(error.response?.data?.message || error.message));
         return handleError(error);
       });
   }
 };
 
+const updatePassword = email => dispatch => {
+  dispatch(authActions.updatePasswordRequest);
+
+  api
+    .updatePassword({ email })
+    .then(response => dispatch(authActions.updatePasswordSuccess(response)))
+    .catch(error => dispatch(authActions.updatePasswordError(error.message)));
+};
+
 // eslint-disable-next-line
-export default { handleSignUp, handleLogIn, handleLogOut, getCurrentUser, refreshToken };
+export default {
+  handleSignUp,
+  handleLogIn,
+  updatePassword,
+  handleLogOut,
+  getCurrentUser,
+  refreshToken,
+};
