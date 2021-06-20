@@ -11,6 +11,9 @@ const cards = createReducer([], {
   [cardActions.completeCardSuccess]: (state, { payload }) => [
     ...state.map(card => (card._id !== payload._id ? card : payload)),
   ],
+  [cardActions.incompleteCardSuccess]: (state, { payload }) => [
+    ...state.map(card => (card._id !== payload._id ? card : payload)),
+  ],
   [cardActions.editCardSuccess]: (state, { payload }) =>
     state.map(card => (card._id === payload._id ? payload : card)),
 });

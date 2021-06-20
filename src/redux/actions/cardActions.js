@@ -17,6 +17,10 @@ const completeCardSuccess = createAction('user/completeCardSuccess');
 const completeCardRequest = createAction('user/completeCardRequest');
 const completeCardError = createAction('user/completeCardError');
 
+const incompleteCardSuccess = createAction('user/incompleteCardSuccess');
+const incompleteCardRequest = createAction('user/incompleteCardRequest');
+const incompleteCardError = createAction('user/incompleteCardError');
+
 // eslint-disable-next-line
 export default {
   createCardRequest,
@@ -31,5 +35,7 @@ export default {
   completeCardSuccess,
   completeCardRequest,
   completeCardError,
-
+  incompleteCardSuccess,
+  incompleteCardRequest,
+  incompleteCardError,
 };

@@ -25,6 +25,8 @@ const error = createReducer(null, {
   [authActions.logOutRequest]: () => null,
   [authActions.getCurrentUserRequest]: () => null,
   [authActions.refreshTokenRequest]: () => null,
+  [cardActions.completeCardRequest]: () => null,
+  [cardActions.incompleteCardRequest]: () => null,
 
   [authActions.logInError]: (_, { payload }) => payload,
   [authActions.logOutError]: (_, { payload }) => payload,
@@ -34,6 +36,7 @@ const error = createReducer(null, {
   [cardActions.createCardError]: (_, { payload }) => payload,
 
   [cardActions.completeCardError]: (_, { payload }) => payload,
+  [cardActions.incompleteCardError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
