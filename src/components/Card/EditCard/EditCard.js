@@ -74,7 +74,11 @@ export default function EditCard({ data, setEdit, type, setType, style, setIsBac
                 <use href={sprite + '#icon-clear'}></use>
               </svg>
             </button>
-            {data.status === 'Complete' ? null : (
+            {data.status === 'Complete' ? <button className={s.buttonCard} type="button">
+              <svg className={s.buttonDone}>
+                <use href={sprite + '#icon-back'}></use>
+              </svg>
+            </button> : (
               <button onClick={handleDone} className={s.buttonCard} type="button">
                 <svg className={s.buttonDone}>
                   <use href={sprite + '#icon-done'}></use>
