@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getError } from '../../redux/selectors/index'
+import { getError } from '../../redux/selectors/index';
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
@@ -12,25 +12,23 @@ const AuthForm = ({ registered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errAuth, setErrAuth] = useState('');
+  const [isFirstSubmit, setIsFirstSubmit] = useState(true);
 
   const alert = useAlert();
-  const error = useSelector(getError)
-
+  const error = useSelector(getError);
 
   useEffect(() => {
-    if (error === 'Email or password is wrong' || 'Email in use') {
-      setErrAuth(error)
+    if ((error === 'Email or password is wrong' || error === 'Email in use') && !isFirstSubmit) {
+      setErrAuth(error);
     }
     if (errAuth) {
-      alert.show(errAuth)
+      alert.show(errAuth);
     }
-  }, [error, errAuth, alert, setErrAuth])
-
+  }, [error, errAuth, isFirstSubmit, alert, setErrAuth]);
 
   const dispatch = useDispatch();
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
-
 
   const onSubmit = event => {
     event.preventDefault();
@@ -40,7 +38,8 @@ const AuthForm = ({ registered }) => {
       alert.show(message);
     }
     if (!error) {
-      setErrAuth('')
+      setErrAuth('');
+      setIsFirstSubmit(false);
       registered
         ? dispatch(authOperations.handleLogIn({ email, password }))
         : dispatch(authOperations.handleSignUp({ email, password }));
