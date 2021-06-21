@@ -8,6 +8,10 @@ const logInRequest = createAction('auth/logInRequest');
 const logInSuccess = createAction('auth/logInSuccess');
 const logInError = createAction('auth/logInError');
 
+const updatePasswordRequest = createAction('auth/updatePasswordRequest');
+const updatePasswordSuccess = createAction('auth/updatePasswordSuccess');
+const updatePasswordError = createAction('auth/updatePasswordError');
+
 const logOutRequest = createAction('auth/logOutRequest');
 const logOutSuccess = createAction('auth/logOutSuccess');
 const logOutError = createAction('auth/logOutError');
@@ -20,8 +24,6 @@ const refreshTokenRequest = createAction('auth/refreshTokenRequest');
 const refreshTokenSuccess = createAction('auth/refreshTokenSuccess');
 const refreshTokenError = createAction('auth/refreshTokenError');
 
-
-
 // eslint-disable-next-line
 export default {
   signUpRequest,
@@ -30,6 +32,9 @@ export default {
   logInRequest,
   logInSuccess,
   logInError,
+  updatePasswordRequest,
+  updatePasswordSuccess,
+  updatePasswordError,
   logOutRequest,
   logOutSuccess,
   logOutError,
@@ -38,5 +43,5 @@ export default {
   getCurrentUserError,
   refreshTokenRequest,
   refreshTokenSuccess,
-  refreshTokenError
+  refreshTokenError,
 };
