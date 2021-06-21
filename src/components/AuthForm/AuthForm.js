@@ -1,6 +1,10 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getError } from '../../redux/selectors/index'
+
 import Joi from 'joi';
+
 import authOperations from '../../redux/operations/authOperations';
 import ButtonGo from '../Buttons/ButtonGo/ButtonGo';
 import ButtonSign from '../Buttons/ButtonGo/ButtonSign';
@@ -10,11 +14,32 @@ import { useAlert } from 'react-alert';
 const AuthForm = ({ registered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errAuth, setErrAuth] = useState('');
 
   const alert = useAlert();
+  const error = useSelector(getError)
+
+  console.log(error);
+
+  useEffect(() => {
+    if (error === 'Email or password is wrong' || 'Email in use') {
+      setErrAuth(error)
+    }
+    if (errAuth) {
+      alert.show(errAuth)
+    }
+  }, [error, errAuth, alert, setErrAuth])
+
+
+
+
+  const deleteErr = () => setErrAuth('')
+
+
   const dispatch = useDispatch();
   const changeEmailValue = event => setEmail(event.target.value);
   const changePasswordValue = event => setPassword(event.target.value);
+
 
   const onSubmit = event => {
     event.preventDefault();
@@ -24,13 +49,18 @@ const AuthForm = ({ registered }) => {
       const message = error.message;
       alert.show(message);
     }
-
     if (!error) {
+
       registered
         ? dispatch(authOperations.handleLogIn({ email, password }))
         : dispatch(authOperations.handleSignUp({ email, password }));
+
+
       formReset();
     }
+
+
+
   };
 
   const formReset = () => {
