@@ -55,6 +55,7 @@ const AuthForm = ({ registered }) => {
   const handleUpdatePassword = e => {
     e.preventDefault();
     dispatch(authOperations.updatePassword(email));
+    alert.show('A new password has been sent by email. Check your spam folder')
   };
 
   return (
