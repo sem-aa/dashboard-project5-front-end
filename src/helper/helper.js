@@ -45,7 +45,8 @@ export const colorCategory = category => {
   return color;
 };
 
-export const getDateFormat = dateValue => {
+export const getDateFormat = date => {
+  const dateValue = new Date(date);
   return (
     dateValue.getFullYear() +
     '-' +
@@ -55,7 +56,9 @@ export const getDateFormat = dateValue => {
   );
 };
 
-export const getTimeFormat = dateValue => {
+export const getTimeFormat = date => {
+  const dateValue = new Date(date);
+
   return (
     (dateValue.getHours() < 10 ? '0' + dateValue.getHours() : dateValue.getHours()) +
     ':' +
@@ -88,13 +91,16 @@ const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
 export const todayDate = getDateFormat(today);
 export const tomorrowDate = getDateFormat(tomorrow);
 
-export const isNextWeek = input => {
-  const inputDate = new Date(input);
-  const now = today;
+export const isNextWeek = date => {
+  const now = new Date();
   const monday = now.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7));
-  const firstDay = Date.parse(new Date(monday));
-  const check = Date.parse(new Date(input));
-  const lastWeek = Date.parse(new Date(inputDate.getTime() + 6 * 24 * 60 * 60 * 1000));
+  const arrDate = String(new Date(monday)).split(' ');
+  arrDate.splice(4, 1, '00:00:00');
+  const mondayDate = new Date(arrDate.join(' '));
+
+  const firstDay = Date.parse(new Date(mondayDate));
+  const check = Date.parse(new Date(date));
+  const lastWeek = Date.parse(new Date(new Date(mondayDate).getTime() + 7 * 24 * 60 * 60 * 1000));
 
   return check >= firstDay && check <= lastWeek;
 };

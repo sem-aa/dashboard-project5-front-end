@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import ModalStatus from '../../Modal/Modal-status';
@@ -21,6 +21,7 @@ export default function BasicCard({
 }) {
   const dispatch = useDispatch();
   const inputTitle = useRef();
+  const card = useRef();
 
   // Modal
   const [isOpenCategory, setIsOpenCategory] = useState(false);
@@ -29,6 +30,13 @@ export default function BasicCard({
   const [difficulty, setDifficulty] = useState(data.difficulty);
   const [category, setCategory] = useState(data.category);
   const [title, setTitle] = useState(data.title);
+
+  useEffect(() => {
+    if (isCreateCard) {
+      inputTitle.current.focus({ preventScroll: true });
+      card.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isCreateCard]);
 
   const LocalData = {
     ...data,
@@ -40,7 +48,6 @@ export default function BasicCard({
     time: getTimeFormat(dateValue),
   };
 
-  const getDateValue = value => setDate(value);
   const handleChange = ({ target }) => {
     const { value } = target;
     setTitle(value);
@@ -63,6 +70,7 @@ export default function BasicCard({
 
   return (
     <div
+      ref={card}
       style={{ position: 'relative' }}
       className={cn(style.container, { [style.challenge]: type === 'Challenge' })}
     >
@@ -101,7 +109,7 @@ export default function BasicCard({
           ></input>
           <div className={style.dateFlex}>
             <Calendar
-              getDate={getDateValue}
+              getDate={value => setDate(value)}
               type={type}
               date={data.date}
               time={data.time}
