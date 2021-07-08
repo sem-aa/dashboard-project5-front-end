@@ -18,6 +18,52 @@ export const colorDifficult = diff => {
   return color;
 };
 
+export const getFullMonth = month => {
+  let fullMonth = '';
+  switch (month) {
+    case '01':
+      fullMonth = 'January';
+      break;
+    case '02':
+      fullMonth = 'February';
+      break;
+    case '03':
+      fullMonth = 'Match';
+      break;
+    case '04':
+      fullMonth = 'April';
+      break;
+    case '05':
+      fullMonth = 'May';
+      break;
+    case '06':
+      fullMonth = 'June';
+      break;
+    case '07':
+      fullMonth = 'July';
+      break;
+    case '08':
+      fullMonth = 'August';
+      break;
+    case '09':
+      fullMonth = 'September';
+      break;
+    case '10':
+      fullMonth = 'October';
+      break;
+    case '11':
+      fullMonth = 'November';
+      break;
+    case '12':
+      fullMonth = 'December';
+      break;
+
+    default:
+      fullMonth = '';
+  }
+  return fullMonth;
+};
+
 export const colorCategory = category => {
   let color = '';
   switch (category) {
@@ -115,12 +161,11 @@ export const isExpiredDate = (date, time) => {
   return input < now;
 };
 
-export const getMonth = function (date, type) {
-  const dateFormat = new Date(date.split('-').join(','));
-  const dateValue = dateFormat.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-  });
+export const getMonthDay = function (date, type) {
+  const day = date.split('-')[2];
+  const month = date.split('-')[1];
+  const dateValue = `${getFullMonth(month)} ${day}`;
+  console.log(dateValue);
   return type === 'Challenge' ? `by ${dateValue}` : dateValue;
 };
 
@@ -130,6 +175,6 @@ export const getDayName = function (date, type) {
   } else if (date === tomorrowDate) {
     return type === 'Challenge' ? `by Tomorrow` : `Tomorrow`;
   } else {
-    return getMonth(date, type);
+    return getMonthDay(date, type);
   }
 };
