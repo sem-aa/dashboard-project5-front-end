@@ -1,6 +1,6 @@
 import sprite from '../../icon/sprite.svg';
 import style from './NewCard.module.css';
-import { colorDifficult, colorCategory, getDayName, getMonth } from '../../helper/helper';
+import { colorDifficult, colorCategory, getDayName, getMonthDay } from '../../helper/helper';
 
 export default function Card({ data, type, isDoneSection }) {
   return (
@@ -40,7 +40,7 @@ export default function Card({ data, type, isDoneSection }) {
           </h2>
           <p className={style.date}>
             {isDoneSection
-              ? getMonth(data.date, type) + ', ' + data.time
+              ? getMonthDay(data.date, type) + ', ' + data.time
               : getDayName(data.date, type) + ', ' + data.time}
           </p>
         </div>
